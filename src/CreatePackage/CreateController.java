@@ -1,4 +1,4 @@
-package CreatePacage;
+package CreatePackage;
 
 public class CreateController {
 
