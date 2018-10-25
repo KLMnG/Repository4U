@@ -1,36 +1,32 @@
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import CreatePacage.CreateController;
+import CreatePacage.CreateModel;
+import CreatePacage.CreateView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 public class PapaController {
 
-    @FXML
-            private Button b_b;
+    private Stage stage;
+    private Scene mainScene;
 
-    List<AController> controllers;
+    private MainView mainView;
+
 
     public PapaController() {
-        controllers=new LinkedList<>();
-        addControllers();
+        CreateView c_view = new CreateView();
+        CreateModel c_model = new CreateModel();
+        CreateController c_create = new CreateController(c_model, c_view);
     }
 
-    private void addControllers() {
-        AController mainPage=new MainPageController();
-        controllers.add(mainPage);
-        AController login=new LoginController();
-        controllers.add(login);
-
-    }
 
     public void start()  throws IOException {
-        Stage stage=new Stage();
-        LoginView view=new LoginView();
-        view.start(stage);
-
+        stage=new Stage();
+        mainView = new MainView(stage);
     }
+
+
 }

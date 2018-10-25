@@ -1,32 +1,24 @@
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
-import java.util.Observable;
-import java.util.Observer;
+import java.io.IOException;
 
+public class MainView {
 
-public class MainView implements Observer {
-     public AController controller;
+    private Scene mainScene;
 
     @FXML
-    private Button b_login;
+    public Button b_create;
 
-    public MainView(AController controller) {
-        this.controller = controller;
-    }
-
-
-
-
-
-    public void loginPage(){
-
-    }
-
-
-    @Override
-    public void update(Observable o, Object arg) {
-
+    public MainView(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("mainPageFXML.fxml"));
+        stage.setTitle("Home Page !");
+        mainScene = new Scene(root, 600, 500);
+        stage.setScene(mainScene);
+        stage.show();
     }
 }
