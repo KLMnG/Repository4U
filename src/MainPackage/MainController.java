@@ -21,9 +21,7 @@ public class MainController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        view.b_create.setOnAction(event->{
-            handle();
-        });
+
     }
 
 }

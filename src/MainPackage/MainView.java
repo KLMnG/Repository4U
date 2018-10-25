@@ -28,12 +28,6 @@ public class MainView {
         b_read = (Button) root.lookup("#b_read");
         b_delete = (Button) root.lookup("#b_delete");
 
-
-        b_create.setOnAction(e->{
-            dos();
-        });
-
-
         mainScene = new Scene(root, 600, 500);
         stage.setScene(mainScene);
         stage.show();
