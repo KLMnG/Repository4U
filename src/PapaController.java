@@ -4,34 +4,37 @@ import CreatePackage.CreateView;
 import MainPackage.MainController;
 import MainPackage.MainModel;
 import MainPackage.MainView;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import interfaces.IPapaListener;
 
-import java.io.IOException;
-
-public class PapaController {
+public class PapaController implements IPapaListener {
 
     private Stage stage;
+    private Scene scene;
 
-    private MainView mainView;
 
 
-    public PapaController() throws IOException {
-        CreateView c_view = new CreateView();
-        CreateModel c_model = new CreateModel();
-        CreateController c_create = new CreateController(c_model, c_view);
+    public PapaController() {
 
-        MainView m_view = new MainView();
-        MainModel m_model = new MainModel();
-        MainController m_controller = new MainController(m_model, m_view);
+        MainView mv = new MainView();
 
+        new MainController(new MainModel(), mv).addPapaListener(this);
+        new CreateController(new CreateModel(), new CreateView()).addPapaListener(this);
+
+        stage = new Stage();
+        scene = mv.getScene();
     }
 
 
-    public void start()  throws IOException {
-        stage=new Stage();
-        mainView = new MainView(stage);
+    public void start(){
+        stage.setScene(this.scene);
+        stage.show();
     }
 
 
-
+    @Override
+    public void SwapScene(Scene scene) {
+        this.scene = scene;
+    }
 }

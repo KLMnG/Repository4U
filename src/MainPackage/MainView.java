@@ -5,13 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-
 import java.io.IOException;
+import javafx.event.EventHandler;
+import interfaces.IView;
 
-public class MainView {
-
-    private Scene mainScene;
+public class MainView implements IView{
 
     @FXML
     public Button b_create;
@@ -19,26 +17,31 @@ public class MainView {
     public Button b_delete;
     public Button b_read;
 
-    public MainView(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("mainPageFXML.fxml"));
-        stage.setTitle("Home Page !");
+    private Scene m_Scene;
+
+    public MainView() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("mainPageFXML.fxml"));
+            this.m_Scene = new Scene(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         b_create = (Button) root.lookup("#b_create");
         b_update = (Button) root.lookup("#b_update");
         b_read = (Button) root.lookup("#b_read");
         b_delete = (Button) root.lookup("#b_delete");
 
-        mainScene = new Scene(root, 600, 500);
-        stage.setScene(mainScene);
-        stage.show();
     }
 
-    public MainView() {
-
+    public void setButtonCreateClickedHandler(EventHandler buttonCreateEventHandler){
+        b_create.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED,buttonCreateEventHandler);
     }
 
-    public void dos(){
-        System.out.println("hello it's me !");
 
+    @Override
+    public Scene getScene() {
+        return this.m_Scene;
     }
 }
