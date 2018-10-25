@@ -23,6 +23,6 @@
       </GridPane>
    </children>
    <center>
-      <Button fx:id="b_login" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+      <Button fx:id="b_login" onAction="" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

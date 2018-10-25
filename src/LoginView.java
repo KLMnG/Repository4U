@@ -13,7 +13,7 @@ public class LoginView {
 //    }
 
     public void start(Stage primaryStage) throws IOException {
-        Parent root= FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("mainPage.fxml"));
         primaryStage.setTitle("login");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
