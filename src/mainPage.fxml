@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane prefHeight="462.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainView">
+<BorderPane fx:controller="MainView" prefHeight="462.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <GridPane layoutX="178.0" layoutY="128.0" prefHeight="286.0" prefWidth="349.0">
         <columnConstraints>
@@ -23,6 +23,6 @@
       </GridPane>
    </children>
    <center>
-      <Button mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+      <Button fx:id="b_login" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

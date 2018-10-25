@@ -1,10 +1,16 @@
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 public class PapaController {
+
+    @FXML
+            private Button b_b;
 
     List<AController> controllers;
 
