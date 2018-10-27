@@ -110,6 +110,39 @@ public class ModelUserDB {
         return arrl;
     }
 
+    public List<String> read(String UserName,String Password){
+        List arrl=null;
+        String sql = "SELECT Username,Password,FirstName,LastName,Address,BirthDate "
+                + "FROM Users WHERE Username = ? and Password = ?";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){
+
+            pstmt.setString(1,UserName);
+            pstmt.setString(2,Password);
+            ResultSet rs  = pstmt.executeQuery();
+
+            arrl = new  ArrayList();
+
+            while (rs.next()) {
+
+                arrl.add(rs.getString("Username"));
+                arrl.add(rs.getString("Password"));
+                arrl.add(rs.getString("FirstName"));
+                arrl.add(rs.getString("LastName"));
+                arrl.add(rs.getString("Address"));
+                arrl.add(rs.getString("BirthDate"));
+
+
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return arrl;
+    }
+
 
 
 
