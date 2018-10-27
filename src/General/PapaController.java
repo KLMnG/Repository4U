@@ -1,3 +1,5 @@
+package General;
+
 import CreatePackage.CreateController;
 import CreatePackage.CreateModel;
 import CreatePackage.CreateView;
@@ -12,15 +14,15 @@ public class PapaController implements IPapaListener {
 
     private Stage stage;
     private Scene scene;
-
+    private ModelUserDB model;
 
 
     public PapaController() {
 
         MainView mv = new MainView();
-
-        new MainController(new MainModel(), mv).addPapaListener(this);
-        new CreateController(new CreateModel(), new CreateView()).addPapaListener(this);
+        model=new ModelUserDB();
+        new MainController(model, mv).addPapaListener(this);
+        new CreateController(new CreateModel(), new CreateView()).addPapaListener(this);//need to change model
 
         stage = new Stage();
         scene = mv.getScene();

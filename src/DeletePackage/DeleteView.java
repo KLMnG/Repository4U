@@ -6,15 +6,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
+import java.util.Optional;
 
 
 public class DeleteView implements IView {
     @FXML
     public Button b_delete;
-
+    public Button b_back;
+public Label l_error;
     private Scene m_Scene;
 
     public DeleteView() {
@@ -28,15 +33,31 @@ public class DeleteView implements IView {
 
 
         b_delete = (Button) root.lookup("#b_delete");
-
+        b_back=(Button) root.lookup("#b_back");
+        l_error=(Label)root.lookup("#l_error");
     }
 
     public void setButtonCreateClickedHandler(EventHandler buttonCreateEventHandler){
-        b_delete.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED,buttonCreateEventHandler);
+        b_back.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED,buttonCreateEventHandler);
     }
     @Override
     public Scene getScene() {
         return this.m_Scene;
     }
 
+    public void handle(EventHandler e) {
+
+        l_error.setVisible(false);
+        //model.read(username AND password)
+        //if false-> show view.show l_error
+        //else (below)
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        alert.setTitle("confirmation");
+        alert.setHeaderText("Delete User");
+        alert.setContentText("Are you sure?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+            System.out.println("model.delete(username)");
+    }
 }

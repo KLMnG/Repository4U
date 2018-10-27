@@ -1,5 +1,6 @@
 package MainPackage;
 
+import General.ModelUserDB;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import interfaces.IPapaListener;
@@ -7,12 +8,12 @@ import java.util.ArrayList;
 
 public class MainController {
 
-    private MainModel model;
+    private ModelUserDB model;
     private MainView view;
 
     private static ArrayList<IPapaListener> lst;
 
-    public MainController(MainModel m_model, MainView m_view) {
+    public MainController(ModelUserDB m_model, MainView m_view) {
         this.model = m_model;
         this.view = m_view;
 

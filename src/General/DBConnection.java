@@ -1,3 +1,5 @@
+package General;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,7 +14,7 @@ public class DBConnection {
 
     public Connection getSQLLiteDBConnection(){
         if (conn == null) {
-            try {
+                try {
                 // db parameters
                 // create a connection to the database
                 conn = DriverManager.getConnection(ConnectionString);

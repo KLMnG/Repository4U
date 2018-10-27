@@ -2,23 +2,21 @@ package DeletePackage;
 
 
 
-import MainPackage.MainModel;
+import General.AController;
+import General.ModelUserDB;
 import interfaces.IPapaListener;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
-public class DeleteController {
-    private MainModel model;
+public class DeleteController extends AController {
+    private ModelUserDB model;
     private DeleteView view;
 
     private static ArrayList<IPapaListener> lst;
 
-    public DeleteController(MainModel m_model, DeleteView m_view) {
+    public DeleteController(ModelUserDB m_model, DeleteView m_view) {
         this.model = m_model;
         this.view = m_view;
 
@@ -36,21 +34,16 @@ public class DeleteController {
         return new DeleteController.ButtonCreateClickedHandler();
     }
 
+    @Override
+    public void back() {
+
+    }
+
     private class ButtonCreateClickedHandler implements EventHandler {
 
         @Override
         public void handle(Event event) {
-            //model.read(username AND password)
-            //if false-> show view.show l_error
-            //else (below)
-            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
 
-            alert.setTitle("confirmation");
-            alert.setHeaderText("Delete User");
-            alert.setContentText("Are you sure?");
-            Optional<ButtonType> result=alert.showAndWait();
-            if(result.get()==ButtonType.OK)
-                System.out.println("model.delete(username)");
 
 
         }
