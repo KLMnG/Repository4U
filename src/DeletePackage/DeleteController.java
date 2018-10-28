@@ -21,7 +21,7 @@ public class DeleteController extends AController {
     public void deleteUser(){
 
         try {
-            model.delete(view.userTxt.getText());//need to add password
+            model.delete(view.userTxt.getText(),view.passTxt.getText());
         }
         catch (Exception e){
             view.showError();

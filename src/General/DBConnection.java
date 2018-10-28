@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBConnection {
 
 
-    private String ConnectionString = "jdbc:sqlite:resources/db/vacation4uDB.db";
+    private final String ConnectionString = "jdbc:sqlite:resources/db/vacation4uDB.db";
 
     Connection conn = null;
     public DBConnection(){}
@@ -17,12 +17,12 @@ public class DBConnection {
                 try {
                 // db parameters
                 // create a connection to the database
-                conn = DriverManager.getConnection(ConnectionString);
+                    conn = DriverManager.getConnection(ConnectionString);
                 System.out.println("Connection to SQLite has been established.");
 
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+                   e.getMessage();
+                }
         }
         return conn;
     }
