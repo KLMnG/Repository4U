@@ -1,11 +1,13 @@
 package Update;
 
+import Controls.DateTimePicker;
 import General.AController;
 import interfaces.IView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -30,14 +32,15 @@ public class UpdateView implements IView {
     @FXML
     private TextField tf_newAddress;
     @FXML
-    private DatePicker dp_newBirthdate;
+    private DateTimePicker dp_newBirthdate;
     @FXML
     private Button btn_update;
     @FXML
     private GridPane update_layout;
 
-
     public UpdateView(){
+        //DateFormat();
+        // Converter
 
     }
 
@@ -104,6 +107,8 @@ public class UpdateView implements IView {
         this.update_layout.setVisible(true);
         this.btn_update.setVisible(true);
     }
+
+
 
     @Override
     public void setController(AController controller) {

@@ -12,8 +12,8 @@ public class DBConnection {
     Connection conn = null;
     public DBConnection(){}
 
-    public Connection getSQLLiteDBConnection(){
-        if (conn == null) {
+    public Connection getSQLLiteDBConnection() throws SQLException {
+        if (conn == null || conn.isClosed()) {
                 try {
                 // db parameters
                 // create a connection to the database

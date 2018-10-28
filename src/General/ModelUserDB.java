@@ -54,7 +54,7 @@ public class ModelUserDB {
     public void update(String UserName, String Password, String FirstName, String LastName, String Address, String BirthDate) {
 
         String sql = "UPDATE Users SET Password = ? , "
-                + "FirstName = ? ,LastName = ?,Address = ?,BirthDate = ?"
+                + "FirstName = ? , LastName = ? , Address = ?, BirthDate = ? "
                 + "WHERE Username = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -72,6 +72,7 @@ public class ModelUserDB {
             // update
 
             pstmt.executeUpdate();
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
