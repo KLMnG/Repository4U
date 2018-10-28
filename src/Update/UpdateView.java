@@ -94,7 +94,7 @@ public class UpdateView implements IView {
     }
 
     public void setDp_newBirthdate(String date) {
-        this.dp_newBirthdate.setValue(LocalDate.parse(date,DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        this.dp_newBirthdate.setValue(LocalDate.parse(date,DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 
     public void openUpdateLayout(){

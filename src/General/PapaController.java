@@ -60,6 +60,7 @@ public class PapaController {
             controllers.get(viewID).setView(view);
             view.setController(controllers.get(viewID));
 
+
             this.scene = new Scene(root);
 
         } catch (IOException e) {

@@ -12,7 +12,6 @@ public class UpdateController extends AController {
 
     public UpdateController(PapaController papa) {
         super(papa);
-
     }
 
     @Override
@@ -43,5 +42,6 @@ public class UpdateController extends AController {
     }
     public void UpdateUserInfo(){
         model.update(view.getTf_newId(),view.getpf_newPass(),view.getTf_newFname(),view.getTf_newLname(),view.getTf_newAddress(),view.getDp_newBirthdate());
+        SwapScene(PapaController.Views.MainWindow);
     }
 }
