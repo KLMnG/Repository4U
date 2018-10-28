@@ -1,47 +1,29 @@
 package CreatePackage;
 
-import General.ModelUserDB;
-import interfaces.IPapaListener;
+import General.AController;
+import General.PapaController;
+import interfaces.IView;
 
-import java.util.ArrayList;
+public class CreateController extends AController {
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
-
-
-public class CreateController {
-
-    public ModelUserDB model;
     private CreateView view;
 
-
-    private static ArrayList<IPapaListener> lst;
-
-
-
-    public CreateController(ModelUserDB model, CreateView view) {
-        this.model = model;
-        this.view = view;
-        lst = new ArrayList<IPapaListener>();
-        //    this.view.setButtonCreateClickedHandler(new ButtonCreateClickedHandler());
-
+    public CreateController(PapaController papa) {
+        super(papa);
     }
 
-    //   public void addPapaListener(IPapaListener papa){
-    //     if (papa != null && !lst.contains(papa))
-    //       lst.add(papa);
-    // }
+    @Override
+    public void setView(IView view) {
+        this.view = (CreateView) view;
+    }
+
+    @Override
+    public void back()
+    {
+
+    }
 
     public void b_create(){
         model.addUser(view.getUserName(),view.getPassword(),view.getFirstName(),view.getLastName(),view.getBirthDate(),view.getCity());
     }
-
-    private class ButtonCreateClickedHandler implements EventHandler{
-
-        @Override
-        public void handle(Event event) {
-            model.addUser(view.getUserName(),view.getPassword(),view.getFirstName(),view.getLastName(),view.getBirthDate(),view.getCity());
-        }
-    }
 }
-

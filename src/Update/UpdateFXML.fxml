@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="Update.UpdateView" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="70.0" prefWidth="200.0">
          <children>
@@ -32,7 +32,7 @@
                   <PasswordField fx:id="pf_loginPass"  GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Button fx:id="btn_loginId" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Login">
+            <Button fx:id="btn_login" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Login" onAction="#Login">
                <HBox.margin>
                   <Insets left="50.0" top="25.0" />
                </HBox.margin>
@@ -70,7 +70,7 @@
             <Insets top="50.0" />
          </padding>
       </GridPane>
-      <Button fx:id="btn_update" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Update" visible="false">
+      <Button fx:id="btn_update" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Update" visible="false" onAction="#UpdateUserInfo">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin></Button>

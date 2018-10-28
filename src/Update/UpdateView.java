@@ -1,58 +1,43 @@
 package Update;
 
+import General.AController;
 import interfaces.IView;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class UpdateView implements IView {
 
-
-    private Scene m_Scene;
+    private UpdateController controller;
 
     @FXML
     private TextField tf_loginId;
+    @FXML
     private PasswordField pf_loginPass;
+    @FXML
     private Button btn_login;
+    @FXML
     private TextField tf_newId;
+    @FXML
     private PasswordField pf_newPass;
+    @FXML
     private TextField tf_newFname;
+    @FXML
     private TextField tf_newLname;
+    @FXML
     private TextField tf_newAddress;
+    @FXML
     private DatePicker dp_newBirthdate;
+    @FXML
     private Button btn_update;
+    @FXML
     private GridPane update_layout;
 
 
-
     public UpdateView(){
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("UpdateFXML.fxml"));
-            this.tf_loginId = (TextField) root.lookup("#tf_loginId");
-            this.pf_loginPass = (PasswordField) root.lookup("#pf_loginPass");
-            this.btn_login = (Button) root.lookup("#btn_login");
-            this.tf_newId = (TextField) root.lookup("#tf_newId");
-            this.pf_newPass = (PasswordField) root.lookup("#pf_newPass");
-            this.tf_newFname = (TextField) root.lookup("#tf_newFname");
-            this.tf_newLname = (TextField) root.lookup("#tf_newLname");
-            this.tf_newAddress = (TextField) root.lookup("#tf_newAddress");
-            this.dp_newBirthdate = (DatePicker) root.lookup("#dp_newBirthdate");
-            this.btn_update = (Button) root.lookup("#btn_update");
-            this.update_layout = (GridPane) root.lookup("#update_layout");
-            this.m_Scene = new Scene(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
 
     }
 
@@ -121,7 +106,15 @@ public class UpdateView implements IView {
     }
 
     @Override
-    public Scene getScene() {
-        return this.m_Scene;
+    public void setController(AController controller) {
+        this.controller = (UpdateController) controller;
+    }
+
+    public void Login(ActionEvent actionEvent) {
+        this.controller.Login();
+    }
+
+    public void UpdateUserInfo(ActionEvent actionEvent) {
+        this.controller.UpdateUserInfo();
     }
 }

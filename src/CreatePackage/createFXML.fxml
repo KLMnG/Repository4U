@@ -55,12 +55,12 @@
                         <Font name="Aharoni Bold" size="14.0" />
                     </font>
                 </Label>
+                <TextField id="UserName" fx:id="UserName" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <TextField fx:id="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="BirthDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="FirstName" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="LastName" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <TextField fx:id="City" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <TextField fx:id="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField fx:id="BirthDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField id="UserName" fx:id="UserName" GridPane.columnIndex="1" />
             </children>
         </GridPane>
         <Button fx:id="b_create" layoutX="268.0" layoutY="270.0" mnemonicParsing="false" onAction="#b_create" text="Create" />

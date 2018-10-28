@@ -1,16 +1,11 @@
 package ReadPackage;
 
-import General.ModelUserDB;
-import interfaces.IPapaListener;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import java.util.ArrayList;
+import General.AController;
+import General.PapaController;
+import interfaces.IView;
 import java.util.List;
 
-public class ReadController {
-
-    private ReadView view;
-    private ModelUserDB model;
+public class ReadController extends AController {
 
     private String userName;
     private String userPassword;
@@ -19,46 +14,54 @@ public class ReadController {
     private String userAddress;
     private String userBirthDate;
 
-    private static ArrayList<IPapaListener> lst;
+    private ReadView view;
 
-    public ReadController(ModelUserDB r_model, ReadView r_view) {
-        this.view = r_view;
-        this.model = r_model;
-
-        this.view.setButtonSearchClickedHandler(new ButtonSearchClickedHandler());
+    public ReadController(PapaController papa) {
+        super(papa);
     }
 
-    public ButtonSearchClickedHandler getButtonSearchClickedHandler(){
-        return new ButtonSearchClickedHandler();
+    @Override
+    public void setView(IView view) {
+        this.view = (ReadView) view;
     }
 
+//    private class ButtonSearchClickedHandler implements EventHandler {
+//        @Override
+//        public void handle(Event event) {
+//            List userInfo = model.read(view.getUserNameFromTextField());
+//            if(userInfo != null && userInfo.size() != 0) {
+//                separationInfo(userInfo);
+//                view.setVisibleTrue();
+//                view.setUserName(userName);
+//                view.setUserPassword(userPassword);
+//                view.setUserFirstName(userFirstName);
+//                view.setUserLastName(userLastName);
+//                view.setUserAddress(userAddress);
+//                view.setUserBirthDate(userBirthDate);
+//            }
+//            else{
+//                view.setVisibleFalse();
+//            }
+//
+//        }
+//    }
 
-    public void addPapaListener(IPapaListener papa){
-        if (papa != null && !lst.contains(papa))
-            lst.add(papa);
-    }
-
-    private class ButtonSearchClickedHandler implements EventHandler {
-        @Override
-        public void handle(Event event) {
-            List userInfo = model.read(view.getUserNameFromTextField());
-            if(userInfo != null && userInfo.size() != 0) {
-                separationInfo(userInfo);
-                view.setVisibleTrue();
-                view.setUserName(userName);
-                view.setUserPassword(userPassword);
-                view.setUserFirstName(userFirstName);
-                view.setUserLastName(userLastName);
-                view.setUserAddress(userAddress);
-                view.setUserBirthDate(userBirthDate);
-            }
-            else{
-                view.setVisibleFalse();
-            }
-
+    public void SearchUser() {
+        List userInfo = model.read(view.getUserNameFromTextField());
+        if(userInfo != null && userInfo.size() != 0) {
+            separationInfo(userInfo);
+            view.setVisibleTrue();
+            view.setUserName(userName);
+            view.setUserPassword(userPassword);
+            view.setUserFirstName(userFirstName);
+            view.setUserLastName(userLastName);
+            view.setUserAddress(userAddress);
+            view.setUserBirthDate(userBirthDate);
+        }
+        else{
+            view.setVisibleFalse();
         }
     }
-
     private void separationInfo(List userInfo) {
         userName = (String) userInfo.get(0);
         userPassword = (String) userInfo.get(1);
@@ -67,4 +70,10 @@ public class ReadController {
         userAddress = (String) userInfo.get(4);
         userBirthDate = (String) userInfo.get(5);
     }
+
+    @Override
+    public void back() {
+
+    }
+
 }

@@ -1,7 +1,7 @@
 package interfaces;
 
-import javafx.scene.Scene;
+import General.AController;
 
 public interface IView {
-    public Scene getScene();
+    public void setController(AController controller);
 }

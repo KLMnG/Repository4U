@@ -13,7 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="850.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane
+        fx:controller="ReadPackage.ReadView"
+        maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="850.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -25,7 +27,7 @@
             <HBox alignment="TOP_CENTER" spacing="10.0">
                <children>
                   <TextField fx:id="tf_line" prefHeight="25.0" prefWidth="242.0" />
-                  <Button fx:id="b_search" mnemonicParsing="false" text="search" />
+                  <Button fx:id="b_search" mnemonicParsing="false" text="Search" onAction="#Search"/>
                </children>
             </HBox>
             <Label fx:id="l_not" text="User Doesn't found" underline="true" visible="false" />

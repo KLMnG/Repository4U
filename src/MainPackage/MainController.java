@@ -1,44 +1,34 @@
 package MainPackage;
 
-import General.ModelUserDB;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import interfaces.IPapaListener;
-import java.util.ArrayList;
+import General.AController;
+import General.PapaController;
+import interfaces.IView;
 
-public class MainController {
+public class MainController extends AController {
 
-    private ModelUserDB model;
     private MainView view;
 
-    private static ArrayList<IPapaListener> lst;
-
-    public MainController(ModelUserDB m_model, MainView m_view) {
-        this.model = m_model;
-        this.view = m_view;
-
-        this.view.setButtonCreateClickedHandler(new ButtonCreateClickedHandler());
-
-        lst = new ArrayList<IPapaListener>();
+    public MainController(PapaController papa) {
+        super(papa);
     }
 
-    public void addPapaListener(IPapaListener papa){
-        if (papa != null && !lst.contains(papa))
-            lst.add(papa);
+    @Override
+    public void setView(IView view) {
+        this.view = (MainView) view;
     }
 
-    public ButtonCreateClickedHandler getButtonCreateClickedHandlerHandler(){
-        return new ButtonCreateClickedHandler();
+    public void openCreateWindow() {
+        SwapScene(PapaController.Views.CreateWindow);
     }
 
-    private class ButtonCreateClickedHandler implements EventHandler {
+    @Override
+    public void back() {
 
-        @Override
-        public void handle(Event event) {
-            for (IPapaListener papa : lst) {
-                papa.SwapScene(view.getScene());
-            }
-        }
     }
 
+    public void openReadWindow() { SwapScene(PapaController.Views.ReadWindow); }
+
+    public void openUpdateWindow() { SwapScene(PapaController.Views.UpdateWindow); }
+
+    public void openDeleteWindow() { SwapScene(PapaController.Views.DeleteWIndow); }
 }
