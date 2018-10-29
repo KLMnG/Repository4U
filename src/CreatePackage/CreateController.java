@@ -2,6 +2,7 @@ package CreatePackage;
 
 import General.AController;
 import General.PapaController;
+import MainPackage.MainView;
 import interfaces.IView;
 
 public class CreateController extends AController {

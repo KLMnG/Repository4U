@@ -3,6 +3,7 @@
 <?import Controls.DateTimePicker?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="281.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreatePackage.CreateView">
+<AnchorPane prefHeight="410.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreatePackage.CreateView">
     <children>
         <GridPane layoutX="150.0" layoutY="76.0" prefHeight="179.0" prefWidth="215.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0">
             <columnConstraints>
@@ -57,7 +58,7 @@
                     </font>
                 </Label>
                 <TextField id="UserName" fx:id="UserName" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <TextField fx:id="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <PasswordField fx:id="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <DateTimePicker fx:id="BirthDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="FirstName" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="LastName" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -74,6 +75,7 @@
                 <Font name="Aharoni Bold" size="29.0" />
             </font>
         </Label>
+      <Button mnemonicParsing="false" onAction="#back" text="Back" />
 
     </children>
 
