@@ -53,10 +53,10 @@ public class ModelUserDB {
             System.out.println(e.getMessage());
         }
     }
-    public void update(String UserName, String Password, String FirstName, String LastName, String Address, String BirthDate) {
+    public void update(String UserName, String Password, String FirstName, String LastName, String City, String BirthDate) {
 
         String sql = "UPDATE Users SET Password = ? , "
-                + "FirstName = ? , LastName = ? , Address = ?, BirthDate = ? "
+                + "FirstName = ? , LastName = ? , City = ?, BirthDate = ? "
                 + "WHERE Username = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -67,7 +67,7 @@ public class ModelUserDB {
             pstmt.setString(1, Password);
             pstmt.setString(2, FirstName);
             pstmt.setString(3, LastName);
-            pstmt.setString(4, Address);
+            pstmt.setString(4, City);
             pstmt.setString(5, BirthDate);
             pstmt.setString(6, UserName);
 
@@ -81,7 +81,7 @@ public class ModelUserDB {
     }
     public List<String> read(String UserName){
         List arrl=null;
-        String sql = "SELECT Username,Password,FirstName,LastName,Address,BirthDate "
+        String sql = "SELECT Username,Password,FirstName,LastName,City,BirthDate "
                 + "FROM Users WHERE Username = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -98,7 +98,7 @@ public class ModelUserDB {
                 arrl.add(rs.getString("Password"));
                 arrl.add(rs.getString("FirstName"));
                 arrl.add(rs.getString("LastName"));
-                arrl.add(rs.getString("Address"));
+                arrl.add(rs.getString("City"));
                 arrl.add(rs.getString("BirthDate"));
 
 
@@ -113,7 +113,7 @@ public class ModelUserDB {
 
     public List<String> read(String UserName,String Password){
         List arrl=null;
-        String sql = "SELECT Username,Password,FirstName,LastName,Address,BirthDate "
+        String sql = "SELECT Username,Password,FirstName,LastName,City,BirthDate "
                 + "FROM Users WHERE Username = ? and Password = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -131,7 +131,7 @@ public class ModelUserDB {
                 arrl.add(rs.getString("Password"));
                 arrl.add(rs.getString("FirstName"));
                 arrl.add(rs.getString("LastName"));
-                arrl.add(rs.getString("Address"));
+                arrl.add(rs.getString("City"));
                 arrl.add(rs.getString("BirthDate"));
 
 

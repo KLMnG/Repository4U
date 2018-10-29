@@ -62,7 +62,7 @@
              <TextField fx:id="tf_newFname" GridPane.columnIndex="1" GridPane.rowIndex="2" />
              <Label text="Last Name" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
              <TextField fx:id="tf_newLname" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-             <Label text="Address" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+             <Label text="City" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
              <TextField fx:id="tf_newAddress" GridPane.columnIndex="1" GridPane.rowIndex="4" />
              <Label text="BirthDate" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
              <DateTimePicker fx:id="dp_newBirthdate" prefWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="5"/>

@@ -30,7 +30,7 @@ public class UpdateController extends AController {
 
         ArrayList<String> result = (ArrayList<String>)model.read(Username,Passwrod);
 
-        if (result.size() > 1){
+        if (result != null && result.size() > 1){
             view.setTf_newId(result.get(0));
             view.setPf_newPass(result.get(1));
             view.setTf_newFname(result.get(2));
@@ -38,6 +38,9 @@ public class UpdateController extends AController {
             view.setTf_newAddress(result.get(4));
             view.setDp_newBirthdate(result.get(5));
             view.openUpdateLayout();
+        }
+        else{
+            this.view.ShowAlert("Username or Password are incorrect");
         }
     }
     public void UpdateUserInfo(){
@@ -64,9 +67,8 @@ public class UpdateController extends AController {
             AlertMessage += "Birthdate should be dd/MM/yyyy format\n";
 
 
-
         if (AlertMessage.length() > 0)
-            view.ShowAlert(AlertMessage);
+            this.view.ShowAlert(AlertMessage);
         else {
             model.update(view.getTf_newId(), view.getpf_newPass(), view.getTf_newFname(), view.getTf_newLname(), view.getTf_newAddress(), view.getDp_newBirthdate());
             SwapScene(PapaController.Views.MainWindow);
