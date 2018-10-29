@@ -18,7 +18,6 @@ public class DBConnection {
                 // db parameters
                 // create a connection to the database
                     conn = DriverManager.getConnection(ConnectionString);
-                System.out.println("Connection to SQLite has been established.");
 
             } catch (SQLException e) {
                    e.getMessage();

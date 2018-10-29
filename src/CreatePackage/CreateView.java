@@ -94,6 +94,5 @@ public class CreateView implements IView {
         else
             this.controller.b_create();
 
-        System.out.println("dfgdfg");
     }
 }
