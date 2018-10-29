@@ -22,6 +22,7 @@ public class DeleteController extends AController {
 
         try {
             model.delete(view.userTxt.getText(),view.passTxt.getText());
+            SwapScene(PapaController.Views.MainWindow);
         }
         catch (Exception e){
             view.showError();
@@ -29,8 +30,7 @@ public class DeleteController extends AController {
 
     }
 
-    @Override
     public void back() {
-
+        SwapScene(PapaController.Views.MainWindow);
     }
 }

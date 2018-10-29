@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="595.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DeletePackage.DeleteView">
+<AnchorPane prefHeight="595.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DeletePackage.DeleteView">
    <children>
       <AnchorPane fx:id="headline" prefHeight="91.0" prefWidth="850.0" style="-fx-background-color: #3D9999;">
          <children>
-            <Button fx:id="b_back" layoutX="771.0" layoutY="30.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" style="-fx-background-color: #3d9950;" text="&lt;- Back" />
+            <Button fx:id="b_back" layoutX="771.0" layoutY="30.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" style="-fx-background-color: #3d9950;" text="&lt;- Back" onAction="#back"/>
          </children></AnchorPane>
       <AnchorPane layoutY="91.0" prefHeight="503.0" prefWidth="850.0" style="-fx-background-color: #3D4956;">
          <children>

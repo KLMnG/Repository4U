@@ -49,4 +49,8 @@ public class DeleteView implements IView {
     public void showError(){
         l_error.setVisible(true);
     }
+
+    public void back(ActionEvent actionEvent) {
+        this.m_controller.back();
+    }
 }

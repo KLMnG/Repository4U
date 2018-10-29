@@ -17,9 +17,9 @@ public class CreateController extends AController {
         this.view = (CreateView) view;
     }
 
-    @Override
     public void back()
     {
+        SwapScene(PapaController.Views.MainWindow);
     }
 
     public void b_create(){
