@@ -35,15 +35,17 @@ public class ModelUserDB {
             e.printStackTrace();
         }
 
+
     }
-    public void delete(String UserName) {
-        String sql = "DELETE FROM Users WHERE Username = ?";
+    public void delete(String UserName, String Password) {
+        String sql = "DELETE FROM Users WHERE Username = ? AND  Password=?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // set the corresponding param
             pstmt.setString(1, UserName);
+            pstmt.setString(2, Password);
             // execute the delete statement
             pstmt.executeUpdate();
 

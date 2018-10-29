@@ -17,7 +17,7 @@ public class DeleteView implements IView {
     public Button b_back;
     public Label l_error;
     public TextField userTxt;
-    public TextField passTxt;
+    public PasswordField passTxt;
 
     private DeleteController m_controller;
 
@@ -43,7 +43,7 @@ public class DeleteView implements IView {
         alert.setContentText("Are you sure?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK)
-            System.out.println("model.delete(username)");
+           m_controller.deleteUser();
     }
 
     public void showError(){
