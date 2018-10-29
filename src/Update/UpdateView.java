@@ -122,4 +122,9 @@ public class UpdateView implements IView {
     public void UpdateUserInfo(ActionEvent actionEvent) {
         this.controller.UpdateUserInfo();
     }
+
+    public void ShowAlert(String alertMessage) {
+        Alert alert = new Alert(Alert.AlertType.ERROR,alertMessage,ButtonType.OK);
+        alert.show();
+    }
 }

@@ -41,7 +41,35 @@ public class UpdateController extends AController {
         }
     }
     public void UpdateUserInfo(){
-        model.update(view.getTf_newId(),view.getpf_newPass(),view.getTf_newFname(),view.getTf_newLname(),view.getTf_newAddress(),view.getDp_newBirthdate());
-        SwapScene(PapaController.Views.MainWindow);
+
+        String AlertMessage = "";
+        String Username = view.getTf_newId();
+        String Password = view.getpf_newPass();
+        String Firstname = view.getTf_newFname();
+        String Lastname = view.getTf_newLname();
+        String Address = view.getTf_newAddress();
+        String Birthdate = view.getDp_newBirthdate();
+
+        if (Username.length() < 4)
+            AlertMessage += "Username must be at least 4 characters\n";
+        if(Password.length() < 6)
+            AlertMessage += "Password must be at least 6 characters\n";
+        if(Firstname.length() < 1)
+            AlertMessage += "Firstname must be at least 1 characters\n";
+        if(Lastname.length() < 1)
+            AlertMessage += "Firstname must be at least 1 characters\n";
+        if(Address.length() < 1)
+            AlertMessage += "Firstname must be at least 1 characters\n";
+        if(Birthdate.length() < 1)
+            AlertMessage += "Birthdate should be dd/MM/yyyy format\n";
+
+
+
+        if (AlertMessage.length() > 0)
+            view.ShowAlert(AlertMessage);
+        else {
+            model.update(view.getTf_newId(), view.getpf_newPass(), view.getTf_newFname(), view.getTf_newLname(), view.getTf_newAddress(), view.getDp_newBirthdate());
+            SwapScene(PapaController.Views.MainWindow);
+        }
     }
 }
