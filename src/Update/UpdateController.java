@@ -4,6 +4,9 @@ import General.AController;
 import General.PapaController;
 import interfaces.IView;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class UpdateController extends AController {
@@ -19,16 +22,15 @@ public class UpdateController extends AController {
         this.view = (UpdateView) view;
     }
 
-    @Override
     public void back() {
-
+        SwapScene(PapaController.Views.MainWindow);
     }
 
     public void Login(){
         String Username = view.getTf_loginId();
-        String Passwrod = view.getPf_loginPass();
+        String Password = view.getPf_loginPass();
 
-        ArrayList<String> result = (ArrayList<String>)model.read(Username,Passwrod);
+        ArrayList<String> result = (ArrayList<String>)model.read(Username,Password);
 
         if (result != null && result.size() > 1){
             view.setTf_newId(result.get(0));
@@ -58,13 +60,15 @@ public class UpdateController extends AController {
         if(Password.length() < 6)
             AlertMessage += "Password must be at least 6 characters\n";
         if(Firstname.length() < 1)
-            AlertMessage += "Firstname must be at least 1 characters\n";
+            AlertMessage += "First Name must be at least 1 characters\n";
         if(Lastname.length() < 1)
-            AlertMessage += "Firstname must be at least 1 characters\n";
+            AlertMessage += "Last Name must be at least 1 characters\n";
         if(Address.length() < 1)
-            AlertMessage += "Firstname must be at least 1 characters\n";
+            AlertMessage += "City must be at least 1 characters\n";
         if(Birthdate.length() < 1)
-            AlertMessage += "Birthdate should be dd/MM/yyyy format\n";
+            AlertMessage += "Birth Date should be dd/MM/yyyy format\n";
+        if (Period.between(LocalDate.parse(Birthdate,DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.now()).getYears() < 18)
+            AlertMessage += "Must pass puberty\n";
 
 
         if (AlertMessage.length() > 0)

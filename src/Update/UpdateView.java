@@ -39,9 +39,6 @@ public class UpdateView implements IView {
     private GridPane update_layout;
 
     public UpdateView(){
-        //DateFormat();
-        // Converter
-
     }
 
     public String getTf_loginId() {
@@ -126,5 +123,9 @@ public class UpdateView implements IView {
     public void ShowAlert(String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.ERROR,alertMessage,ButtonType.OK);
         alert.show();
+    }
+
+    public void back(ActionEvent actionEvent) {
+        this.controller.back();
     }
 }

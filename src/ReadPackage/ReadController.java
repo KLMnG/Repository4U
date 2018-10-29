@@ -25,27 +25,6 @@ public class ReadController extends AController {
         this.view = (ReadView) view;
     }
 
-//    private class ButtonSearchClickedHandler implements EventHandler {
-//        @Override
-//        public void handle(Event event) {
-//            List userInfo = model.read(view.getUserNameFromTextField());
-//            if(userInfo != null && userInfo.size() != 0) {
-//                separationInfo(userInfo);
-//                view.setVisibleTrue();
-//                view.setUserName(userName);
-//                view.setUserPassword(userPassword);
-//                view.setUserFirstName(userFirstName);
-//                view.setUserLastName(userLastName);
-//                view.setUserAddress(userAddress);
-//                view.setUserBirthDate(userBirthDate);
-//            }
-//            else{
-//                view.setVisibleFalse();
-//            }
-//
-//        }
-//    }
-
     public void SearchUser() {
         List userInfo = model.read(view.getUserNameFromTextField());
         if(userInfo != null && userInfo.size() != 0) {
@@ -71,7 +50,6 @@ public class ReadController extends AController {
         userBirthDate = (String) userInfo.get(5);
     }
 
-    @Override
     public void back() {
         SwapScene(PapaController.Views.MainWindow);
     }

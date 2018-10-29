@@ -21,11 +21,6 @@ public class MainController extends AController {
         SwapScene(PapaController.Views.CreateWindow);
     }
 
-    @Override
-    public void back() {
-
-    }
-
     public void openReadWindow() { SwapScene(PapaController.Views.ReadWindow); }
 
     public void openUpdateWindow() { SwapScene(PapaController.Views.UpdateWindow); }
