@@ -16,8 +16,8 @@ public class ModelUserDB {
         con=new DBConnection();
     }
 
-    public void addUser(String UserName, String Password, String FirstName, String LastName, String Address, String BirthDate) {
-        String sql = "INSERT INTO Users(Username,Password,FirstName,LastName,Address,BirthDate) VALUES(?,?,?,?,?,?)";
+    public void addUser(String UserName, String Password, String BirthDate, String FirstName, String LastName, String City) {
+        String sql = "INSERT INTO Users(Username,Password,BirthDate,FirstName,LastName,City) VALUES(?,?,?,?,?,?)";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql))
@@ -26,10 +26,10 @@ public class ModelUserDB {
 
             pstmt.setString(1, UserName);
             pstmt.setString(2, Password);
-            pstmt.setString(3, FirstName);
-            pstmt.setString(4, LastName);
-            pstmt.setString(5, Address);
-            pstmt.setString(6, BirthDate);
+            pstmt.setString(3, BirthDate);
+            pstmt.setString(4, FirstName);
+            pstmt.setString(5, LastName);
+            pstmt.setString(6, City);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
