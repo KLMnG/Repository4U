@@ -73,7 +73,7 @@ public class ReadController extends AController {
 
     @Override
     public void back() {
-
+        SwapScene(PapaController.Views.MainWindow);
     }
 
 }

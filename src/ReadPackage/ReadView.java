@@ -70,4 +70,8 @@ public class ReadView implements IView {
     public void Search(ActionEvent actionEvent) {
         this.controller.SearchUser();
     }
+
+    public void Back(){
+        this.controller.back();
+    }
 }
