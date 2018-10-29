@@ -20,10 +20,12 @@ public class CreateController extends AController {
     @Override
     public void back()
     {
-
     }
 
     public void b_create(){
-        model.addUser(view.getUserName(),view.getPassword(),view.getFirstName(),view.getLastName(),view.getBirthDate(),view.getCity());
+
+        model.addUser(view.getUserName(),view.getPassword(),view.getBirthDate(),view.getFirstName(),view.getLastName(),view.getCity());
+
+        SwapScene(PapaController.Views.MainWindow);
     }
 }
