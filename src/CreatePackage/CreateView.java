@@ -5,12 +5,10 @@ import General.AController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import interfaces.IView;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
+import javax.swing.text.PasswordView;
 import javax.swing.text.html.ImageView;
 
 public class CreateView implements IView {
@@ -20,7 +18,7 @@ public class CreateView implements IView {
     @FXML
     public Button b_create;
     public TextField UserName;
-    public TextField Password;
+    public PasswordField Password;
     public DateTimePicker BirthDate;
     public TextField FirstName;
     public TextField LastName;
@@ -94,5 +92,9 @@ public class CreateView implements IView {
         else
             this.controller.b_create();
 
+    }
+
+    public void back(ActionEvent actionEvent) {
+        this.controller.back();
     }
 }
