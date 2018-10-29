@@ -15,12 +15,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Update.UpdateView">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Update.UpdateView">
    <center>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="605.0" style="-fx-background-color: #3D4956;">
          <children>
+            <Label text="Update User" textFill="WHITE" underline="true">
+               <font>
+                  <Font name="Aharoni Bold" size="29.0" />
+               </font>
+            </Label>
             <HBox prefHeight="70.0" prefWidth="200.0">
                <children>
                   <GridPane hgap="5.0" vgap="7.0">
@@ -33,9 +38,15 @@
                       <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                      <children>
-                         <Label text="Username" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+                         <Label text="Username" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="Aharoni Bold" size="18.0" />
+                           </font></Label>
                         <TextField fx:id="tf_loginId" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                         <Label text="Password" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                         <Label text="Password" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Aharoni Bold" size="18.0" />
+                           </font></Label>
                         <PasswordField fx:id="pf_loginPass" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         </children>
                   </GridPane>
@@ -45,6 +56,12 @@
                      </HBox.margin>
                   </Button>
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
             </HBox>
             <GridPane fx:id="update_layout" hgap="5.0" vgap="7.0" visible="false">
               <columnConstraints>
@@ -60,17 +77,35 @@
                   <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                   <Label text="Username" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+                   <Label text="Username" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                    <TextField fx:id="tf_newId" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                   <Label text="Password" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                   <Label text="Password" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                    <PasswordField fx:id="pf_newPass" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                   <Label text="First Name" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                   <Label text="First Name" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                    <TextField fx:id="tf_newFname" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                   <Label text="Last Name" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                   <Label text="Last Name" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                    <TextField fx:id="tf_newLname" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                   <Label text="City" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                   <Label text="City" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                    <TextField fx:id="tf_newAddress" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                   <Label text="BirthDate" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                   <Label text="BirthDate" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                    <DateTimePicker fx:id="dp_newBirthdate" prefWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
                <padding>
@@ -89,11 +124,11 @@
       </VBox>
    </center>
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="65.0" prefWidth="605.0" style="-fx-background-color: #3D9999;" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Back" onAction="#back"/>
+              <MenuItem mnemonicParsing="false" onAction="#back" text="Back" />
             </items>
           </Menu>
         </menus>

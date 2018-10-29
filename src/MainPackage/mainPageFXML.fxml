@@ -1,28 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="MainPackage.MainView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="600.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainPackage.MainView">
    <center>
       <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="160.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="b_create" mnemonicParsing="false" onAction="#openCreateWindow" prefHeight="114.0" prefWidth="130.0" text="Create" />
-            <Button fx:id="b_read" mnemonicParsing="false" onAction="#openReadWindow" prefHeight="200.0" prefWidth="216.0" text="Read" GridPane.columnIndex="1" />
-            <Button fx:id="b_update" mnemonicParsing="false" onAction="#openUpdateWindow" prefHeight="249.0" prefWidth="297.0" text="Update" GridPane.rowIndex="1" />
-            <Button fx:id="b_delete" mnemonicParsing="false" onAction="#openDeleteWindow" prefHeight="291.0" prefWidth="342.0" text="Delete" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="b_create" mnemonicParsing="false" onAction="#openCreateWindow" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #3D9999;" text="Create">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Button>
+            <Button fx:id="b_read" mnemonicParsing="false" onAction="#openReadWindow" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #3D9999;" text="Read" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Button>
+            <Button fx:id="b_update" alignment="CENTER" mnemonicParsing="false" onAction="#openUpdateWindow" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #3D9999;" text="Update" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Button>
+            <Button fx:id="b_delete" mnemonicParsing="false" onAction="#openDeleteWindow" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #3D9999;" text="Delete" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Button>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </GridPane>
    </center>
+   <top>
+      <Label alignment="CENTER" prefHeight="88.0" prefWidth="185.0" text="Welcome" textFill="WHITE" underline="true" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Aharoni Bold" size="36.0" />
+         </font>
+      </Label>
+   </top>
 </BorderPane>
