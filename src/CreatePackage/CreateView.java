@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
+import javax.swing.text.html.ImageView;
+
 public class CreateView implements IView {
 
     private CreateController controller;
@@ -23,9 +25,7 @@ public class CreateView implements IView {
     public TextField FirstName;
     public TextField LastName;
     public TextField City;
-    public GridPane gp_info;
-    public Label l_not;
-    public TextField tf_line;
+    public ImageView iv;
 
 
 
