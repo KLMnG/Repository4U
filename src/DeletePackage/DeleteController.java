@@ -21,8 +21,15 @@ public class DeleteController extends AController {
     public void deleteUser(){
 
         try {
-            model.delete(view.userTxt.getText(),view.passTxt.getText());
-            SwapScene(PapaController.Views.MainWindow);
+            String Username = view.userTxt.getText();
+            String Password = view.passTxt.getText();
+            if (model.isUserExists(Username,Password)) {
+                model.delete(Username, Password);
+                SwapScene(PapaController.Views.MainWindow);
+            }
+            else {
+                this.view.ShowAlert("Username or Password are incorrect");
+            }
         }
         catch (Exception e){
             view.showError();

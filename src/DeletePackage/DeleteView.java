@@ -53,4 +53,9 @@ public class DeleteView implements IView {
     public void back(ActionEvent actionEvent) {
         this.m_controller.back();
     }
+
+    public void ShowAlert(String alertMessage) {
+        Alert alert = new Alert(Alert.AlertType.ERROR,alertMessage,ButtonType.OK);
+        alert.show();
+    }
 }

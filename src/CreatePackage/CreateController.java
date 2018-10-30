@@ -25,8 +25,12 @@ public class CreateController extends AController {
 
     public void b_create(){
 
-        model.addUser(view.getUserName(),view.getPassword(),view.getBirthDate(),view.getFirstName(),view.getLastName(),view.getCity());
-
-        SwapScene(PapaController.Views.MainWindow);
+        String Username = view.getUserName();
+        if (this.model.isUserExists(Username))
+            this.view.ShowAlert("Username already exists");
+        else {
+            model.addUser(Username, view.getPassword(), view.getBirthDate(), view.getFirstName(), view.getLastName(), view.getCity());
+            SwapScene(PapaController.Views.MainWindow);
+        }
     }
 }

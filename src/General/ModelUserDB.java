@@ -110,7 +110,6 @@ public class ModelUserDB {
         }
         return arrl;
     }
-
     public List<String> read(String UserName,String Password){
         List arrl=null;
         String sql = "SELECT Username,Password,FirstName,LastName,City,BirthDate "
@@ -133,8 +132,6 @@ public class ModelUserDB {
                 arrl.add(rs.getString("LastName"));
                 arrl.add(rs.getString("City"));
                 arrl.add(rs.getString("BirthDate"));
-
-
             }
 
 
@@ -142,6 +139,14 @@ public class ModelUserDB {
             System.out.println(e.getMessage());
         }
         return arrl;
+    }
+    public boolean isUserExists(String Username){
+        List result = read(Username);
+        return (result != null && result.size() > 0);
+    }
+    public boolean isUserExists(String Username,String Password){
+        List result = read(Username,Password);
+        return (result != null && result.size() > 0);
     }
 
 

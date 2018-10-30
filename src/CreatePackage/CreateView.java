@@ -61,8 +61,6 @@ public class CreateView implements IView {
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setTitle("Something is wrong");
 
-        //b_create.setOnAction(e -> a.getAlertType());
-
         if(getUserName().equals("") || getUserName().length()<4 ) {
             a.setContentText("User Name" + " is not valid");
             a.show();
@@ -96,5 +94,10 @@ public class CreateView implements IView {
 
     public void back(ActionEvent actionEvent) {
         this.controller.back();
+    }
+
+    public void ShowAlert(String alertMessage) {
+        Alert alert = new Alert(Alert.AlertType.ERROR,alertMessage,ButtonType.OK);
+        alert.show();
     }
 }
