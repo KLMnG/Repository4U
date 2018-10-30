@@ -64,7 +64,6 @@ public class PapaController {
             this.scene = new Scene(root);
 
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

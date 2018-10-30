@@ -33,9 +33,7 @@ public class DeleteView implements IView {
 
     public void deleteUser(ActionEvent actionEvent) {
         l_error.setVisible(false);
-        //model.read(username AND password)
-        //if false-> show view.show l_error
-        //else (below)
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
         alert.setTitle("confirmation");

@@ -23,7 +23,6 @@ public class ModelUserDB {
              PreparedStatement pstmt = conn.prepareStatement(sql))
         {
 
-
             pstmt.setString(1, UserName);
             pstmt.setString(2, Password);
             pstmt.setString(3, BirthDate);
@@ -32,7 +31,6 @@ public class ModelUserDB {
             pstmt.setString(6, City);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
         }
 
 
@@ -50,7 +48,6 @@ public class ModelUserDB {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
         }
     }
     public void update(String UserName, String Password, String FirstName, String LastName, String City, String BirthDate) {
@@ -76,7 +73,6 @@ public class ModelUserDB {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
         }
     }
     public List<String> read(String UserName){
@@ -106,7 +102,6 @@ public class ModelUserDB {
 
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
         }
         return arrl;
     }
@@ -136,7 +131,6 @@ public class ModelUserDB {
 
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
         }
         return arrl;
     }
