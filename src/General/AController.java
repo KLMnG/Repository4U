@@ -1,8 +1,8 @@
 package General;
 
 
+import Models.ModelUserDB;
 import interfaces.IView;
-import javafx.scene.control.Button;
 
 
 public abstract class AController {
