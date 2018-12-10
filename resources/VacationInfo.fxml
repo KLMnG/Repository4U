@@ -2,46 +2,122 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <AnchorPane prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #3D9999;" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutY="32.0" mnemonicParsing="false" text="&lt;-back" />
-         </children>
-      </AnchorPane>
-   </top>
-   <left>
-      <AnchorPane prefHeight="312.0" prefWidth="748.0" style="-fx-background-color: #3D4956;" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="220.0" layoutY="-4.0" prefHeight="29.0" prefWidth="308.0" text="Vacation Information" textFill="WHITE" underline="true" wrapText="true">
-               <font>
-                  <Font name="Aharoni Bold" size="29.0" />
-               </font>
-            </Label>
-            <Label layoutX="35.0" layoutY="63.0" text="Dates:" textFill="#f8f8f8">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lb_date" layoutX="96.0" layoutY="60.0" prefHeight="22.0" prefWidth="117.0" />
-            <Label layoutX="31.0" layoutY="96.0" text="Depart:" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lb_depart" layoutX="96.0" layoutY="98.0" text="Label" />
-            <Label layoutX="206.0" layoutY="98.0" text="arrival" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="lb_arrival" layoutX="300.0" layoutY="100.0" text="Label" />
-         </children>
-      </AnchorPane>
-   </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="Views.VacationInfoView">
+    <top>
+        <AnchorPane prefHeight="66.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button layoutY="14.0" mnemonicParsing="false" text="&lt;-back" />
+                <Label layoutX="148.0" layoutY="33.0" prefHeight="29.0" prefWidth="308.0" text="Vacation Information" underline="true" wrapText="true">
+                    <font>
+                        <Font name="Aharoni Bold" size="29.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.5050167224080268" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="329.0" prefWidth="306.0">
+                    <children>
+                        <Label text="Flight Information:">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="19.0" layoutY="85.0" text="From:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="19.0" layoutY="116.0" text="Depart:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="139.0" layoutY="85.0" text="To:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="17.0" layoutY="56.0" text="Airlines:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="140.0" layoutY="117.0" text="Arrival:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="17.0" layoutY="154.0" text="Luggage:" underline="true">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="181.0" text="Weight:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="120.0" layoutY="182.0" text="Width:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="206.0" layoutY="182.0" text="Height:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lb_airline" layoutX="73.0" layoutY="56.0" prefHeight="22.0" prefWidth="117.0" text="Label" />
+                        <Label fx:id="lb_from" layoutX="73.0" layoutY="88.0" text="Label" />
+                        <Label fx:id="lb_depart" layoutX="73.0" layoutY="119.0" text="Label" />
+                        <Label fx:id="lb_arrival" layoutX="198.0" layoutY="119.0" text="Label" />
+                        <Label fx:id="lb_weight" layoutX="81.0" layoutY="184.0" text="Label" />
+                        <Label fx:id="lb_to" layoutX="198.0" layoutY="88.0" text="Label" />
+                        <Label fx:id="lb_width" layoutX="169.0" layoutY="185.0" text="Label" />
+                        <Label fx:id="lb_hieght" layoutX="259.0" layoutY="185.0" text="Label" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="590.0">
+                    <children>
+                        <Label text="Hotel information:">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="81.0" text="Time Of Stay:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="60.0" text="Name:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutY="133.0" prefHeight="27.0" prefWidth="153.0" text="More Information:">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="183.0" text="Vacation Type:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lb_timetostay" layoutX="115.0" layoutY="83.0" text="Label" />
+                        <Label fx:id="lb_hotelname" layoutX="115.0" layoutY="63.0" text="Label" />
+                        <Label fx:id="lb_vacationtype" layoutX="115.0" layoutY="186.0" text="Label" />
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </center>
 </BorderPane>
