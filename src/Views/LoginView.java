@@ -35,4 +35,7 @@ public class LoginView implements IView{
         alert.show();
 
     }
+    public void back(){
+        this.controller.back();
+    }
 }

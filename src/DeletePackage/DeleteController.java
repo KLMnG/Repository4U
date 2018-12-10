@@ -38,6 +38,6 @@ public class DeleteController extends AController {
     }
 
     public void back() {
-        //SwapScene(PapaController.Views.MainWindow);
+        SwapScene(PapaController.Views.HomePage);
     }
 }
