@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class TicketData {
 
+    private String code;
     private String From;
     private String To;
     private String Depart;
@@ -12,6 +13,13 @@ public class TicketData {
     private String TicketType;
     private User Seller;
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
     public String getFrom() {
         return From;
     }
@@ -68,7 +76,8 @@ public class TicketData {
         Seller = seller;
     }
 
-    public TicketData(String from, String to, String depart, String airline, LuggageData luggageData, String ticketType, User seller) {
+    public TicketData(String code, String from, String to, String depart, String airline, LuggageData luggageData, String ticketType, User seller) {
+        this.code=code;
         this.From = from;
         this.To = to;
         this.Depart = depart;
