@@ -1,8 +1,8 @@
 package Update;
 
 import Controls.DateTimePicker;
-import General.AController;
-import interfaces.IView;
+import Controllers.AController;
+import Views.IView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

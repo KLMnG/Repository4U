@@ -1,10 +1,10 @@
 package MainPackage;
 
-import General.AController;
+import Controllers.AController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import interfaces.IView;
+import Views.IView;
 
 public class MainView implements IView{
 

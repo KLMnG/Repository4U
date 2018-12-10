@@ -1,9 +1,8 @@
 package CreatePackage;
 
-import General.AController;
+import Controllers.AController;
 import General.PapaController;
-import MainPackage.MainView;
-import interfaces.IView;
+import Views.IView;
 
 public class CreateController extends AController {
 
@@ -20,7 +19,7 @@ public class CreateController extends AController {
 
     public void back()
     {
-        SwapScene(PapaController.Views.MainWindow);
+        //SwapScene(PapaController.Views.MainWindow);
     }
 
     public void b_create(){
@@ -30,7 +29,7 @@ public class CreateController extends AController {
             this.view.ShowAlert("Username already exists");
         else {
             model.addUser(Username, view.getPassword(), view.getBirthDate(), view.getFirstName(), view.getLastName(), view.getCity());
-            SwapScene(PapaController.Views.MainWindow);
+            //SwapScene(PapaController.Views.MainWindow);
         }
     }
 }

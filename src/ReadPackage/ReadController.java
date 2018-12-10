@@ -1,8 +1,8 @@
 package ReadPackage;
 
-import General.AController;
+import Controllers.AController;
 import General.PapaController;
-import interfaces.IView;
+import Views.IView;
 import java.util.List;
 
 public class ReadController extends AController {
@@ -51,7 +51,7 @@ public class ReadController extends AController {
     }
 
     public void back() {
-        SwapScene(PapaController.Views.MainWindow);
+        //SwapScene(PapaController.Views.MainWindow);
     }
 
 }

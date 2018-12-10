@@ -1,6 +1,6 @@
-package interfaces;
+package Views;
 
-import General.AController;
+import Controllers.AController;
 
 public interface IView {
     public void setController(AController controller);
