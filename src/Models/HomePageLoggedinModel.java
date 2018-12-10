@@ -1,5 +1,7 @@
 package Models;
 
+import General.User;
+
 public class HomePageLoggedinModel {
 
     private UserModel userModel;
@@ -13,4 +15,20 @@ public class HomePageLoggedinModel {
     public String getUserName() {
         return UserModel.getFirstName();
     }
+
+    public void setSignOut(String UserName, String Password){
+        userModel.Signout(UserName,Password);
+    }
+
+    public String GetUserName(){
+        return UserModel.getUsername();
+
+    }
+
+    public String GetPassword(){
+        return UserModel.getPassword();
+
+    }
+
+
 }

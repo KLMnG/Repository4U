@@ -25,4 +25,11 @@ public class HomePageLoggedInController extends AController{
         this.view.setUserGesture("♥ Hello " + this.model.getUserName() + " ♥");
 
     }
+
+    public void Signout() {
+        String UserName  = model.GetUserName();
+        String Password = model.GetPassword();
+        this.model.setSignOut(UserName, Password);
+        SwapScene(PapaController.Views.HomePage);
+    }
 }
