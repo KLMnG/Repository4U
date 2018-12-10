@@ -13,7 +13,6 @@ public class HomePageLoggedinView implements IView{
     public Label lb_Gesture;
 
 
-
     public void setUserGesture(String str){
         this.lb_Gesture.setText(str);
     }

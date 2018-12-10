@@ -27,7 +27,8 @@ public class PapaController {
         this.controllers = new HashMap<>();
 
         UserModel userModel = new UserModel();
-        VacationModel vacationModel = new VacationModel();
+        ModelTicketDB modelTicketDB = new ModelTicketDB();
+        VacationModel vacationModel = new VacationModel(userModel,modelTicketDB);
 
         PurchaseVacationModel purchaseVacationModel = new PurchaseVacationModel();
 

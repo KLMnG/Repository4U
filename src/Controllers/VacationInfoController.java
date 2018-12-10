@@ -21,4 +21,7 @@ public class VacationInfoController extends AController {
         this.view = (VacationInfoView) view;
 
     }
+
+    public void initializeView() {
+    }
 }
