@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="76.0" prefWidth="1020.0" style="-fx-background-color: #3D9999;" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: CDC1B4;" text="&lt;-back" />
+            <Label layoutX="389.0" layoutY="38.0" text="Create a vacation" textFill="WHITE" underline="true">
+               <font>
+                  <Font name="Aharoni Bold" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="522.0" prefWidth="706.0" style="-fx-background-color: #3D4956;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="27.0" layoutY="301.0" text="Ticket Num" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="129.0" layoutY="300.0" prefHeight="25.0" prefWidth="83.0" />
+            <Label layoutX="232.0" layoutY="294.0" prefHeight="36.0" prefWidth="107.0" text="flight company" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField layoutX="361.0" layoutY="299.0" />
+            <CheckBox layoutX="27.0" layoutY="345.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="157.0" text="include flight back" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
+            <Label layoutX="212.0" layoutY="338.0" prefHeight="36.0" prefWidth="107.0" text="flight date" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="523.0" layoutY="301.0" prefHeight="21.0" prefWidth="106.0" text="departure from" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="629.0" layoutY="299.0" prefHeight="25.0" prefWidth="104.0" />
+            <Label layoutX="743.0" layoutY="301.0" prefHeight="21.0" prefWidth="109.0" text="passenger type" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ComboBox layoutX="858.0" layoutY="300.0" prefHeight="22.0" prefWidth="39.0" />
+            <Label layoutX="523.0" layoutY="346.0" prefHeight="21.0" prefWidth="80.0" text="destination" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="603.0" layoutY="344.0" prefHeight="25.0" prefWidth="104.0" />
+            <AnchorPane layoutX="18.0" layoutY="40.0" prefHeight="141.0" prefWidth="963.0">
+               <children>
+                  <Label layoutX="47.0" layoutY="97.0" text="time of stay" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="136.0" layoutY="95.0" prefHeight="25.0" prefWidth="83.0" />
+                  <Label layoutX="277.0" layoutY="97.0" text="vacation type" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="380.0" layoutY="95.0" prefHeight="25.0" prefWidth="83.0" />
+                  <Label layoutX="520.0" layoutY="97.0" text="hotel" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox layoutX="581.0" layoutY="95.0" prefHeight="25.0" prefWidth="89.0" />
+                  <CheckBox layoutX="39.0" layoutY="60.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="138.0" text="Include vacation" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </CheckBox>
+               </children>
+            </AnchorPane>
+            <Label layoutX="27.0" layoutY="469.0" text="weight" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <CheckBox layoutX="28.0" layoutY="413.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" text="luggage" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
+            <TextField layoutX="88.0" layoutY="467.0" prefHeight="25.0" prefWidth="83.0" />
+            <Label layoutX="184.0" layoutY="469.0" text="height" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="244.0" layoutY="467.0" prefHeight="25.0" prefWidth="83.0" />
+            <Label layoutX="352.0" layoutY="469.0" text="width" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="410.0" layoutY="467.0" prefHeight="25.0" prefWidth="83.0" />
+            <Button layoutX="731.0" layoutY="532.0" mnemonicParsing="false" text="Add passenger" />
+            <Button layoutX="832.0" layoutY="532.0" mnemonicParsing="false" text="Done" />
+            <TableView layoutX="55.0" layoutY="212.0" prefHeight="56.0" prefWidth="888.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <DatePicker layoutX="309.0" layoutY="344.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
