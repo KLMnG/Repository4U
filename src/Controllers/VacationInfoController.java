@@ -12,6 +12,7 @@ public class VacationInfoController extends AController {
 
     private VacationInfoView view;
     private VacationInfoModel model;
+
     public VacationInfoController(PapaController papa) {
         super(papa);
     }
@@ -19,9 +20,14 @@ public class VacationInfoController extends AController {
     @Override
     public void setView(IView view) {
         this.view = (VacationInfoView) view;
-
     }
 
     public void initializeView() {
+
+    }
+
+    public void back()
+    {
+        SwapScene(PapaController.Views.HomePage);
     }
 }

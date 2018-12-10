@@ -15,7 +15,7 @@ public class PapaController {
 
     private Stage stage;
     private Scene scene;
-    public enum Views {HomePage, RegisterWindow, HomePageLoggedIn, LoginWindow};
+    public enum Views {HomePage, RegisterWindow, HomePageLoggedIn, LoginWindow,VacationInfo,VacationInfoLoggedIn,CreateVationWindow};
 
     private HashMap<Views,String> views;
     private HashMap<Views, AController> controllers;
@@ -29,18 +29,24 @@ public class PapaController {
         UserModel userModel = new UserModel();
         ModelTicketDB modelTicketDB = new ModelTicketDB();
         VacationModel vacationModel = new VacationModel(userModel,modelTicketDB);
-
         PurchaseVacationModel purchaseVacationModel = new PurchaseVacationModel();
 
         this.views.put(Views.HomePage,"/HomePage.fxml");
         this.views.put(Views.LoginWindow,"/Login.fxml");
         this.views.put(Views.RegisterWindow,"/Register.fxml");
         this.views.put(Views.HomePageLoggedIn,"/HomePageLoggedin.fxml");
+        this.views.put(Views.CreateVationWindow,"/createVacations.fxml");
+        this.views.put(Views.VacationInfo,"/VacationInfo.fxml");
+        this.views.put(Views.VacationInfoLoggedIn,"/VacationInfoLoggedin.fxml");
+
 
         this.controllers.put(Views.HomePage,new HomePageController(this,new HomePageModel(userModel,vacationModel)));
         this.controllers.put(Views.LoginWindow,new LoginController(this,userModel));
         this.controllers.put(Views.RegisterWindow,new RegisterController(this,userModel));
         this.controllers.put(Views.HomePageLoggedIn,new HomePageLoggedInController(this,new HomePageLoggedinModel(userModel,vacationModel)));
+        this.controllers.put(Views.CreateVationWindow,new CreateVacationsController(this,vacationModel));
+        this.controllers.put(Views.VacationInfo,new VacationInfoController(this));
+        this.controllers.put(Views.VacationInfoLoggedIn,new VacationInfoLoggedinController(this,new VacationInfoLoggedinModel(userModel,vacationModel,purchaseVacationModel)));
     }
 
     public void SwapScene(Views ViewID) {

@@ -4,12 +4,19 @@ import General.PapaController;
 import Models.HomePageModel;
 import Views.HomePageView;
 import Views.IView;
+import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 
 public class HomePageController extends AController {
 
 
     private HomePageView view;
     private HomePageModel model;
+    Map<String, List<String>> vacations;
 
     public HomePageController(PapaController papa,HomePageModel model) {
         super(papa);
@@ -28,6 +35,14 @@ public class HomePageController extends AController {
     public void openRegisterWindow() {
         SwapScene(PapaController.Views.RegisterWindow);
     }
+
+
+    public void getVacations() {
+       model.getVacations();
+       //this.view.addToTable(insert);
+
+    }
+
 
 
 }

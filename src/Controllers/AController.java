@@ -25,5 +25,4 @@ protected UserModel model;
     public abstract void setView(IView view);
 
 
-
 }

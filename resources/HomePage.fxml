@@ -6,20 +6,18 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.HomePageView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.HomePageView">
    <children>
-      <Button layoutX="427.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="71.0" text="Sign in" onAction="#Signin"/>
-      <Button layoutX="515.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="71.0" text="Sign up" onAction="#Signup"/>
-      <TableView layoutY="125.0" prefHeight="275.0" prefWidth="600.0">
+      <Button layoutX="427.0" layoutY="14.0" mnemonicParsing="false" onAction="#Signin" prefHeight="32.0" prefWidth="71.0" text="Sign in" />
+      <Button layoutX="515.0" layoutY="14.0" mnemonicParsing="false" onAction="#Signup" prefHeight="32.0" prefWidth="71.0" text="Sign up" />
+      <TableView fx:id="tv_vacations" layoutY="125.0" prefHeight="275.0" prefWidth="600.0">
         <columns>
-          <TableColumn prefWidth="135.0" text="From" />
-          <TableColumn prefWidth="138.0" text="To" />
-            <TableColumn prefWidth="67.0" text="Depart" />
-            <TableColumn prefWidth="65.0" text="Return" />
-            <TableColumn prefWidth="63.0" text="Travelers" />
-            <TableColumn prefWidth="81.0" text="Cabin class" />
-            <TableColumn minWidth="0.0" prefWidth="50.0" text="Price" />
+          <TableColumn fx:id="col_from" prefWidth="135.0" text="From" />
+          <TableColumn fx:id="col_to" prefWidth="138.0" text="To" />
+            <TableColumn fx:id="col_depart" prefWidth="67.0" text="Depart" />
+            <TableColumn fx:id="col_days" prefWidth="65.0" text="Days" />
+            <TableColumn fx:id="col_travelers" prefWidth="63.0" text="Travelers" />
+            <TableColumn fx:id="col_price" minWidth="0.0" prefWidth="50.0" text="Price" />
         </columns>
       </TableView>
       <Label layoutX="355.0" layoutY="22.0" text="Hello guest" />
