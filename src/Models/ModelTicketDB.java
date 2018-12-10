@@ -2,10 +2,12 @@ package Models;
 
 
 import General.DBConnection;
+import General.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ModelTicketDB {
     private DBConnection con;
@@ -15,13 +17,10 @@ public class ModelTicketDB {
     }
 
     public void addTicket(String UserName, String ticketCode, String flightCompanyName, String depatureDate,
-                          boolean flightBack, int weight, int height, int width, String destinationCountry,
-                          String typeOfPassenger, String departureCountry, String timeOfStay,
-                          String vacationType, String hotel) {
+                          boolean flightBack,  String luggageCode,  String destinationCountry,
+                          String typeOfPassenger, String departureCountry, String vacationCode ) {
 
-        String luggageCode = getLCode(weight, height, width);
-        String vacationCode = getVCode(timeOfStay, vacationType, hotel);
-        int flightBackValue = 0;
+             int flightBackValue = 0;
         if (flightBack)
             flightBackValue = 1;
 
@@ -115,8 +114,34 @@ public class ModelTicketDB {
             pstmt.executeUpdate();
         } catch (SQLException e) {
         }
-        return getLCode(weight,height,width);
+        return getLCode(weight, height, width);
 
 
     }
+
+    public void saveTickets(List<String> vacation, List<List<String>> tickets) {
+        String vacationCode = null;
+        if (vacation.size() > 0)
+            vacationCode = createVacationAndReturn(vacation.get(0), vacation.get(1), vacation.get(2));
+        saveTickets(vacationCode, tickets);
+
+    }
+
+    private void saveTickets(String vacationCode, List<List<String>> tickets) {
+        String luggageCode;
+        for (List<String> ticket : tickets) {
+            if (ticket.size() == 10)
+                luggageCode = getLCode(Integer.getInteger(ticket.get(7)).intValue(), Integer.getInteger(ticket.get(8)).intValue(), Integer.getInteger(ticket.get(9)).intValue());
+            else
+                luggageCode = null;
+            addTicketWithLuggage(vacationCode, luggageCode, ticket);
+
+        }
+    }
+
+    private void addTicketWithLuggage(String vacationCode, String luggageCode, List<String> ticket) {
+        addTicket(UserModel.getUsername(),vacationCode,ticket.get(0),ticket.get(5),ticket.get(4).equals("1"),luggageCode,ticket.get(6),ticket.get(3),ticket.get(2),vacationCode);
+
+    }
+
 }
