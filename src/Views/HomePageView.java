@@ -12,8 +12,12 @@ public class HomePageView implements IView{
         this.controller.openLoginWindow();
     }
 
+    public void Signup(ActionEvent actionEvent) {
+        this.controller.openRegisterWindow();
+    }
     @Override
     public void setController(AController controller) {
         this.controller = (HomePageController) controller;
     }
+
 }

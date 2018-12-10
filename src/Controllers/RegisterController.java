@@ -1,25 +1,28 @@
-package CreatePackage;
+package Controllers;
 
-import Controllers.AController;
+import Models.UserModel;
+import Views.RegisterView;
 import General.PapaController;
 import Views.IView;
 
-public class CreateController extends AController {
+public class RegisterController extends AController {
 
-    private CreateView view;
+    private RegisterView view;
+    private UserModel model;
 
-    public CreateController(PapaController papa) {
+    public RegisterController(PapaController papa, UserModel model) {
         super(papa);
+        this.model = model;
     }
 
     @Override
     public void setView(IView view) {
-        this.view = (CreateView) view;
+        this.view = (RegisterView) view;
     }
 
     public void back()
     {
-        //SwapScene(PapaController.Views.MainWindow);
+        SwapScene(PapaController.Views.HomePage);
     }
 
     public void b_create(){
@@ -29,7 +32,7 @@ public class CreateController extends AController {
             this.view.ShowAlert("Username already exists");
         else {
             model.addUser(Username, view.getPassword(), view.getBirthDate(), view.getFirstName(), view.getLastName(), view.getCity());
-            //SwapScene(PapaController.Views.MainWindow);
+            SwapScene(PapaController.Views.HomePage);
         }
     }
 }

@@ -1,5 +1,6 @@
-package CreatePackage;
+package Views;
 
+import Controllers.RegisterController;
 import Controls.DateTimePicker;
 import Controllers.AController;
 import javafx.event.ActionEvent;
@@ -9,9 +10,9 @@ import javafx.scene.control.*;
 
 import javax.swing.text.html.ImageView;
 
-public class CreateView implements IView {
+public class RegisterView implements IView {
 
-    private CreateController controller;
+    private RegisterController controller;
 
     @FXML
     public Button b_create;
@@ -46,12 +47,12 @@ public class CreateView implements IView {
     }
 
 
-    public CreateView(){ }
+    public RegisterView(){ }
 
 
     @Override
     public void setController(AController controller) {
-        this.controller = (CreateController) controller;
+        this.controller = (RegisterController) controller;
     }
 
     public void b_create(ActionEvent actionEvent) {

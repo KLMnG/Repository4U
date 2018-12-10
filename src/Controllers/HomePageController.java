@@ -24,4 +24,8 @@ public class HomePageController extends AController {
     public void openLoginWindow() {
         SwapScene(PapaController.Views.LoginWindow);
     }
+
+    public void openRegisterWindow() {
+        SwapScene(PapaController.Views.RegisterWindow);
+    }
 }

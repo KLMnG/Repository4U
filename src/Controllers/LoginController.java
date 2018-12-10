@@ -19,4 +19,17 @@ public class LoginController extends AController {
     public void setView(IView view) {
         this.view = (LoginView)view;
     }
+
+    public void Login() {
+        String Username = view.getUserName();
+        String Password = view.getPassword();
+        if (this.model.isUserExists(Username, Password)) {
+            this.model.Signin(Username, Password);
+            SwapScene(PapaController.Views.HomePageLoggedIn);
+        }
+        else {
+            this.view.ShowAlert("User name or Password are incorrect");
+        }
+    }
+
 }

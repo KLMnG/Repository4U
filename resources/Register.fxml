@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="410.0" maxWidth="600.0" minHeight="410.0" minWidth="600.0" prefHeight="410.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreatePackage.CreateView">
+<AnchorPane maxHeight="410.0" maxWidth="600.0" minHeight="410.0" minWidth="600.0" prefHeight="410.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.RegisterView">
     <children>
       <AnchorPane layoutX="-3.0" prefHeight="70.0" prefWidth="610.0" style="-fx-background-color: #3D9999;">
          <children>

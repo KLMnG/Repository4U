@@ -10,7 +10,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.HomePageView">
    <children>
       <Button layoutX="427.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="71.0" text="Sign in" onAction="#Signin"/>
-      <Button layoutX="515.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="71.0" text="Sign up" />
+      <Button layoutX="515.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="71.0" text="Sign up" onAction="#Signup"/>
       <TableView layoutY="125.0" prefHeight="275.0" prefWidth="600.0">
         <columns>
           <TableColumn prefWidth="135.0" text="From" />

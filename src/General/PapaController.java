@@ -1,8 +1,6 @@
 package General;
 
-import Controllers.AController;
-import Controllers.HomePageController;
-import Controllers.LoginController;
+import Controllers.*;
 import Models.*;
 import Views.IView;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +15,7 @@ public class PapaController {
 
     private Stage stage;
     private Scene scene;
-    public enum Views {HomePage,LoginWindow};
+    public enum Views {HomePage, RegisterWindow, HomePageLoggedIn, LoginWindow};
 
     private HashMap<Views,String> views;
     private HashMap<Views, AController> controllers;
@@ -35,9 +33,13 @@ public class PapaController {
 
         this.views.put(Views.HomePage,"/HomePage.fxml");
         this.views.put(Views.LoginWindow,"/Login.fxml");
+        this.views.put(Views.RegisterWindow,"/Register.fxml");
+        this.views.put(Views.HomePageLoggedIn,"/HomePageLoggedIn.fxml");
 
         this.controllers.put(Views.HomePage,new HomePageController(this,new HomePageModel(userModel,vacationModel)));
         this.controllers.put(Views.LoginWindow,new LoginController(this,userModel));
+        this.controllers.put(Views.RegisterWindow,new RegisterController(this,userModel));
+        this.controllers.put(Views.HomePageLoggedIn,new HomePageLoggedInController(this,new HomePageLoggedinModel(userModel,vacationModel)));
     }
 
     public void SwapScene(Views ViewID) {

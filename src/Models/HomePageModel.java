@@ -2,11 +2,11 @@ package Models;
 
 public class HomePageModel {
 
-    private UserModel userDBModel;
+    private UserModel userModel;
     private VacationModel vacationModel;
 
-    public HomePageModel(UserModel userDBModel, VacationModel vacationModel) {
-        this.userDBModel = userDBModel;
+    public HomePageModel(UserModel userModel, VacationModel vacationModel) {
+        this.userModel = userModel;
         this.vacationModel = vacationModel;
     }
 

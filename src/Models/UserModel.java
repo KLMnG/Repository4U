@@ -134,6 +134,7 @@ public class UserModel {
         List result = read(Username);
         return (result != null && result.size() > 0);
     }
+
     public boolean isUserExists(String Username,String Password){
         List result = read(Username,Password);
         return (result != null && result.size() > 0);
