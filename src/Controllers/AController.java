@@ -1,13 +1,14 @@
-package General;
+package Controllers;
 
 
-import Models.ModelUserDB;
-import interfaces.IView;
+import General.PapaController;
+import Models.UserModel;
+import Views.IView;
 
 
 public abstract class AController {
 
-protected ModelUserDB model;
+protected UserModel model;
 
     private PapaController papa;
     public AController(PapaController papa) {
@@ -19,12 +20,7 @@ protected ModelUserDB model;
         papa.SwapScene(viewID);
     }
 
-
     public abstract void setView(IView view);
-
-    public void setModel(ModelUserDB model) {
-        this.model = model;
-    }
 
 
 }

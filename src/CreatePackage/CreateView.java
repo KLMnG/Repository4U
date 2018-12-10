@@ -1,14 +1,12 @@
 package CreatePackage;
 
 import Controls.DateTimePicker;
-import General.AController;
+import Controllers.AController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import interfaces.IView;
+import Views.IView;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 
-import javax.swing.text.PasswordView;
 import javax.swing.text.html.ImageView;
 
 public class CreateView implements IView {

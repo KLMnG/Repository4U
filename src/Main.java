@@ -1,5 +1,4 @@
-package General;
-
+import General.PapaController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -14,6 +13,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         PapaController papa = new PapaController(primaryStage);
-        papa.SwapScene(PapaController.Views.MainWindow);
+        papa.SwapScene(PapaController.Views.HomePage);
     }
 }

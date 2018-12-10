@@ -1,8 +1,8 @@
 package MainPackage;
 
-import General.AController;
+import Controllers.AController;
 import General.PapaController;
-import interfaces.IView;
+import Views.IView;
 
 public class MainController extends AController {
 
@@ -18,12 +18,12 @@ public class MainController extends AController {
     }
 
     public void openCreateWindow() {
-        SwapScene(PapaController.Views.CreateWindow);
+        //SwapScene(PapaController.Views.CreateWindow);
     }
 
-    public void openReadWindow() { SwapScene(PapaController.Views.ReadWindow); }
+    public void openReadWindow() { }//SwapScene(PapaController.Views.ReadWindow); }
 
-    public void openUpdateWindow() { SwapScene(PapaController.Views.UpdateWindow); }
+    public void openUpdateWindow() {}// SwapScene(PapaController.Views.UpdateWindow); }
 
-    public void openDeleteWindow() { SwapScene(PapaController.Views.DeleteWIndow); }
+    public void openDeleteWindow() {}// SwapScene(PapaController.Views.DeleteWIndow); }
 }

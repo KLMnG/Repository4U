@@ -2,9 +2,9 @@ package DeletePackage;
 
 
 
-import General.AController;
+import Controllers.AController;
 import General.PapaController;
-import interfaces.IView;
+import Views.IView;
 
 public class DeleteController extends AController {
     private DeleteView view;
@@ -25,7 +25,7 @@ public class DeleteController extends AController {
             String Password = view.passTxt.getText();
             if (model.isUserExists(Username,Password)) {
                 model.delete(Username, Password);
-                SwapScene(PapaController.Views.MainWindow);
+                //SwapScene(PapaController.Views.MainWindow);
             }
             else {
                 this.view.ShowAlert("Username or Password are incorrect");
@@ -38,6 +38,6 @@ public class DeleteController extends AController {
     }
 
     public void back() {
-        SwapScene(PapaController.Views.MainWindow);
+        //SwapScene(PapaController.Views.MainWindow);
     }
 }
