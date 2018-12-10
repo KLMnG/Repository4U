@@ -45,7 +45,7 @@ public class PapaController {
         this.controllers.put(Views.RegisterWindow,new RegisterController(this,userModel));
         this.controllers.put(Views.HomePageLoggedIn,new HomePageLoggedInController(this,new HomePageLoggedinModel(userModel,vacationModel)));
         this.controllers.put(Views.CreateVationWindow,new CreateVacationsController(this,vacationModel));
-        this.controllers.put(Views.VacationInfo,new VacationInfoController(this));
+        this.controllers.put(Views.VacationInfo,new VacationInfoController(this,vacationModel));
         this.controllers.put(Views.VacationInfoLoggedIn,new VacationInfoLoggedinController(this,new VacationInfoLoggedinModel(userModel,vacationModel,purchaseVacationModel)));
     }
 

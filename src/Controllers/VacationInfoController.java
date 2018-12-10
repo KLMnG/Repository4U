@@ -1,9 +1,8 @@
 package Controllers;
 
 import General.PapaController;
-import Models.VacationInfoModel;
+import Models.VacationModel;
 import Views.IView;
-import Views.RegisterView;
 import Views.VacationInfoView;
 
 
@@ -11,10 +10,11 @@ public class VacationInfoController extends AController {
 
 
     private VacationInfoView view;
-    private VacationInfoModel model;
+    private VacationModel model;
 
-    public VacationInfoController(PapaController papa) {
+    public VacationInfoController(PapaController papa, VacationModel vacationModel) {
         super(papa);
+        this.model = model;
     }
 
     @Override
@@ -23,7 +23,9 @@ public class VacationInfoController extends AController {
     }
 
     public void initializeView() {
-
+        model.read();
+        model.getVacationData();
+        //model
     }
 
     public void back()
