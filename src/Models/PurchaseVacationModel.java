@@ -38,28 +38,32 @@ public class PurchaseVacationModel {
         }
     }
 
-    public void confirmVacation(String seller, String buyer){
+    public void confirmVacation(String seller, String buyer, String code_vacation){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirm Vacation");
-        alert.setHeaderText("");
-        alert.setContentText("Are you ok with this?");
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Confirm vacation");
+        alert.setContentText("Are you sure you want to sell?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            confirmVacationInDB(seller,buyer);
+            confirmVacationInDB(seller,buyer,code_vacation);
         } else {
             // ... user chose CANCEL or closed the dialog
         }
     }
 
-    private void confirmVacationInDB(String seller, String buyer){
-        String sql = "UPDATE RequestPurchase SET confirm_buyer = ? ";
+    private void confirmVacationInDB(String seller, String buyer, String code_vacation){
+        String sql = "UPDATE RequestPurchase SET confirm_seller = ? "+
+                "WHERE seller = ? , buyer = ? , code_vacation = ?";;
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // set the corresponding param
             pstmt.setInt(1, 1);
+            pstmt.setString(2, seller);
+            pstmt.setString(3, buyer);
+            pstmt.setString(4, code_vacation);
             // update
             pstmt.executeUpdate();
 
