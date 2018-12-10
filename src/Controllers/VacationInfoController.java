@@ -23,5 +23,11 @@ public class VacationInfoController extends AController {
     }
 
     public void initializeView() {
+
+    }
+
+    public void back()
+    {
+        SwapScene(PapaController.Views.HomePage);
     }
 }

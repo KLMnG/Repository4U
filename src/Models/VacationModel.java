@@ -1,6 +1,6 @@
 package Models;
 
-import General.DBConnection;
+import General.*;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
@@ -13,10 +13,23 @@ import java.util.List;
 import java.util.Map;
 
 public class VacationModel {
+
+
     private DBConnection con;
+    private UserModel userModel;
+    private ModelTicketDB modelTicketDB;
 
+    private VacationData vacationData;
 
-    public Map<String,List<String>> read() {
+    public VacationModel(UserModel userModel, ModelTicketDB modelTicketDB) {
+        this.userModel = userModel;
+        this.modelTicketDB = modelTicketDB;
+    }
+
+    public void read() {
+
+        List<TicketData> tickets = new ArrayList<TicketData>();
+
         Map<String,List<String>> vacations = null;
         String sql = "SELECT Tickets.code, flight_company,departure_date," +
                 "departure_from, destination, ticket_type, seller, " +
@@ -32,33 +45,39 @@ public class VacationModel {
 
             vacations = new HashMap<>();
 
+            String vacationType = null;
+            int price = -1;
+            User seller = null;
+            HotelData hotelData = null;
+            LuggageData luggageData = null;
+            NightStayData nightStayData = null;
+
             while (rs.next()) {
-                ArrayList tmp = new ArrayList<String>();
-                tmp.add(rs.getString("flight_company"));
-                tmp.add(rs.getString("departure_date"));
-                tmp.add(rs.getString("departure_from"));
-                tmp.add(rs.getString("destination"));
-                tmp.add(rs.getString("ticket_type"));
-                tmp.add(rs.getString("seller"));
-                tmp.add(rs.getString("weight"));
-                tmp.add(rs.getString("height"));
-                tmp.add(rs.getString("width"));
-                tmp.add(rs.getString(CounntTravelers()+""));
-                tmp.add(rs.getString("time_to_stay"));
-                tmp.add(rs.getString("vacation_type"));
-                tmp.add(rs.getString("address"));
-                tmp.add(rs.getString("rate"));
-                tmp.add(rs.getString("Price"));
-                vacations.put(rs.getString("code"), tmp);
+                if (seller == null)
+                    seller = new User(rs.getString("seller"),"","","","","");
+                if (hotelData == null)
+                    hotelData = new HotelData("",rs.getString("address"),rs.getString("rate"));
+                if (luggageData == null)
+                    luggageData = new LuggageData(0,rs.getInt("weight"),rs.getInt("height"),rs.getInt("width"));
+                if (nightStayData == null)
+                    nightStayData = new NightStayData(0,rs.getInt("time_to_stay"),hotelData);
+                if (vacationType == null)
+                    vacationType = rs.getString("vacation_type");
+                if (price == -1)
+                    price = rs.getInt("Price");
+                tickets.add(new TicketData(rs.getString("departure_from"),rs.getString("destination"),rs.getString("departure_date"),rs.getString("flight_company"),luggageData,rs.getString("ticket_type"),seller));
+
+
             }
+
+            this.vacationData = new VacationData(tickets,nightStayData,price,vacationType);
+
+
         } catch (SQLException e) {
         }
-        return vacations;
     }
 
-
-    public int CounntTravelers(){
-        return 0;
+    public VacationData getVacationData() {
+        return vacationData;
     }
-
 }

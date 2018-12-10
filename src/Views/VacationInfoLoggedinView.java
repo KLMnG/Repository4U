@@ -1,16 +1,14 @@
 package Views;
 
 import Controllers.AController;
-import Controllers.VacationInfoController;
+import Controllers.VacationInfoLoggedinController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 
-import javax.annotation.PostConstruct;
-
-public class VacationInfoView implements IView{
+public class VacationInfoLoggedinView implements IView{
 
 
-    private VacationInfoController controller;
+    private VacationInfoLoggedinController controller;
 
     public Label lb_airline;
     public Label lb_from;
@@ -22,6 +20,7 @@ public class VacationInfoView implements IView{
     public Label lb_height;
     public Label lb_timetostay;
     public Label lb_hotelname;
+    public Label lb_vacationtype;
 
     public void setLb_timetostay(Label lb_timetostay) {
         this.lb_timetostay = lb_timetostay;
@@ -35,11 +34,9 @@ public class VacationInfoView implements IView{
         this.lb_vacationtype = lb_vacationtype;
     }
 
-    public Label lb_vacationtype;
-
     @Override
     public void setController(AController controller) {
-        this.controller = (VacationInfoController) controller;
+        this.controller = (VacationInfoLoggedinController) controller;
         this.controller.initializeView();
     }
 
@@ -71,8 +68,12 @@ public class VacationInfoView implements IView{
         this.lb_width = lb_width;
     }
 
-    public void setLb_height(Label lb_height) {
-        this.lb_height = lb_height;
+    public void setLb_height(Label lb_hieght) {
+        this.lb_height = lb_hieght;
+    }
+
+    public void PurchaseVacation(ActionEvent actionEvent) {
+        this.controller.PurchaseVacation();
     }
 
     public void back(ActionEvent actionEvent) {

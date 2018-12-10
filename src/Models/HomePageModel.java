@@ -16,7 +16,7 @@ public class HomePageModel {
     }
 
 
-    public Map<String, List<String>> getVacations() {
-        return vacationModel.read();
+    public void getVacations() {
+        vacationModel.getVacationData();
     }
 }
