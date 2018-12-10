@@ -24,8 +24,9 @@ public class VacationModel {
     private DBConnection con;
     private UserModel userModel;
     private ModelTicketDB modelTicketDB;
+    //Map<String,vacationData> vacations;
 
-    private VacationData vacationData;
+    private VacationData[] vacationData;
 
     private List<String> vacation;
     private List<List<String>> tickets;
@@ -42,7 +43,7 @@ public class VacationModel {
         List<TicketData> tickets = new ArrayList<TicketData>();
 
         Map<String,List<String>> vacations = null;
-        String sql = "SELECT Tickets.code, flight_company,departure_date," +
+        String sql = "SELECT Tickets.code as ticketCode, flight_company,departure_date, includes_flight_back" +
                 "departure_from, destination, ticket_type, seller, " +
                 "Luggages.weight,Luggages.height,Luggages.width" +
                 ",Vacations.time_to_stay, Vacations.vacation_type, " +
@@ -76,12 +77,12 @@ public class VacationModel {
                     vacationType = rs.getString("vacation_type");
                 if (price == -1)
                     price = rs.getInt("Price");
-                tickets.add(new TicketData(rs.getString("departure_from"),rs.getString("destination"),rs.getString("departure_date"),rs.getString("flight_company"),luggageData,rs.getString("ticket_type"),seller));
+                tickets.add(new TicketData(rs.getString("ticketCode"),rs.getString("departure_from"),rs.getString("destination"),rs.getString("departure_date"),rs.getString("flight_company"),luggageData,rs.getString("ticket_type"),seller));
 
 
             }
 
-            this.vacationData = new VacationData(tickets,nightStayData,price,vacationType);
+           // this.vacationData = new VacationData(tickets,nightStayData,price,vacationType);
 
 
         } catch (SQLException e) {
@@ -89,7 +90,7 @@ public class VacationModel {
     }
 
     public VacationData getVacationData() {
-        return vacationData;
+        return null;
     }
 
     public void addPassenger(String tf_timeToStay, String tf_vacationType, String cb_hotel, String tf_ticketNum, String tf_flightCompany, String tf_departueFrom, String cb_passangerType,
