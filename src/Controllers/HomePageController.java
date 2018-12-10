@@ -28,4 +28,6 @@ public class HomePageController extends AController {
     public void openRegisterWindow() {
         SwapScene(PapaController.Views.RegisterWindow);
     }
+
+
 }

@@ -12,9 +12,7 @@ public class HomePageLoggedinView implements IView{
 
     public Label lb_Gesture;
 
-    public void Signout(ActionEvent actionEvent) {
 
-    }
 
     public void setUserGesture(String str){
         this.lb_Gesture.setText(str);
@@ -25,5 +23,9 @@ public class HomePageLoggedinView implements IView{
 
         this.controller = (HomePageLoggedInController) controller;
         this.controller.initializeView();
+    }
+
+    public void Signout(ActionEvent actionEvent){
+        this.controller.Signout();
     }
 }
