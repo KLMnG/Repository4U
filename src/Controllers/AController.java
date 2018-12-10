@@ -5,6 +5,8 @@ import General.PapaController;
 import Models.UserModel;
 import Views.IView;
 
+import java.util.List;
+
 
 public abstract class AController {
 
@@ -21,5 +23,6 @@ protected UserModel model;
     }
 
     public abstract void setView(IView view);
+
 
 }
