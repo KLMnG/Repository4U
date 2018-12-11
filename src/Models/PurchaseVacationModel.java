@@ -1,6 +1,8 @@
 package Models;
 
 import General.DBConnection;
+import General.VacationData;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -193,7 +195,6 @@ public class PurchaseVacationModel {
         } catch (SQLException e) {
         }
     }
-
 
 
 
