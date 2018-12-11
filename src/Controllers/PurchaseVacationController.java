@@ -29,11 +29,11 @@ public class PurchaseVacationController extends AController {
     }
 
     public void back() {
-        SwapScene(PapaController.Views.HomePage);
+        SwapScene(PapaController.Views.MassegesRequests);
     }
 
     public void payment(){
-        view.lb_response.setVisible(true);
+       // view.lb_response.setVisible(true);
         String creditNumber = view.tf_creditNumber.getText();
         String creditMonth = (String) view.cb_month.getValue();
         String creditYear = (String) view.cb_year.getValue();
@@ -43,15 +43,12 @@ public class PurchaseVacationController extends AController {
                 model.addPayment(creditNumber,creditMonth+"-"+creditYear);
                 view.showAlert();
                 model.removeRequest(model.getSeller(), model.getBuyer(), model.getVacationCode());
-                view.lb_response.setText("Payment success !");
-                view.lb_response.setStyle("-fx-text-fill: green;");
+                SwapScene(PapaController.Views.MassegesRequests);
             }else{
-                view.lb_response.setText("Wrong Parameters");
-                view.lb_response.setStyle("-fx-text-fill: red;");
+                view.showWarning("Invalid credit card number");
             }
         }else{
-            view.lb_response.setText("Empty Parameters");
-            view.lb_response.setStyle("-fx-text-fill: red;");
+            view.showWarning("Empty parameters");
         }
     }
 

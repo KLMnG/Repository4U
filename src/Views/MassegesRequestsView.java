@@ -115,6 +115,7 @@ public class MassegesRequestsView implements IView{
 
     public void OrderNow(ActionEvent actionEvent) {
         this.controller.OrderNow(getSelectedOrderMessage());
+
         initialize();
     }
 

@@ -163,8 +163,8 @@ public class PurchaseVacationModel {
 
         List <Integer> arrl = null;
 
-        String sql = "SELECT confirm_seller,confirm_buyer"
-                + "FROM RequestPurchase WHERE seller = ?, buyer = ?";
+        String sql = "SELECT confirm_seller,confirm_buyer "
+                + "FROM RequestPurchase WHERE seller = ? AND buyer = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt  = conn.prepareStatement(sql)){

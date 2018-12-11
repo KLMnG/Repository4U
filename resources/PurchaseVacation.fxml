@@ -28,12 +28,6 @@
             <Label layoutX="20.0" layoutY="16.0" text="Credit card number" />
             <Label layoutX="20.0" layoutY="72.0" text="Date expiry" />
             <Button fx:id="btn_pay" layoutX="20.0" layoutY="123.0" mnemonicParsing="false" onAction="#pay" prefHeight="28.0" prefWidth="74.0" text="pay" />
-            <Label fx:id="lb_response" layoutX="151.0" layoutY="80.0" prefHeight="29.0" prefWidth="36.0" text="Label" visible="false">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <Label layoutX="346.0" layoutY="16.0" />
-            <Label fx:id="lb_price" layoutX="388.0" layoutY="16.0" />
             <ChoiceBox fx:id="cb_year" layoutX="245.0" layoutY="68.0" prefHeight="25.0" prefWidth="76.0" />
             <ChoiceBox fx:id="cb_month" layoutX="148.0" layoutY="68.0" prefHeight="25.0" prefWidth="76.0" />
             <Label layoutX="232.0" layoutY="67.0" text="/">

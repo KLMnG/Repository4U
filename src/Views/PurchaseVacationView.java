@@ -13,8 +13,6 @@ public class PurchaseVacationView implements IView {
 
     private PurchaseVacationController controller;
 
-    public Label lb_response;
-    public Label lb_price;
     public TextField tf_creditNumber;
     public ChoiceBox cb_year;
     public ChoiceBox cb_month;
@@ -40,6 +38,15 @@ public class PurchaseVacationView implements IView {
 
     public void back(ActionEvent actionEvent){
         controller.back();
+    }
+
+    public void showWarning(String str){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(str);
+
+        alert.showAndWait();
     }
 
 }
