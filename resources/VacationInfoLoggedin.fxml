@@ -78,7 +78,7 @@
                         <Label fx:id="lb_airline" layoutX="73.0" layoutY="56.0" prefHeight="22.0" prefWidth="117.0" text="Label" />
                         <Label fx:id="lb_from" layoutX="73.0" layoutY="88.0" text="Label" />
                         <Label fx:id="lb_depart" layoutX="73.0" layoutY="119.0" text="Label" />
-                        <Label fx:id="lb_arrival" layoutX="198.0" layoutY="119.0" text="Label" />
+                        <Label fx:id="lb_return" layoutX="198.0" layoutY="119.0" text="Label" />
                         <Label fx:id="lb_weight" layoutX="81.0" layoutY="184.0" text="Label" />
                         <Label fx:id="lb_to" layoutX="198.0" layoutY="88.0" text="Label" />
                         <Label fx:id="lb_width" layoutX="169.0" layoutY="185.0" text="Label" />

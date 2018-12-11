@@ -26,12 +26,12 @@ public class HomePageLoggedInController extends AController{
     }
 
     public void initializeView() {
-        this.view.setUserGesture("♥ Hello " + this.model.getUserName() + " ♥");
+        //this.view.setUserGesture("♥ Hello " + this.model.getUserName() + " ♥");
 
     }
     public void getVacations() {
         ArrayList<VacationData> tmp = new ArrayList<>();
-        Map<String, VacationData> vacations = model.getVacations();
+        Map<Integer, VacationData> vacations = model.getVacations();
         tmp.addAll(vacations.values());
 
         this.view.addToTable(tmp);
@@ -45,9 +45,17 @@ public class HomePageLoggedInController extends AController{
         SwapScene(PapaController.Views.HomePage);
     }
 
+    public void openCreateVacationWindow() {
+        SwapScene(PapaController.Views.CreateVationWindow);
+    }
+
+    public void openViewMessagesWindow() {
+        //SwapScene(PapaController.Views);
+    }
+
     public void openVacationInfoWindows() {
         VacationData v = this.view.getSelectedVacation();
         this.model.setSelectedVacationCode(v.getCode());
-        SwapScene(PapaController.Views.VacationInfo);
+        SwapScene(PapaController.Views.VacationInfoLoggedIn);
     }
 }
