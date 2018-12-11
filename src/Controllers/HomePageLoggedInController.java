@@ -50,7 +50,7 @@ public class HomePageLoggedInController extends AController{
     }
 
     public void openViewMessagesWindow() {
-        //SwapScene(PapaController.Views);
+        SwapScene(PapaController.Views.MassegesRequests);
     }
 
     public void openVacationInfoWindows() {

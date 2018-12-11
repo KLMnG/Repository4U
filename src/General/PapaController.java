@@ -15,7 +15,7 @@ public class PapaController {
 
     private Stage stage;
     private Scene scene;
-    public enum Views {HomePage, RegisterWindow, HomePageLoggedIn, LoginWindow,VacationInfo,VacationInfoLoggedIn,CreateVationWindow, MassegesRequests};
+    public enum Views {HomePage, RegisterWindow, HomePageLoggedIn, LoginWindow,VacationInfo,VacationInfoLoggedIn,CreateVationWindow, MassegesRequests, PurchesVacation};
 
     private HashMap<Views,String> views;
     private HashMap<Views, AController> controllers;
@@ -40,6 +40,8 @@ public class PapaController {
         this.views.put(Views.VacationInfo,"/VacationInfo.fxml");
         this.views.put(Views.VacationInfoLoggedIn,"/VacationInfoLoggedin.fxml");
         this.views.put(Views.MassegesRequests,"/MassagesRequests.fxml");
+        this.views.put(Views.PurchesVacation,"/PurchaseVacation.fxml");
+
 
 
         this.controllers.put(Views.HomePage,new HomePageController(this,new HomePageModel(userModel,vacationModel)));
@@ -50,6 +52,7 @@ public class PapaController {
         this.controllers.put(Views.VacationInfo,new VacationInfoController(this,vacationModel));
         this.controllers.put(Views.VacationInfoLoggedIn,new VacationInfoLoggedinController(this,new VacationInfoLoggedinModel(userModel,vacationModel,purchaseVacationModel)));
         this.controllers.put(Views.MassegesRequests,new MassagesRequestsController(this,purchaseVacationModel));
+        this.controllers.put(Views.PurchesVacation, new PurchaseVacationController(this,purchaseVacationModel));
 
 
     }
