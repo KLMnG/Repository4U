@@ -1,6 +1,9 @@
 package Models;
 
 import General.User;
+import General.VacationData;
+
+import java.util.Map;
 
 public class HomePageLoggedinModel {
 
@@ -31,4 +34,12 @@ public class HomePageLoggedinModel {
     }
 
 
+    public Map<String,VacationData> getVacations() {
+        vacationModel.read();
+        return vacationModel.getVacationData();
+    }
+
+    public void setSelectedVacationCode(int selectedVacation) {
+        this.vacationModel.setSelectedVacationCode(selectedVacation);
+    }
 }
