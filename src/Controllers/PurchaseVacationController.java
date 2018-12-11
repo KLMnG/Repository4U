@@ -1,6 +1,7 @@
 package Controllers;
 
 import General.PapaController;
+import General.VacationData;
 import Models.PurchaseVacationModel;
 import Views.IView;
 import Views.PurchaseVacationView;
@@ -19,6 +20,9 @@ public class PurchaseVacationController extends AController {
         this.model = model;
     }
 
+    public void initializeView() {
+
+    }
     @Override
     public void setView(IView view) {
         this.view = (PurchaseVacationView)view;
@@ -28,9 +32,6 @@ public class PurchaseVacationController extends AController {
         SwapScene(PapaController.Views.HomePage);
     }
 
-    public void showVacationInfo(){
-        //List<String> data = model.read()//need to insert all the codes here !
-    }
     public void payment(){
         view.lb_response.setVisible(true);
         String creditNumber = view.tf_creditNumber.getText();
@@ -40,6 +41,7 @@ public class PurchaseVacationController extends AController {
         if(creditNumber != null && creditMonth != null && creditYear != null){
             if (isValidCreditNumber(creditNumber) && creditNumber.length() == 16) {
                 model.addPayment(creditNumber,creditMonth+"-"+creditYear);
+                view.showAlert();
                 view.lb_response.setText("Payment success !");
                 view.lb_response.setStyle("-fx-text-fill: green;");
             }else{
