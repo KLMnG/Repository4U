@@ -42,6 +42,7 @@ public class PurchaseVacationController extends AController {
             if (isValidCreditNumber(creditNumber) && creditNumber.length() == 16) {
                 model.addPayment(creditNumber,creditMonth+"-"+creditYear);
                 view.showAlert();
+                model.removeRequest(model.getSeller(), model.getBuyer(), model.getVacationCode());
                 view.lb_response.setText("Payment success !");
                 view.lb_response.setStyle("-fx-text-fill: green;");
             }else{
