@@ -152,17 +152,16 @@ public class PurchaseVacationModel {
         return vacationInfo;
     }
 */
-    public void addPayment(String numberCredit, String expiry) {
+    public void addPayment(String creditNumber, String expiry) {
         String userNameBuyer = UserModel.getUsername();
-        int creditNumber = Integer.parseInt(numberCredit);
 
-        String sql = "INSERT INTO Payment(buyer,creditNumber,expiry) VALUES(?,?,?)";
+        String sql = "INSERT INTO Payment(buyer,creditcard,expiry) VALUES(?,?,?)";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, userNameBuyer);
-            pstmt.setInt(2, creditNumber);
+            pstmt.setString(2, creditNumber);
             pstmt.setString(3, expiry);
 
             pstmt.executeUpdate();
@@ -172,4 +171,11 @@ public class PurchaseVacationModel {
     }
 
 
+
+
+
+//    public static void main(String[] args) {
+//        PurchaseVacationModel p = new PurchaseVacationModel();
+//        p.addPayment("1234", "02-20");
+//    }
 }
