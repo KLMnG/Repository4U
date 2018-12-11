@@ -161,4 +161,8 @@ public class CreateVacationsView implements IView {
     public TextField getTf_price() {
         return tf_price;
     }
+
+    public void back(){
+        controller.back();
+    }
 }
