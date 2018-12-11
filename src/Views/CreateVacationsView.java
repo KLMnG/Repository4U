@@ -109,9 +109,20 @@ public class CreateVacationsView implements IView {
     }
 
     public void addPassenger(ActionEvent actionEvent) {
+        if(controller.checkTextFields())
+            controller.notifyPassengerAdded();
+        else
+            raisAlert();
+    }
 
-        controller.notifyPassengerAdded();
+    private void raisAlert() {
 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Attention!!");
+        alert.setHeaderText(null);
+        alert.setContentText("Please fill all of the fields in the ticket section");
+
+        alert.showAndWait();
     }
 
     public void saveTicket(ActionEvent actionEvent) {
