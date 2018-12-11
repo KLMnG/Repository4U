@@ -132,7 +132,7 @@ public class CreateVacationsView implements IView {
     }
 
     public void showVacationTributes(ActionEvent actionEvent) {
-        if (!cb_includeVacation.isSelected()) {
+        if (cb_includeVacation.isSelected()) {
             tf_timeToStay.visibleProperty().setValue(true);
             tf_vacationType.visibleProperty().setValue(true);
             cb_hotel.visibleProperty().setValue(true);
@@ -152,7 +152,7 @@ public class CreateVacationsView implements IView {
 
 
     public void showLuggageAtribuets(ActionEvent actionEvent) {
-        if (!cb_luggage.isSelected()) {
+        if (cb_luggage.isSelected()) {
             lb_weight.visibleProperty().setValue(true);
             lb_height.visibleProperty().setValue(true);
             lb_width.visibleProperty().setValue(true);

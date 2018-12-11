@@ -14,7 +14,7 @@ public class VacationInfoLoggedinModel {
     }
 
     public void AskToPurchase() {
-        //this.purchaseVacationModel.addPurchaseVacation();
+        this.purchaseVacationModel.addPurchaseVacation(vacationModel.getSelectedVacationData().getCode(),vacationModel.getSelectedVacationData().getSeller().getUsername());
     }
 
     public VacationData getSelectedVacationData() {

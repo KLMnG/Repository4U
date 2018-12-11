@@ -24,7 +24,7 @@ public class VacationModel {
     private DBConnection con;
     private UserModel userModel;
     private ModelTicketDB modelTicketDB;
-    private Map<String,VacationData> vacations;
+    private Map<Integer,VacationData> vacations;
 
 
     private List<String> vacation;
@@ -37,7 +37,7 @@ public class VacationModel {
         this.modelTicketDB = modelTicketDB;
         this.vacation=new ArrayList<>();
         this.tickets=new ArrayList<>();
-        this.vacations = new HashMap<String,VacationData>();
+        this.vacations = new HashMap<Integer,VacationData>();
     }
 
     public void read() {
@@ -60,28 +60,22 @@ public class VacationModel {
 
 
             while (rs.next()) {
-                String vacationType;
-                int price ;
-                User seller;
-                HotelData hotelData;
-                LuggageData luggageData;
-                NightStayData nightStayData;
-                    seller = new User(rs.getString("Username"),"Password","FirstName","LastName","City","BirthDate");
-                    hotelData = new HotelData("codeH",rs.getString("address"),rs.getString("rate"));
-                    luggageData = new LuggageData(0,rs.getInt("weight"),rs.getInt("height"),rs.getInt("width"));
-                    nightStayData = new NightStayData(0,hotelData);
-                    vacationType = rs.getString("vacation_type");
-                    price = rs.getInt("Price");
+                User seller = new User(rs.getString("Username"),"Password","FirstName","LastName","City","BirthDate");
+                HotelData hotelData = new HotelData("codeH",rs.getString("address"),rs.getString("rate"));
+                LuggageData luggageData = new LuggageData(0,rs.getInt("weight"),rs.getInt("height"),rs.getInt("width"));
+                NightStayData nightStayData = new NightStayData(0,hotelData);
+                String vacationType = rs.getString("vacation_type");
+                int price = rs.getInt("Price");
 
-                TicketData ticketData = new TicketData(rs.getString("ticketCode"),rs.getString("departure_from"),rs.getString("destination"),rs.getString("departure_date"),rs.getString("flight_company"),luggageData,rs.getString("ticket_type"),seller,rs.getInt("includes_flight_back"));
+                TicketData ticketData = new TicketData(rs.getString("ticketCode"),rs.getString("departure_from"),rs.getString("destination"),rs.getString("departure_date"),rs.getString("flight_company"),luggageData,rs.getString("ticket_type"),rs.getInt("includes_flight_back"));
 
-                if(!vacations.containsKey(rs.getString("VacationCode"))){
+                if(!vacations.containsKey(rs.getInt("VacationCode"))){
                     List <TicketData> lst = new ArrayList<TicketData>();
                     lst.add(ticketData);
-                    VacationData vacationD = new VacationData(lst, nightStayData, price, vacationType, rs.getInt("VacationCode"),rs.getInt("time_to_stay"));
-                    vacations.put(rs.getString("VacationCode"),vacationD);
+                    VacationData vacationD = new VacationData(lst, nightStayData, price, vacationType, rs.getInt("VacationCode"),rs.getInt("time_to_stay"),seller);
+                    vacations.put(rs.getInt("VacationCode"),vacationD);
                 }
-                else vacations.get(rs.getString("VacationCode")).addToTicketData(ticketData);
+                else vacations.get(rs.getInt("VacationCode")).addToTicketData(ticketData);
             }
 
 
@@ -90,12 +84,12 @@ public class VacationModel {
         }
     }
 
-    public Map<String,VacationData> getVacationData() {
+    public Map<Integer,VacationData> getVacationData() {
         return this.vacations;
     }
 
     public VacationData getSelectedVacationData() {
-        return this.vacations.get(this.selectedVacationCode + "");
+        return this.vacations.get(this.selectedVacationCode);
     }
     public void addPassenger(String tf_timeToStay, String tf_vacationType, String cb_hotel, String tf_ticketNum, String tf_flightCompany, String tf_departueFrom, String cb_passangerType,
                              String cb_includeFlightBacl,String dp_flightDate,String tf_destination,CheckBox cb_luggage, String tf_weight, String tf_height, String tf_width,String tf_price) {

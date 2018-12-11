@@ -96,4 +96,12 @@ public class HomePageLoggedinView implements IView{
     public void Signout(ActionEvent actionEvent){
         this.controller.Signout();
     }
+
+    public void openCreateVecation(ActionEvent actionEvent) {
+        this.controller.openCreateVacationWindow();
+    }
+
+    public void openViewMessages(ActionEvent actionEvent) {
+        this.controller.openViewMessagesWindow();
+    }
 }

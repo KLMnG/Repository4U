@@ -40,7 +40,7 @@ public class HomePageController extends AController {
 
     public void getVacations() {
         ArrayList<VacationData> tmp = new ArrayList<>();
-        Map <String, VacationData> vacations = model.getVacations();
+        Map <Integer, VacationData> vacations = model.getVacations();
         tmp.addAll(vacations.values());
 
        this.view.addToTable(tmp);

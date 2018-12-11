@@ -18,7 +18,7 @@ public class PurchaseVacationModel {
         con = new DBConnection();
     }
 
-    public void addPurchaseVacation(String code_ticket, String userNameSeller){
+    public void addPurchaseVacation(int code_ticket, String userNameSeller){
 
         String userNameBuyer = UserModel.getUsername();
 
@@ -29,7 +29,7 @@ public class PurchaseVacationModel {
 
             pstmt.setString(1, userNameSeller);
             pstmt.setString(2, userNameBuyer);
-            pstmt.setString(3, code_ticket);
+            pstmt.setInt(3, code_ticket);
             pstmt.setInt(4, 0);
             pstmt.setInt(5, 1);
             pstmt.executeUpdate();
