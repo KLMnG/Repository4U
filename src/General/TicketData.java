@@ -12,6 +12,17 @@ public class TicketData {
     private LuggageData luggageData;
     private String TicketType;
     private User Seller;
+    private int includes_flight_back;
+
+    public int getIncludes_flight_back() {
+        return includes_flight_back;
+    }
+
+    public void setIncludes_flight_back(int includes_flight_back) {
+        this.includes_flight_back = includes_flight_back;
+    }
+
+
 
     public String getCode() {
         return code;
@@ -76,7 +87,7 @@ public class TicketData {
         Seller = seller;
     }
 
-    public TicketData(String code, String from, String to, String depart, String airline, LuggageData luggageData, String ticketType, User seller) {
+    public TicketData(String code, String from, String to, String depart, String airline, LuggageData luggageData, String ticketType, User seller, int includes_flight_back) {
         this.code=code;
         this.From = from;
         this.To = to;
@@ -85,5 +96,6 @@ public class TicketData {
         this.luggageData = luggageData;
         this.TicketType = ticketType;
         this.Seller = seller;
+        this.includes_flight_back = includes_flight_back;
     }
 }
