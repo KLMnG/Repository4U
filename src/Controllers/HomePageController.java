@@ -17,7 +17,6 @@ public class HomePageController extends AController {
 
     private HomePageView view;
     private HomePageModel model;
-    Map<String, List<String>> vacations;
 
     public HomePageController(PapaController papa,HomePageModel model) {
         super(papa);
@@ -27,6 +26,7 @@ public class HomePageController extends AController {
     @Override
     public void setView(IView view) {
         this.view = (HomePageView) view;
+
     }
 
     public void openLoginWindow() {
@@ -39,8 +39,11 @@ public class HomePageController extends AController {
 
 
     public void getVacations() {
-       model.getVacations();
-       //this.view.addToTable(insert);
+        ArrayList<VacationData> tmp = new ArrayList<>();
+        Map <String, VacationData> vacations = model.getVacations();
+        tmp.addAll(vacations.values());
+
+       this.view.addToTable(tmp);
 
     }
 

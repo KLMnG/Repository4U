@@ -2,6 +2,7 @@ package Views;
 
 import Controllers.AController;
 import Controllers.PurchaseVacationController;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
 import java.time.LocalDate;
@@ -24,7 +25,8 @@ public class PurchaseVacationView implements IView {
     public Label lb_price;
     public Label lb_vacationtype;
     public TextField tf_creditNumber;
-    public DatePicker d_dateExpiry;
+    public ChoiceBox cb_year;
+    public ChoiceBox cb_month;
     public Button btn_pay;
 
     @Override
@@ -47,5 +49,34 @@ public class PurchaseVacationView implements IView {
         } else {
             // ... user chose CANCEL or closed the dialog
         }
+    }
+
+    public PurchaseVacationView(){
+        cb_year.getItems().add("2019");
+        cb_year.getItems().add("2020");
+        cb_year.getItems().add("2021");
+        cb_year.getItems().add("2022");
+        cb_year.getItems().add("2023");
+        cb_year.getItems().add("2024");
+        cb_month.getItems().add("01");
+        cb_month.getItems().add("02");
+        cb_month.getItems().add("03");
+        cb_month.getItems().add("04");
+        cb_month.getItems().add("05");
+        cb_month.getItems().add("06");
+        cb_month.getItems().add("07");
+        cb_month.getItems().add("08");
+        cb_month.getItems().add("09");
+        cb_month.getItems().add("10");
+        cb_month.getItems().add("11");
+        cb_month.getItems().add("12");
+    }
+
+    public void pay(ActionEvent actionEvent){
+        controller.payment();
+    }
+
+    public void back(ActionEvent actionEvent){
+        controller.back();
     }
 }
