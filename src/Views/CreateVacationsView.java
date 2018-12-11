@@ -53,6 +53,14 @@ public class CreateVacationsView implements IView {
     private ObservableList<TicketData> data;
     public void initialize(){
 
+        this.cb_passangerType.getItems().addAll(
+                "Regular",
+                "Children",
+                "Baby"
+        );
+        this.cb_passangerType.setValue("Regular");
+
+
         this.data = FXCollections.observableArrayList();
 
 //        tbl_tickets.setRowFactory(param -> {TableRow<TicketData> row = new TableRow<>();
@@ -164,31 +172,17 @@ public class CreateVacationsView implements IView {
             }catch (NumberFormatException e){
                 luggageData = new LuggageData(-1, -1,-1,-1);
             }
-
-
         }
-        TicketData data = new TicketData(this.tf_ticketNum.getText(),this.tf_departueFrom.getText(),this.tf_destination.getText(),this.tf_departueFrom.getText(),this.tf_flightCompany.getText(),luggageData,this.tf_vacationType.getText(),(this.cb_includeFlightBacl.isSelected() ? 1 : 0));
-        this.data.add(data);
-        if(controller.checkTextFields())
+        if(this.controller.ValidateInput()) {
+            TicketData data = new TicketData(this.tf_ticketNum.getText(),this.tf_departueFrom.getText(),this.tf_destination.getText(),this.tf_departueFrom.getText(),this.tf_flightCompany.getText(),luggageData,this.tf_vacationType.getText(),(this.cb_includeFlightBacl.isSelected() ? 1 : 0));
+            this.data.add(data);
             controller.notifyPassengerAdded();
-        else
-            raisAlert();
-    }
-
-    private void raisAlert() {
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Attention!!");
-        alert.setHeaderText(null);
-        alert.setContentText("Please fill all of the fields in the ticket section");
-
-        alert.showAndWait();
+        }
     }
 
     public void saveTicket(ActionEvent actionEvent) {
         controller.saveTickets();
         controller.swapScene();
-
     }
 
     public void showVacationTributes(ActionEvent actionEvent) {
@@ -236,4 +230,10 @@ public class CreateVacationsView implements IView {
     public void back(){
         controller.back();
     }
+
+    public void ShowErrorAlert(String alertMessage) {
+        Alert alert = new Alert(Alert.AlertType.ERROR,alertMessage, ButtonType.OK);
+        alert.show();
+    }
+
 }

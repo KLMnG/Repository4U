@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import Controls.DateTimePicker?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,7 +13,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<?import Controls.DateTimePicker?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.CreateVacationsView">
    <top>
       <AnchorPane prefHeight="76.0" prefWidth="1020.0" style="-fx-background-color: #3D9999;" BorderPane.alignment="CENTER">
@@ -29,49 +29,49 @@
    <center>
       <AnchorPane prefHeight="522.0" prefWidth="706.0" style="-fx-background-color: #3D4956;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="27.0" layoutY="301.0" text="Ticket Num" textFill="WHITE">
+            <Label layoutX="27.0" layoutY="330.0" text="Ticket Num" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_ticketNum" layoutX="129.0" layoutY="300.0" prefHeight="25.0" prefWidth="83.0" />
-            <Label layoutX="232.0" layoutY="294.0" prefHeight="36.0" prefWidth="107.0" text="flight company" textFill="WHITE">
+            <TextField fx:id="tf_ticketNum" layoutX="129.0" layoutY="329.0" prefHeight="25.0" prefWidth="83.0" />
+            <Label layoutX="232.0" layoutY="323.0" prefHeight="36.0" prefWidth="107.0" text="flight company" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_flightCompany" layoutX="361.0" layoutY="299.0" />
-            <CheckBox fx:id="cb_includeFlightBacl" layoutX="27.0" layoutY="345.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="157.0" text="include flight back" textFill="WHITE">
+            <TextField fx:id="tf_flightCompany" layoutX="361.0" layoutY="328.0" />
+            <CheckBox fx:id="cb_includeFlightBacl" layoutX="27.0" layoutY="374.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="157.0" text="include flight back" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </CheckBox>
-            <Label layoutX="212.0" layoutY="338.0" prefHeight="36.0" prefWidth="107.0" text="flight date" textFill="WHITE">
+            <Label layoutX="212.0" layoutY="367.0" prefHeight="36.0" prefWidth="107.0" text="flight date" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="523.0" layoutY="301.0" prefHeight="21.0" prefWidth="106.0" text="departure from" textFill="WHITE">
+            <Label layoutX="523.0" layoutY="330.0" prefHeight="21.0" prefWidth="106.0" text="departure from" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_departueFrom" layoutX="629.0" layoutY="299.0" prefHeight="25.0" prefWidth="104.0" />
-            <Label layoutX="743.0" layoutY="301.0" prefHeight="21.0" prefWidth="109.0" text="passenger type" textFill="WHITE">
+            <TextField fx:id="tf_departueFrom" layoutX="629.0" layoutY="328.0" prefHeight="25.0" prefWidth="104.0" />
+            <Label layoutX="743.0" layoutY="330.0" prefHeight="21.0" prefWidth="109.0" text="passenger type" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cb_passangerType" layoutX="858.0" layoutY="300.0" prefHeight="22.0" prefWidth="39.0" />
-            <Label layoutX="523.0" layoutY="346.0" prefHeight="21.0" prefWidth="80.0" text="destination" textFill="WHITE">
+            <ComboBox fx:id="cb_passangerType" layoutX="858.0" layoutY="329.0" prefHeight="22.0" prefWidth="84.0" />
+            <Label layoutX="523.0" layoutY="375.0" prefHeight="21.0" prefWidth="80.0" text="destination" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_destination" layoutX="603.0" layoutY="344.0" prefHeight="25.0" prefWidth="104.0" />
+            <TextField fx:id="tf_destination" layoutX="603.0" layoutY="373.0" prefHeight="25.0" prefWidth="104.0" />
             <AnchorPane layoutX="18.0" layoutY="40.0" prefHeight="141.0" prefWidth="963.0">
                <children>
-                  <Label fx:id="lb_timeToStay" layoutX="47.0" layoutY="97.0" text="time of stay" textFill="WHITE" visible="false">
+                  <Label fx:id="lb_timeToStay" layoutX="47.0" layoutY="97.0" text="Time Of Stay" textFill="WHITE" visible="false">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -83,7 +83,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="tf_vacationType" layoutX="380.0" layoutY="95.0" prefHeight="25.0" prefWidth="83.0" visible="false" />
-                  <Label fx:id="lb_hotel" layoutX="520.0" layoutY="97.0" text="hotel" textFill="WHITE" visible="false">
+                  <Label fx:id="lb_hotel" layoutX="520.0" layoutY="97.0" text="Hotel" textFill="WHITE" visible="false">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -93,35 +93,35 @@
                         <Font size="15.0" />
                      </font>
                   </CheckBox>
-                  <ChoiceBox fx:id="cb_hotel" layoutX="581.0" layoutY="95.0" prefHeight="29.0" prefWidth="92.0" />
+                  <ChoiceBox fx:id="cb_hotel" layoutX="581.0" layoutY="95.0" prefHeight="29.0" prefWidth="92.0" visible="false" />
                </children>
             </AnchorPane>
-            <Label fx:id="lb_weight" layoutX="27.0" layoutY="469.0" text="weight" textFill="WHITE" visible="false">
+            <Label fx:id="lb_weight" layoutX="27.0" layoutY="498.0" text="Weight" textFill="WHITE" visible="false">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <CheckBox fx:id="cb_luggage" layoutX="28.0" layoutY="413.0" mnemonicParsing="false" onAction="#showLuggageAtribuets" prefHeight="22.0" prefWidth="94.0" text="luggage" textFill="WHITE">
+            <CheckBox fx:id="cb_luggage" layoutX="28.0" layoutY="442.0" mnemonicParsing="false" onAction="#showLuggageAtribuets" prefHeight="22.0" prefWidth="94.0" text="luggage" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </CheckBox>
-            <TextField fx:id="tf_weight" layoutX="88.0" layoutY="467.0" prefHeight="25.0" prefWidth="83.0" visible="false" />
-            <Label fx:id="lb_height" layoutX="184.0" layoutY="469.0" text="height" textFill="WHITE" visible="false">
+            <TextField fx:id="tf_weight" layoutX="88.0" layoutY="496.0" prefHeight="25.0" prefWidth="83.0" visible="false" />
+            <Label fx:id="lb_height" layoutX="184.0" layoutY="498.0" text="Height" textFill="WHITE" visible="false">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_height" layoutX="244.0" layoutY="467.0" prefHeight="25.0" prefWidth="83.0" visible="false" />
-            <Label fx:id="lb_width" layoutX="352.0" layoutY="469.0" text="width" textFill="WHITE" visible="false">
+            <TextField fx:id="tf_height" layoutX="244.0" layoutY="496.0" prefHeight="25.0" prefWidth="83.0" visible="false" />
+            <Label fx:id="lb_width" layoutX="352.0" layoutY="498.0" text="Width" textFill="WHITE" visible="false">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_width" layoutX="410.0" layoutY="467.0" prefHeight="25.0" prefWidth="83.0" visible="false" />
-            <Button fx:id="b_addPassenger" layoutX="731.0" layoutY="532.0" mnemonicParsing="false" onAction="#addPassenger" text="Add passenger" />
-            <Button fx:id="b_done" layoutX="832.0" layoutY="532.0" mnemonicParsing="false" onAction="#saveTicket" text="Done" />
-            <TableView fx:id="tbl_tickets" layoutX="55.0" layoutY="212.0" prefHeight="56.0" prefWidth="888.0">
+            <TextField fx:id="tf_width" layoutX="410.0" layoutY="496.0" prefHeight="25.0" prefWidth="83.0" visible="false" />
+            <Button fx:id="b_addPassenger" layoutX="731.0" layoutY="561.0" mnemonicParsing="false" onAction="#addPassenger" text="Add passenger" />
+            <Button fx:id="b_done" layoutX="832.0" layoutY="561.0" mnemonicParsing="false" onAction="#saveTicket" text="Done" />
+            <TableView fx:id="tbl_tickets" layoutX="55.0" layoutY="212.0" prefHeight="102.0" prefWidth="888.0">
               <columns>
                   <TableColumn fx:id="col_ticketNum" prefWidth="110.0" text="Ticket Number" />
                   <TableColumn fx:id="col_flightCompany" prefWidth="144.0" text="Flight Company" />
@@ -130,13 +130,13 @@
                   <TableColumn fx:id="col_flghtDate" prefWidth="116.0" text="Flight Date" />
               </columns>
             </TableView>
-            <DateTimePicker fx:id="dp_flightDate" layoutX="309.0" layoutY="344.0" />
-            <Label layoutX="733.0" layoutY="346.0" text="price" textFill="WHITE">
+            <DateTimePicker fx:id="dp_flightDate" layoutX="309.0" layoutY="373.0" />
+            <Label layoutX="733.0" layoutY="375.0" text="Price" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_price" layoutX="791.0" layoutY="344.0" prefHeight="25.0" prefWidth="83.0" />
+            <TextField fx:id="tf_price" layoutX="791.0" layoutY="373.0" prefHeight="25.0" prefWidth="83.0" />
          </children>
       </AnchorPane>
    </center>

@@ -28,7 +28,7 @@ public class ModelTicketDB {
 
         String sql = "INSERT INTO Tickets(code,flight_company,departure_date," +
                 "includes_flight_back,luggage,destination," +
-                "ticket_type,departuer_from,vacation,seller,price) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                "ticket_type,departure_from,vacation,seller,price) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

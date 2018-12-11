@@ -22,43 +22,89 @@ public class CreateVacationsController extends AController{
         this.view = (CreateVacationsView) view;
     }
 
-
-    public void addVacation(List<String> vacation){
-
-    }
-
     public void back() {
-        SwapScene(PapaController.Views.HomePage);
+        SwapScene(PapaController.Views.HomePageLoggedIn);
     }
 
     public void saveTickets() {
         model.saveTickets();
-
     }
 
     public void notifyPassengerAdded() {
 
-        model.addPassenger(view.getTf_timeToStay().getText(), view.getTf_vacationType().getText(), view.getCb_hotel().getValue().toString(), view.getTf_ticketNum().getText(), view.getTf_flightCompany().getText(),
-                view.getTf_departueFrom().getText(), view.getCb_passangerType().getEditor().getText(),
+        String hotel = "";
+        String vacationType = "";
+        String timeToStay = "";
+        String weight = "";
+        String height= "";
+        String width = "";
+
+        if (view.cb_includeVacation.isSelected()){
+            hotel = view.getCb_hotel().getValue().toString();
+            vacationType = view.getTf_vacationType().getText();
+            timeToStay = view.getTf_timeToStay().getText();
+        }
+        if (view.cb_luggage.isSelected()){
+            weight = view.getTf_weight().getText();
+            height = view.getTf_height().getText();
+            width = view.getTf_width().getText();
+        }
+
+        model.addPassenger(timeToStay,vacationType , hotel, view.getTf_ticketNum().getText(), view.getTf_flightCompany().getText(),
+                view.getTf_departueFrom().getText(), view.getCb_passangerType().getValue().toString(),
                 view.getCb_includeFlightBacl().getText(),view.getDp_flightDate().getValue().toString()
-                ,view.getTf_destination().getText(), view.getCb_luggage(), view.getTf_weight().getText(), view.getTf_height().getText(), view.getTf_width().getText(),view.getTf_price().getText());
+                ,view.getTf_destination().getText(), view.getCb_luggage(),weight ,height ,width ,view.getTf_price().getText());
 
-
-
+        this.view.tf_ticketNum.setText("");
     }
 
     public void swapScene() {
         SwapScene(PapaController.Views.HomePageLoggedIn);
     }
 
-    public boolean checkTextFields() {
-        return  !(view.getTf_price().getText().equals("")||view.getTf_departueFrom().getText().equals("")||view.getTf_ticketNum().getText().equals("")
-        || view.getTf_flightCompany().getText().equals("")||view.dp_flightDate.getValue().toString().equals("")||view.getTf_destination().getText().equals(""));
-
-    }
-
     public void initialize() {
         List<String>hotelNames = model.getHotelsName();
         view.getCb_hotel().getItems().addAll(hotelNames);
+    }
+
+    public boolean ValidateInput() {
+        String message = "";
+
+        if (view.getTf_price().getText().trim().isEmpty() || view.getTf_departueFrom().getText().trim().isEmpty()|| view.getTf_ticketNum().getText().trim().isEmpty() ||
+                view.getTf_flightCompany().getText().trim().isEmpty() || (view.dp_flightDate.getValue() != null && view.dp_flightDate.getValue().toString().trim().isEmpty()) || view.getTf_destination().getText().trim().isEmpty() || view.getCb_passangerType().getValue().toString().isEmpty())
+            message += "Ticket Number,Passenger Type,Departure From,Flight Company,Flight Date, Flight Destination,Price must be filled\n";
+
+        try {
+            Integer.parseInt(view.getTf_price().getText());
+        }catch (NumberFormatException e){
+            message += ("Price,must be numbers only\n");
+        }
+
+        if (this.view.cb_includeVacation.isSelected() && ( view.getCb_hotel().getValue().toString().trim().isEmpty() || view.getTf_vacationType().getText().trim().isEmpty() || view.getTf_timeToStay().getText().trim().isEmpty())) {
+            message += "If Include Vacation is checked Hotel,Vacation type,Time Of Stay\n";
+            try{
+                Integer.parseInt(view.getTf_timeToStay().getText());
+            }catch (NumberFormatException e) {
+                message += ("Price,must be numbers only\n");
+            }
+        }
+
+        if (this.view.cb_luggage.isSelected() && (this.view.tf_width.getText().trim().isEmpty() || this.view.tf_weight.getText().trim().isEmpty() || this.view.tf_height.getText().trim().isEmpty())) {
+            message += "If Luggage is checked Height,Weight,Width must be filled\n";
+
+            try {
+                Integer.parseInt(view.getTf_weight().getText());
+                Integer.parseInt(view.getTf_height().getText());
+                Integer.parseInt(view.getTf_width().getText());
+            } catch (NumberFormatException e) {
+                message += ("Width,Height,Weight must be numbers only\n");
+            }
+        }
+
+
+        if (!message.isEmpty())
+            this.view.ShowErrorAlert(message);
+
+        return message.isEmpty();
     }
 }

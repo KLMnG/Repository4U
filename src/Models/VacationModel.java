@@ -90,7 +90,7 @@ public class VacationModel {
     public void addPassenger(String tf_timeToStay, String tf_vacationType, String cb_hotel, String tf_ticketNum, String tf_flightCompany, String tf_departueFrom, String cb_passangerType,
                              String cb_includeFlightBacl, String dp_flightDate, String tf_destination, CheckBox cb_luggage, String tf_weight, String tf_height, String tf_width, String tf_price) {
 
-        if ((vacation.size() == 0 && !tf_timeToStay.equals("")) || !vacation.get(0).equals(tf_timeToStay) || !vacation.get(1).equals(tf_vacationType) || !vacation.get(2).equals(cb_hotel)) {
+        if (vacation.size() == 0 || ((!tf_timeToStay.equals("")) || !vacation.get(0).equals(tf_timeToStay) || !vacation.get(1).equals(tf_vacationType) || !vacation.get(2).equals(cb_hotel))) {
             vacation = new ArrayList<>();
             vacation.add(tf_timeToStay);
             vacation.add(tf_vacationType);

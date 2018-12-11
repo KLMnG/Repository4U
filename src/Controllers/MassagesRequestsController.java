@@ -42,14 +42,11 @@ public class MassagesRequestsController extends AController {
 
 
     public void openVacationInfoWindows() {
-
-
-
-
+        
     }
 
     public void Confirm() {
-        model.confirmVacationInDB(UserModel.getUsername(),"","");
+        model.confirmVacationInDB(UserModel.getUsername(),"",0);
 
 
     }
