@@ -1,5 +1,6 @@
 package General;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.beans.property.SimpleStringProperty;
 
 public class TicketData {
@@ -12,13 +13,13 @@ public class TicketData {
     private LuggageData luggageData;
     private String TicketType;
     private User Seller;
-    private int includes_flight_back;
+    private boolean includes_flight_back;
 
-    public int getIncludes_flight_back() {
+    public boolean getIncludes_flight_back() {
         return includes_flight_back;
     }
 
-    public void setIncludes_flight_back(int includes_flight_back) {
+    public void setIncludes_flight_back(boolean includes_flight_back) {
         this.includes_flight_back = includes_flight_back;
     }
 
@@ -96,6 +97,6 @@ public class TicketData {
         this.luggageData = luggageData;
         this.TicketType = ticketType;
         this.Seller = seller;
-        this.includes_flight_back = includes_flight_back;
+        this.includes_flight_back = (includes_flight_back != 0);
     }
 }

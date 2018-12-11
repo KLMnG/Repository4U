@@ -1,6 +1,7 @@
 package Controllers;
 
 import General.PapaController;
+import General.VacationData;
 import Models.HomePageModel;
 import Views.HomePageView;
 import Views.IView;
@@ -44,5 +45,10 @@ public class HomePageController extends AController {
     }
 
 
+    public void openVacationInfoWindows() {
+        VacationData v = this.view.getSelectedVacation();
+        this.model.setSelectedVacationCode(v.getCode());
+        SwapScene(PapaController.Views.VacationInfo);
 
+    }
 }
