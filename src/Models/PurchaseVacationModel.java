@@ -1,6 +1,7 @@
 package Models;
 
 import General.DBConnection;
+import General.PurchaseMessage;
 import General.VacationData;
 
 import java.sql.Connection;
@@ -15,6 +16,35 @@ import java.util.Map;
 public class PurchaseVacationModel {
 
     private DBConnection con;
+    private int VacationCode;
+    private String Seller ;
+
+    public int getVacationCode() {
+        return VacationCode;
+    }
+
+    public void setVacationCode(int vacationCode) {
+        VacationCode = vacationCode;
+    }
+
+    public String getSeller() {
+        return Seller;
+    }
+
+    public void setSeller(String seller) {
+        Seller = seller;
+    }
+
+    public String getBuyer() {
+        return Buyer;
+    }
+
+    public void setBuyer(String buyer) {
+        Buyer = buyer;
+    }
+
+    private String Buyer;
+
 
     public PurchaseVacationModel() {
         con = new DBConnection();
@@ -64,26 +94,51 @@ public class PurchaseVacationModel {
         return false;
     }
 
-    public Map<String,String> listOfBuyers(String seller){
-        Map<String,String> buyers = new HashMap<>();
+    public List<PurchaseMessage> listOfBuyers(String seller){
         String sql = "SELECT buyer,code_vacation "
                 + "FROM RequestPurchase WHERE seller = ? ";
 
+        List<PurchaseMessage> lstmessage = null;
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt  = conn.prepareStatement(sql)){
 
             pstmt.setString(1,seller);
             ResultSet rs  = pstmt.executeQuery();
 
+            lstmessage = new ArrayList<PurchaseMessage>();
             while (rs.next()) {
                 String buyer = (rs.getString("buyer"));
-                String code =  (rs.getString("code_vacation"));
-                buyers.put(code,buyer);
+                int code = (rs.getInt("code_vacation"));
+                PurchaseMessage msg = new PurchaseMessage(seller,buyer,code,"");
+                lstmessage.add(msg);
             }
         } catch (SQLException e) {
         }
         // now we have map with all the codeVacation and his buyers
-        return buyers;
+        return lstmessage;
+    }
+    public List<PurchaseMessage> listOfSellers(String buyer){
+        String sql = "SELECT seller,code_vacation "
+                + "FROM RequestPurchase WHERE buyer = ? ";
+
+        List<PurchaseMessage> lstmessage = null;
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){
+
+            pstmt.setString(1,buyer);
+            ResultSet rs  = pstmt.executeQuery();
+
+            lstmessage = new ArrayList<PurchaseMessage>();
+            while (rs.next()) {
+                String seller = (rs.getString("seller"));
+                int code =  (rs.getInt("code_vacation"));
+                PurchaseMessage msg = new PurchaseMessage(seller,buyer,code,"");
+                lstmessage.add(msg);
+            }
+        } catch (SQLException e) {
+        }
+        // now we have map with all the codeVacation and his buyers
+        return lstmessage;
     }
 
     public void confirmVacationInDB(String seller, String buyer, int code_vacation){
@@ -160,7 +215,7 @@ public class PurchaseVacationModel {
             // set the corresponding param
             pstmt.setString(1, seller);
             pstmt.setString(2, buyer);
-            pstmt.setInt(2, code_vacation);
+            pstmt.setInt(3, code_vacation);
             // execute the delete statement
             pstmt.executeUpdate();
 

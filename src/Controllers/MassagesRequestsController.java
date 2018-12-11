@@ -1,6 +1,7 @@
 package Controllers;
 
 import General.PapaController;
+import General.PurchaseMessage;
 import General.VacationData;
 import Models.PurchaseVacationModel;
 import Models.UserModel;
@@ -8,6 +9,7 @@ import Views.IView;
 import Views.MassegesRequestsView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MassagesRequestsController extends AController {
@@ -31,32 +33,39 @@ public class MassagesRequestsController extends AController {
     }
 
     public void getCommitList() {
-        ArrayList<String> tmp = new ArrayList<>();
-        Map<String, String> CommitList = model.listOfBuyers(UserModel.getUsername());
-        tmp.addAll(CommitList.values());
+        List <PurchaseMessage> CommitList = model.listOfSellers(UserModel.getUsername());
+        List <PurchaseMessage> ConfirmList = model.listOfBuyers(UserModel.getUsername());
 
-        this.view.addToTable(tmp);
-
-    }
-
-
-
-    public void openVacationInfoWindows() {
-
-
-
+        this.view.addToTableCommit(CommitList);
+        this.view.addToTableConfirm(ConfirmList);
 
     }
 
-    public void Confirm() {
-        model.confirmVacationInDB(UserModel.getUsername(),"","");
 
+
+
+
+    public void Confirm(PurchaseMessage getSelectedConfirmMessage) {
+        model.confirmVacationInDB(UserModel.getUsername(),getSelectedConfirmMessage.getPurchase_User(),getSelectedConfirmMessage.getVacationCode());
 
     }
 
-    public void OrderNow() {
-        boolean ifConfirmed = model.confirmation("", UserModel.getUsername());
+    public void OrderNow(PurchaseMessage getSelectedOrderMessage) {
+        boolean ifConfirmed = model.confirmation(getSelectedOrderMessage.getSeller_User(), UserModel.getUsername());
+        this.model.setSeller(getSelectedOrderMessage.getSeller_User());
+        this.model.setVacationCode(getSelectedOrderMessage.getVacationCode());
+        this.model.setBuyer(getSelectedOrderMessage.getPurchase_User());
         if(ifConfirmed)
             SwapScene(PapaController.Views.PurchesVacation);
+    }
+
+
+
+    public void cancelCommit(PurchaseMessage selectedOrderMessage) {
+        model.removeRequest(selectedOrderMessage.getSeller_User(), UserModel.getUsername(), selectedOrderMessage.getVacationCode());
+    }
+
+    public void cancelConfirm(PurchaseMessage selectedConfirmMessage) {
+        model.removeRequest(UserModel.getUsername(),selectedConfirmMessage.getPurchase_User(), selectedConfirmMessage.getVacationCode());
     }
 }
