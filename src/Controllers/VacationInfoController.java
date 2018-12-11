@@ -13,7 +13,7 @@ public class VacationInfoController extends AController {
     private VacationInfoView view;
     private VacationModel model;
 
-    public VacationInfoController(PapaController papa, VacationModel vacationModel) {
+    public VacationInfoController(PapaController papa, VacationModel model) {
         super(papa);
         this.model = model;
     }
@@ -24,7 +24,6 @@ public class VacationInfoController extends AController {
     }
 
     public void initializeView() {
-        this.model.read();
         VacationData vd = this.model.getSelectedVacationData();
         this.view.setLb_airline(vd.getTicketData().get(0).getAirline());
         this.view.setLb_return(vd.getDays() + "");

@@ -74,12 +74,14 @@ public class VacationModel {
                     price = rs.getInt("Price");
 
                 TicketData ticketData = new TicketData(rs.getString("ticketCode"),rs.getString("departure_from"),rs.getString("destination"),rs.getString("departure_date"),rs.getString("flight_company"),luggageData,rs.getString("ticket_type"),seller,rs.getInt("includes_flight_back"));
-                VacationData vacationD = new VacationData(new ArrayList<TicketData>(), nightStayData, price, vacationType, rs.getInt("VacationCode"),rs.getInt("time_to_stay"));
 
                 if(!vacations.containsKey(rs.getString("VacationCode"))){
+                    List <TicketData> lst = new ArrayList<TicketData>();
+                    lst.add(ticketData);
+                    VacationData vacationD = new VacationData(lst, nightStayData, price, vacationType, rs.getInt("VacationCode"),rs.getInt("time_to_stay"));
                     vacations.put(rs.getString("VacationCode"),vacationD);
                 }
-                vacations.get(rs.getString("VacationCode")).addToTicketData(ticketData);
+                else vacations.get(rs.getString("VacationCode")).addToTicketData(ticketData);
             }
 
 
@@ -93,7 +95,7 @@ public class VacationModel {
     }
 
     public VacationData getSelectedVacationData() {
-        return this.vacations.get(this.selectedVacationCode);
+        return this.vacations.get(this.selectedVacationCode + "");
     }
     public void addPassenger(String tf_timeToStay, String tf_vacationType, String cb_hotel, String tf_ticketNum, String tf_flightCompany, String tf_departueFrom, String cb_passangerType,
                              String cb_includeFlightBacl,String dp_flightDate,String tf_destination,CheckBox cb_luggage, String tf_weight, String tf_height, String tf_width,String tf_price) {
