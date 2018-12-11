@@ -116,6 +116,7 @@ public class CreateVacationsView implements IView {
 
     public void saveTicket(ActionEvent actionEvent) {
         controller.saveTickets();
+        controller.swapScene();
 
     }
 
