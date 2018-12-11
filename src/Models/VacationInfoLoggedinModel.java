@@ -1,5 +1,7 @@
 package Models;
 
+import General.VacationData;
+
 public class VacationInfoLoggedinModel {
 
     private VacationModel vacationModel;
@@ -13,5 +15,9 @@ public class VacationInfoLoggedinModel {
 
     public void AskToPurchase() {
         //this.purchaseVacationModel.addPurchaseVacation();
+    }
+
+    public VacationData getSelectedVacationData() {
+        return vacationModel.getSelectedVacationData();
     }
 }

@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="Views.VacationInfoView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.VacationInfoView">
     <top>
         <AnchorPane prefHeight="66.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
-                <Button layoutY="14.0" mnemonicParsing="false" text="&lt;-back" onAction="#back"/>
+                <Button layoutY="14.0" mnemonicParsing="false" onAction="#back" text="&lt;-back" />
                 <Label layoutX="148.0" layoutY="33.0" prefHeight="29.0" prefWidth="308.0" text="Vacation Information" underline="true" wrapText="true">
                     <font>
                         <Font name="Aharoni Bold" size="29.0" />
@@ -50,7 +50,7 @@
                                 <Font size="15.0" />
                             </font>
                         </Label>
-                        <Label layoutX="140.0" layoutY="117.0" text="Arrival:">
+                        <Label layoutX="140.0" layoutY="117.0" text="Return:">
                             <font>
                                 <Font size="15.0" />
                             </font>
@@ -78,7 +78,7 @@
                         <Label fx:id="lb_airline" layoutX="73.0" layoutY="56.0" prefHeight="22.0" prefWidth="117.0" text="Label" />
                         <Label fx:id="lb_from" layoutX="73.0" layoutY="88.0" text="Label" />
                         <Label fx:id="lb_depart" layoutX="73.0" layoutY="119.0" text="Label" />
-                        <Label fx:id="lb_arrival" layoutX="198.0" layoutY="119.0" text="Label" />
+                        <Label fx:id="lb_return" layoutX="198.0" layoutY="119.0" text="Label" />
                         <Label fx:id="lb_weight" layoutX="81.0" layoutY="184.0" text="Label" />
                         <Label fx:id="lb_to" layoutX="198.0" layoutY="88.0" text="Label" />
                         <Label fx:id="lb_width" layoutX="169.0" layoutY="185.0" text="Label" />
