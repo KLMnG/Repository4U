@@ -19,8 +19,10 @@ public class VacationData {
     private NightStayData nightStayData;
     private int code;
     private String VacationType;
+    private User Seller;
 
-    public VacationData(List<TicketData> ticketData,NightStayData nightStayData,int price,String vacationType, int code,int timeToStay) {
+
+    public VacationData(List<TicketData> ticketData,NightStayData nightStayData,int price,String vacationType, int code,int timeToStay,User seller) {
         this.ticketData = ticketData;
         this.nightStayData = nightStayData;
         this.VacationType = vacationType;
@@ -32,6 +34,7 @@ public class VacationData {
         this.Travelers = new SimpleStringProperty(ticketData.size() + "");
         this.Price = new SimpleIntegerProperty(price);
         this.code = code;
+        this.Seller = seller;
     }
 
     public int getCode() {
@@ -112,6 +115,14 @@ public class VacationData {
 
     public void setVacationType(String vacationType) {
         VacationType = vacationType;
+    }
+
+    public User getSeller() {
+        return Seller;
+    }
+
+    public void setSeller(User seller) {
+        Seller = seller;
     }
 
 }

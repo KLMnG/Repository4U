@@ -98,6 +98,7 @@ public class PurchaseVacationModel {
             pstmt.setString(4, code_ticket);
 
             pstmt.executeUpdate();
+
         } catch (SQLException e) {
         }
     }
@@ -195,8 +196,11 @@ public class PurchaseVacationModel {
     }
 
 
+
+
+
 //    public static void main(String[] args) {
 //        PurchaseVacationModel p = new PurchaseVacationModel();
-//        boolean check = p.addPurchaseVacation("123123","ddddd");
+//        p.addPayment("1234", "02-20");
 //    }
 }

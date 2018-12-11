@@ -34,8 +34,8 @@ public class HomePageLoggedinModel {
     }
 
 
-    public Map<String,VacationData> getVacations() {
-        vacationModel.read();
+    public Map<Integer,VacationData> getVacations() {
+        this.vacationModel.read();
         return vacationModel.getVacationData();
     }
 

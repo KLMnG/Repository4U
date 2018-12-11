@@ -50,4 +50,10 @@ public class CreateVacationsController extends AController{
     public void swapScene() {
         SwapScene(PapaController.Views.HomePageLoggedIn);
     }
+
+    public boolean checkTextFields() {
+        return  !(view.getTf_price().getText().equals("")||view.getTf_departueFrom().getText().equals("")||view.getTf_ticketNum().getText().equals("")
+        || view.getTf_flightCompany().getText().equals("")||view.dp_flightDate.getValue().toString().equals("")||view.getTf_destination().getText().equals(""));
+
+    }
 }

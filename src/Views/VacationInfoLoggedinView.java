@@ -71,4 +71,11 @@ public class VacationInfoLoggedinView implements IView{
     public void back(ActionEvent actionEvent) {
         this.controller.back();
     }
+
+    public void PurchaseVacation(ActionEvent actionEvent) {
+        this.controller.PurchaseVacation();
+    }
+
+    public void ShowAlert() {
+    }
 }

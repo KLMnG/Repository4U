@@ -39,6 +39,7 @@ public class VacationInfoLoggedinController extends AController{
 
     public void PurchaseVacation() {
         this.model.AskToPurchase();
+        this.view.ShowAlert();
     }
 
     public void back()
