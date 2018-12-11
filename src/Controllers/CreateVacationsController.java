@@ -27,6 +27,10 @@ public class CreateVacationsController extends AController{
 
     }
 
+    public void back() {
+        SwapScene(PapaController.Views.HomePage);
+    }
+
     public void saveTickets() {
         model.saveTickets();
 

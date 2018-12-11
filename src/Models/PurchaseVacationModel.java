@@ -106,7 +106,6 @@ public class PurchaseVacationModel {
             return true;
         return false;
     }
-
 /*
     public List<String> read(String code_ticket, String code_luggages, String code_vacation, String code_hotel) {
         List<String> vacationInfo = null;
@@ -154,8 +153,7 @@ public class PurchaseVacationModel {
     }
 */
     public void addPayment(String numberCredit, String expiry) {
-        //String userNameBuyer = UserModel.getUsername();
-        String userNameBuyer = "DOR";
+        String userNameBuyer = UserModel.getUsername();
         int creditNumber = Integer.parseInt(numberCredit);
 
         String sql = "INSERT INTO Payment(buyer,creditNumber,expiry) VALUES(?,?,?)";
@@ -170,8 +168,6 @@ public class PurchaseVacationModel {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            //System.out.println("PROBLEM");
         }
     }
 
