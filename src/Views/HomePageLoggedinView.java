@@ -3,6 +3,7 @@ package Views;
 import Controllers.AController;
 import Controllers.HomePageController;
 import Controllers.HomePageLoggedInController;
+import General.PapaController;
 import General.VacationData;
 import Models.HomePageLoggedinModel;
 import javafx.collections.FXCollections;
@@ -103,5 +104,10 @@ public class HomePageLoggedinView implements IView{
 
     public void openViewMessages(ActionEvent actionEvent) {
         this.controller.openViewMessagesWindow();
+    }
+
+    public void mi_showReq (){
+        this.controller.showReq();
+
     }
 }

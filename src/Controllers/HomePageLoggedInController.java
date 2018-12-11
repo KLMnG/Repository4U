@@ -58,4 +58,11 @@ public class HomePageLoggedInController extends AController{
         this.model.setSelectedVacationCode(v.getCode());
         SwapScene(PapaController.Views.VacationInfoLoggedIn);
     }
+
+    public void showReq() {
+
+        SwapScene(PapaController.Views.MassegesRequests);
+
+    }
+
 }
