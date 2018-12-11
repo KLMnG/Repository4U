@@ -158,5 +158,42 @@ public class ModelTicketDB {
     }
 
 
+    public void removeVacation(String code){
+        deleteTickets(code);
+        deleteVacation(code);
+    }
+
+    private void deleteVacation(String code){
+        String sql = "DELETE FROM Vacations WHERE code = ?";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setInt(1, Integer.parseInt(code));
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    private void deleteTickets(String code){
+        String sql = "DELETE FROM Tickets WHERE vacation = ?";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setInt(1, Integer.parseInt(code));
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
 }
