@@ -36,6 +36,7 @@ public class VacationInfoController extends AController {
         this.view.setLb_hotelname(vd.getNightStayData().getHotelData().getCode());
         this.view.setLb_to(vd.getTo());
         this.view.setLb_vacationtype(vd.getVacationType());
+
     }
 
 

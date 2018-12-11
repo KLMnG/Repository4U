@@ -19,6 +19,15 @@ public class VacationData {
     private NightStayData nightStayData;
     private int code;
     private String VacationType;
+
+    public User getSeller() {
+        return Seller;
+    }
+
+    public void setSeller(User seller) {
+        Seller = seller;
+    }
+
     private User Seller;
 
 
@@ -115,14 +124,6 @@ public class VacationData {
 
     public void setVacationType(String vacationType) {
         VacationType = vacationType;
-    }
-
-    public User getSeller() {
-        return Seller;
-    }
-
-    public void setSeller(User seller) {
-        Seller = seller;
     }
 
 }
