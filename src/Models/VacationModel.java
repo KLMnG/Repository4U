@@ -117,6 +117,8 @@ public class VacationModel {
 
     public void saveTickets() {
         this.modelTicketDB.saveTickets(vacation, tickets);
+        this.tickets = new ArrayList<>();
+        this.vacation = new ArrayList<>();
 
     }
 
