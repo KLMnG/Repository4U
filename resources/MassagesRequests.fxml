@@ -30,7 +30,6 @@
       <Label layoutX="41.0" layoutY="291.0" text="purches confirmation" />
       <Button layoutX="15.0" layoutY="22.0" mnemonicParsing="false" onAction="#back" text="&lt;-back" />
       <Button fx:id="bn_orderNow" layoutX="281.0" layoutY="247.0" mnemonicParsing="false" onAction="#OrderNow" text="Order Now" visible="false" />
-      <Button fx:id="bn_cancelCommit" layoutX="369.0" layoutY="247.0" mnemonicParsing="false" onAction="#cancelCommit" text="cancel" visible="false" />
       <Button fx:id="bn_confirm" layoutX="281.0" layoutY="487.0" mnemonicParsing="false" onAction="#Confirm" text="confirm" visible="false" />
       <Button fx:id="bn_cancelConfirm" layoutX="369.0" layoutY="487.0" mnemonicParsing="false" onAction="#cancelConfirm" text="cancel" visible="false" />
    </children>

@@ -39,9 +39,10 @@ public class VacationInfoLoggedinController extends AController{
 
     public void PurchaseVacation() {
         String message = "Purchase vacation permition added successfully";
-        if (!this.model.AskToPurchase());
+        if (!this.model.AskToPurchase())
             message = "Error while trying to add request to database";
         this.view.ShowInfoAlert(message);
+        SwapScene(PapaController.Views.HomePageLoggedIn);
     }
 
     public void back()

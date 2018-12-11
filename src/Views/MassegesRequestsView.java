@@ -54,7 +54,6 @@ public class MassegesRequestsView implements IView{
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     bn_orderNow.setVisible(true);
-                    bn_cancelCommit.setVisible(true);
                 }
             });
             return row ;
@@ -91,6 +90,9 @@ public class MassegesRequestsView implements IView{
         );
 
         this.tv_confirmationPurchase.setItems(dataConfirm);
+
+        if(controller!=null)
+            this.controller.getCommitList();
     }
 
 
@@ -115,7 +117,6 @@ public class MassegesRequestsView implements IView{
 
     public void OrderNow(ActionEvent actionEvent) {
         this.controller.OrderNow(getSelectedOrderMessage());
-
         initialize();
     }
 
@@ -125,9 +126,6 @@ public class MassegesRequestsView implements IView{
 
     }
 
-    public void cancelCommit(ActionEvent actionEvent) {
-        this.controller.cancelCommit(getSelectedOrderMessage());
-    }
 
 
     public void cancelConfirm(ActionEvent actionEvent) {
