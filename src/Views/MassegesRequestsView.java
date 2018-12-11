@@ -23,15 +23,15 @@ public class MassegesRequestsView implements IView{
     private MassagesRequestsController controller;
     @FXML
     public TableView tv_commitPurchase;
-    @FXML
     public TableView tv_confirmationPurchase;
-    @FXML
     public TableColumn col_ticketCommit;
     public TableColumn col_sellerCommit;
     public TableColumn col_ticketConfirm;
     public TableColumn col_buyer;
     public Button bn_confirm;
     public Button bn_orderNow;
+    public Button bn_cancelConfirm;
+    public Button bn_cancelCommit;
 
 
 
@@ -54,6 +54,7 @@ public class MassegesRequestsView implements IView{
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     bn_orderNow.setVisible(true);
+                    bn_cancelCommit.setVisible(true);
                 }
             });
             return row ;
@@ -76,6 +77,7 @@ public class MassegesRequestsView implements IView{
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     bn_confirm.setVisible(true);
+                    bn_cancelConfirm.setVisible(true);
                 }
             });
             return row ;
@@ -90,9 +92,7 @@ public class MassegesRequestsView implements IView{
 
         this.tv_confirmationPurchase.setItems(dataConfirm);
     }
-    public void OrderNow(PurchaseMessage getSelectedOrderMessage){
-        this.controller.OrderNow(getSelectedOrderMessage);
-    }
+
 
     public PurchaseMessage getSelectedOrderMessage(){
         return (PurchaseMessage)this.tv_commitPurchase.getSelectionModel().getSelectedItem();
@@ -101,12 +101,6 @@ public class MassegesRequestsView implements IView{
     public PurchaseMessage getSelectedConfirmMessage(){
         return (PurchaseMessage)this.tv_confirmationPurchase.getSelectionModel().getSelectedItem();
     }
-
-    public void Confirm(PurchaseMessage getSelectedConfirmMessage){
-        this.controller.Confirm(getSelectedConfirmMessage);
-    }
-
-
 
     public void back(ActionEvent actionEvent){
         controller.back();
@@ -119,4 +113,23 @@ public class MassegesRequestsView implements IView{
         dataConfirm.addAll( tmp);
     }
 
+    public void OrderNow(ActionEvent actionEvent) {
+        this.controller.OrderNow(getSelectedOrderMessage());
+        initialize();
+    }
+
+    public void Confirm(ActionEvent actionEvent) {
+        this.controller.Confirm(getSelectedConfirmMessage());
+        initialize();
+
+    }
+
+    public void cancelCommit(ActionEvent actionEvent) {
+        this.controller.cancelCommit(getSelectedOrderMessage());
+    }
+
+
+    public void cancelConfirm(ActionEvent actionEvent) {
+        this.controller.cancelConfirm(getSelectedConfirmMessage());
+    }
 }

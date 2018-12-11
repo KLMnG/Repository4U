@@ -43,10 +43,7 @@ public class MassagesRequestsController extends AController {
 
 
 
-    public void openVacationInfoWindows() {
 
-
-    }
 
     public void Confirm(PurchaseMessage getSelectedConfirmMessage) {
         model.confirmVacationInDB(UserModel.getUsername(),getSelectedConfirmMessage.getPurchase_User(),getSelectedConfirmMessage.getVacationCode());
@@ -55,7 +52,20 @@ public class MassagesRequestsController extends AController {
 
     public void OrderNow(PurchaseMessage getSelectedOrderMessage) {
         boolean ifConfirmed = model.confirmation(getSelectedOrderMessage.getSeller_User(), UserModel.getUsername());
+        this.model.setSeller(getSelectedOrderMessage.getSeller_User());
+        this.model.setVacationCode(getSelectedOrderMessage.getVacationCode());
+        this.model.setBuyer(getSelectedOrderMessage.getPurchase_User());
         if(ifConfirmed)
             SwapScene(PapaController.Views.PurchesVacation);
+    }
+
+
+
+    public void cancelCommit(PurchaseMessage selectedOrderMessage) {
+        model.removeRequest(selectedOrderMessage.getSeller_User(), UserModel.getUsername(), selectedOrderMessage.getVacationCode());
+    }
+
+    public void cancelConfirm(PurchaseMessage selectedConfirmMessage) {
+        model.removeRequest(UserModel.getUsername(),selectedConfirmMessage.getPurchase_User(), selectedConfirmMessage.getVacationCode());
     }
 }

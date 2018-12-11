@@ -16,6 +16,35 @@ import java.util.Map;
 public class PurchaseVacationModel {
 
     private DBConnection con;
+    private int VacationCode;
+    private String Seller ;
+
+    public int getVacationCode() {
+        return VacationCode;
+    }
+
+    public void setVacationCode(int vacationCode) {
+        VacationCode = vacationCode;
+    }
+
+    public String getSeller() {
+        return Seller;
+    }
+
+    public void setSeller(String seller) {
+        Seller = seller;
+    }
+
+    public String getBuyer() {
+        return Buyer;
+    }
+
+    public void setBuyer(String buyer) {
+        Buyer = buyer;
+    }
+
+    private String Buyer;
+
 
     public PurchaseVacationModel() {
         con = new DBConnection();
@@ -186,7 +215,7 @@ public class PurchaseVacationModel {
             // set the corresponding param
             pstmt.setString(1, seller);
             pstmt.setString(2, buyer);
-            pstmt.setInt(2, code_vacation);
+            pstmt.setInt(3, code_vacation);
             // execute the delete statement
             pstmt.executeUpdate();
 
