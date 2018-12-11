@@ -31,8 +31,6 @@ public class PurchaseVacationController extends AController {
     public void showVacationInfo(){
         //List<String> data = model.read()//need to insert all the codes here !
     }
-
-
     public void payment(){
         view.lb_response.setVisible(true);
         String creditNumber = view.tf_creditNumber.getText();
@@ -61,5 +59,27 @@ public class PurchaseVacationController extends AController {
             }
         }
         return true;
+    }
+
+    public void initialize() {
+        view.cb_year.getItems().add("2019");
+        view.cb_year.getItems().add("2020");
+        view.cb_year.getItems().add("2021");
+        view.cb_year.getItems().add("2022");
+        view.cb_year.getItems().add("2023");
+        view.cb_year.getItems().add("2024");
+        view.cb_month.getItems().add("01");
+        view.cb_month.getItems().add("02");
+        view.cb_month.getItems().add("03");
+        view.cb_month.getItems().add("04");
+        view.cb_month.getItems().add("05");
+        view.cb_month.getItems().add("06");
+        view.cb_month.getItems().add("07");
+        view.cb_month.getItems().add("08");
+        view.cb_month.getItems().add("09");
+        view.cb_month.getItems().add("10");
+        view.cb_month.getItems().add("11");
+        view.cb_month.getItems().add("12");
+
     }
 }
