@@ -29,30 +29,10 @@ public class PurchaseVacationView implements IView {
     public ChoiceBox cb_month;
     public Button btn_pay;
 
-    public PurchaseVacationView(){
-        cb_year.getItems().add("2019");
-        cb_year.getItems().add("2020");
-        cb_year.getItems().add("2021");
-        cb_year.getItems().add("2022");
-        cb_year.getItems().add("2023");
-        cb_year.getItems().add("2024");
-        cb_month.getItems().add("01");
-        cb_month.getItems().add("02");
-        cb_month.getItems().add("03");
-        cb_month.getItems().add("04");
-        cb_month.getItems().add("05");
-        cb_month.getItems().add("06");
-        cb_month.getItems().add("07");
-        cb_month.getItems().add("08");
-        cb_month.getItems().add("09");
-        cb_month.getItems().add("10");
-        cb_month.getItems().add("11");
-        cb_month.getItems().add("12");
-    }
-
     @Override
     public void setController(AController controller) {
         this.controller = (PurchaseVacationController)controller;
+        this.controller.initialize();
     }
 
     public void showAlert() {
