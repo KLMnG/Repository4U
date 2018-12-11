@@ -29,28 +29,6 @@ public class PurchaseVacationView implements IView {
     public ChoiceBox cb_month;
     public Button btn_pay;
 
-    @Override
-    public void setController(AController controller) {
-        {
-            this.controller = (PurchaseVacationController)controller;
-        }
-    }
-
-
-    public void showAlert() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText("Confirm vacation");
-        alert.setContentText("Are you sure you want to sell?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            // ... accept
-        } else {
-            // ... user chose CANCEL or closed the dialog
-        }
-    }
-
     public PurchaseVacationView(){
         cb_year.getItems().add("2019");
         cb_year.getItems().add("2020");
@@ -70,6 +48,25 @@ public class PurchaseVacationView implements IView {
         cb_month.getItems().add("10");
         cb_month.getItems().add("11");
         cb_month.getItems().add("12");
+    }
+
+    @Override
+    public void setController(AController controller) {
+        this.controller = (PurchaseVacationController)controller;
+    }
+
+    public void showAlert() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Confirm vacation");
+        alert.setContentText("Are you sure you want to sell?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            // ... accept
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
     }
 
     public void pay(ActionEvent actionEvent){

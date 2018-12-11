@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.CreateVacationsView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.CreateVacationsView">
    <top>
       <AnchorPane prefHeight="76.0" prefWidth="1020.0" style="-fx-background-color: #3D9999;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: CDC1B4;" text="&lt;-back" />
+            <Button layoutY="19.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: CDC1B4;" text="&lt;-back" />
             <Label layoutX="389.0" layoutY="38.0" text="Create a vacation" textFill="WHITE" underline="true">
                <font>
                   <Font name="Aharoni Bold" size="29.0" />
