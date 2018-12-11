@@ -18,29 +18,54 @@ public class PurchaseVacationModel {
         con = new DBConnection();
     }
 
-    public void addPurchaseVacation(String code_ticket, String userNameSeller){
+    public boolean addPurchaseVacation(String code_ticket, String userNameSeller){
 
-        String userNameBuyer = UserModel.getUsername();
+        //String userNameBuyer = UserModel.getUsername();
+        String userNameBuyer = "dor";
+        if(!isExist(userNameSeller,code_ticket)) {
+            String sql = "INSERT INTO RequestPurchase(seller,buyer,code_vacation,confirm_seller,confirm_buyer) Values(?,?,?,?,?)";
 
-        String sql = "INSERT INTO RequestPurchase(seller,buyer,code_vacation,confirm_seller,confirm_buyer) Values(?,?,?,?,?)";
+            try (Connection conn = con.getSQLLiteDBConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                pstmt.setString(1, userNameSeller);
+                pstmt.setString(2, userNameBuyer);
+                pstmt.setString(3, code_ticket);
+                pstmt.setInt(4, 0);
+                pstmt.setInt(5, 1);
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isExist(String seller, String codeTicket){
+        String sql = "SELECT buyer FROM RequestPurchase WHERE seller = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, userNameSeller);
-            pstmt.setString(2, userNameBuyer);
-            pstmt.setString(3, code_ticket);
-            pstmt.setInt(4, 0);
-            pstmt.setInt(5, 1);
-            pstmt.executeUpdate();
+            pstmt.setString(1, seller);
+            pstmt.setString(2, codeTicket);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            String back = rs.getString("buyer");
+            if(!back.equals("")) {
+                return true;
+            }
 
         } catch (SQLException e) {
         }
+        return false;
     }
 
     public Map<String,String> listOfBuyers(String seller){
-        Map<String,String> buyers = null;
-        String sql = "SELECT buyer,code_vacation"
+        Map<String,String> buyers = new HashMap<>();
+        String sql = "SELECT buyer,code_vacation "
                 + "FROM RequestPurchase WHERE seller = ? ";
 
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -62,7 +87,7 @@ public class PurchaseVacationModel {
 
     public void confirmVacationInDB(String seller, String buyer, String code_ticket){
         String sql = "UPDATE RequestPurchase SET confirm_seller = ? "+
-                "WHERE seller = ? , buyer = ? , code_vacation = ?";;
+                    "WHERE seller = ? AND buyer = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -73,7 +98,6 @@ public class PurchaseVacationModel {
             pstmt.setString(4, code_ticket);
 
             pstmt.executeUpdate();
-
         } catch (SQLException e) {
         }
     }
@@ -171,11 +195,8 @@ public class PurchaseVacationModel {
     }
 
 
-
-
-
 //    public static void main(String[] args) {
 //        PurchaseVacationModel p = new PurchaseVacationModel();
-//        p.addPayment("1234", "02-20");
+//        boolean check = p.addPurchaseVacation("123123","ddddd");
 //    }
 }
