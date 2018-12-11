@@ -18,8 +18,6 @@ public class PurchaseVacationModel {
         con = new DBConnection();
     }
 
-
-
     public void addPurchaseVacation(String code_ticket, String userNameSeller){
 
         String userNameBuyer = UserModel.getUsername();
@@ -109,8 +107,7 @@ public class PurchaseVacationModel {
         return false;
     }
 
-
-
+/*
     public List<String> read(String code_ticket, String code_luggages, String code_vacation, String code_hotel) {
         List<String> vacationInfo = null;
         String sql = "SELECT Tickets.code, flight_company,departure_date," +
@@ -155,7 +152,28 @@ public class PurchaseVacationModel {
         }
         return vacationInfo;
     }
+*/
+    public void addPayment(String numberCredit, String expiry) {
+        //String userNameBuyer = UserModel.getUsername();
+        String userNameBuyer = "DOR";
+        int creditNumber = Integer.parseInt(numberCredit);
 
+        String sql = "INSERT INTO Payment(buyer,creditNumber,expiry) VALUES(?,?,?)";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, userNameBuyer);
+            pstmt.setInt(2, creditNumber);
+            pstmt.setString(3, expiry);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //System.out.println("PROBLEM");
+        }
+    }
 
 
 }

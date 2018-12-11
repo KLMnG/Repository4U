@@ -42,4 +42,8 @@ public class CreateVacationsController extends AController{
 
 
     }
+
+    public void swapScene() {
+        SwapScene(PapaController.Views.HomePageLoggedIn);
+    }
 }
