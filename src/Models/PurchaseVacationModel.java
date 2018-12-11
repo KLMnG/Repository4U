@@ -18,7 +18,7 @@ public class PurchaseVacationModel {
         con = new DBConnection();
     }
 
-    public boolean addPurchaseVacation(String code_ticket, String userNameSeller){
+    public boolean addPurchaseVacation(int code_ticket, String userNameSeller){
 
         String userNameBuyer = UserModel.getUsername();
         if(!isExist(userNameSeller,code_ticket)) {
@@ -29,7 +29,7 @@ public class PurchaseVacationModel {
 
                 pstmt.setString(1, userNameSeller);
                 pstmt.setString(2, userNameBuyer);
-                pstmt.setString(3, code_ticket);
+                pstmt.setInt(3, code_ticket);
                 pstmt.setInt(4, 0);
                 pstmt.setInt(5, 1);
                 pstmt.executeUpdate();
@@ -41,14 +41,14 @@ public class PurchaseVacationModel {
         return true;
     }
 
-    public boolean isExist(String seller, String codeTicket){
+    public boolean isExist(String seller, int codeTicket){
         String sql = "SELECT buyer FROM RequestPurchase WHERE seller = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, seller);
-            pstmt.setString(2, codeTicket);
+            pstmt.setInt(2, codeTicket);
 
             ResultSet rs = pstmt.executeQuery();
 

@@ -5,14 +5,28 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class TicketData {
 
-    private String code;
-    private String From;
-    private String To;
-    private String Depart;
-    private String Airline;
+
+    private SimpleStringProperty code;
+    private SimpleStringProperty From;
+    private SimpleStringProperty To;
+    private SimpleStringProperty Depart;
+    private SimpleStringProperty Airline;
     private LuggageData luggageData;
     private String TicketType;
     private boolean includes_flight_back;
+
+
+    public TicketData(String code, String from, String to, String depart, String airline, LuggageData luggageData, String ticketType, int includes_flight_back) {
+        this.code = new SimpleStringProperty(code);
+        this.From = new SimpleStringProperty(from);
+        this.To = new SimpleStringProperty(to);
+        this.Depart = new SimpleStringProperty(depart);
+        this.Airline = new SimpleStringProperty(airline);
+        this.luggageData = luggageData;
+        this.TicketType = ticketType;
+        this.includes_flight_back = (includes_flight_back != 0);
+    }
+
 
     public boolean getIncludes_flight_back() {
         return includes_flight_back;
@@ -22,45 +36,43 @@ public class TicketData {
         this.includes_flight_back = includes_flight_back;
     }
 
-
-
     public String getCode() {
-        return code;
+        return code.get();
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.code.set(code);
     }
     public String getFrom() {
-        return From;
+        return From.get();
     }
 
     public void setFrom(String from) {
-        From = from;
+        From.set(from);
     }
 
     public String getTo() {
-        return To;
+        return To.get();
     }
 
     public void setTo(String to) {
-        To = to;
+        To.set(to);
     }
 
     public String getDepart() {
-        return Depart;
+        return Depart.get();
     }
 
     public void setDepart(String depart) {
-        Depart = depart;
+        Depart.set(depart);
     }
 
     public String getAirline() {
-        return Airline;
+        return Airline.get();
     }
 
     public void setAirline(String airline) {
-        Airline = airline;
+        Airline.set(airline);
     }
 
     public LuggageData getLuggageData() {
@@ -79,14 +91,4 @@ public class TicketData {
         TicketType = ticketType;
     }
 
-    public TicketData(String code, String from, String to, String depart, String airline, LuggageData luggageData, String ticketType, int includes_flight_back) {
-        this.code=code;
-        this.From = from;
-        this.To = to;
-        this.Depart = depart;
-        this.Airline = airline;
-        this.luggageData = luggageData;
-        this.TicketType = ticketType;
-        this.includes_flight_back = (includes_flight_back != 0);
-    }
 }

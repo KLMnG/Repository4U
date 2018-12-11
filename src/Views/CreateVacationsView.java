@@ -2,12 +2,19 @@ package Views;
 
 import Controllers.AController;
 import Controllers.CreateVacationsController;
+import Controls.DateTimePicker;
+import General.LuggageData;
+import General.TicketData;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 public class CreateVacationsView implements IView {
 
@@ -28,7 +35,7 @@ public class CreateVacationsView implements IView {
     public TextField tf_weight;
     public TextField tf_height;
     public TextField tf_width;
-    public DatePicker dp_flightDate;
+    public DateTimePicker dp_flightDate;
     public Label lb_hotel;
     public Label lb_vacationType;
     public Label lb_timeToStay;
@@ -36,6 +43,46 @@ public class CreateVacationsView implements IView {
     public Label lb_height;
     public Label lb_width;
     public TextField tf_price;
+    public TableColumn col_ticketNum;
+    public TableColumn col_flightCompany;
+    public TableColumn col_departure;
+    public TableColumn col_destination;
+    public TableColumn col_flghtDate;
+    public TableView tbl_tickets;
+
+    private ObservableList<TicketData> data;
+    public void initialize(){
+
+        this.data = FXCollections.observableArrayList();
+
+//        tbl_tickets.setRowFactory(param -> {TableRow<TicketData> row = new TableRow<>();
+//            row.setOnMouseClicked(event -> {
+//                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+//                    tbl_tickets rowData = row.getItem();
+//                    this.controller.openVacationInfoWindows();
+//                }
+//            });
+//            return row ;
+//        });
+
+        col_ticketNum.setCellValueFactory(
+                new PropertyValueFactory<TicketData,String>("code")
+        );
+        col_flightCompany.setCellValueFactory(
+                new PropertyValueFactory<TicketData,String>("Airline")
+        );
+        col_departure.setCellValueFactory(
+                new PropertyValueFactory<TicketData,String>("From")
+        );
+        col_destination.setCellValueFactory(
+                new PropertyValueFactory<TicketData,String>("To")
+        );
+        col_flghtDate.setCellValueFactory(
+                new PropertyValueFactory<TicketData,String>("Depart")
+        );
+
+        this.tbl_tickets.setItems(data);
+    }
 
     public TextField getTf_ticketNum() {
         return tf_ticketNum;
@@ -99,16 +146,28 @@ public class CreateVacationsView implements IView {
 
     private CreateVacationsController controller;
 
-    public CreateVacationsView() {
-
-    }
-
     @Override
     public void setController(AController controller) {
         this.controller = (CreateVacationsController) controller;
     }
 
     public void addPassenger(ActionEvent actionEvent) {
+        LuggageData luggageData = null;
+
+        if (cb_luggage.isSelected()) {
+            int weight = -1;
+            int height = -1;
+            int width = -1;
+            try{
+                luggageData = new LuggageData(-1, Integer.parseInt(this.tf_weight.getText()), Integer.parseInt(this.tf_weight.getText()), Integer.parseInt(this.tf_weight.getText()));
+            }catch (NumberFormatException e){
+                luggageData = new LuggageData(-1, -1,-1,-1);
+            }
+
+
+        }
+        TicketData data = new TicketData(this.tf_ticketNum.getText(),this.tf_departueFrom.getText(),this.tf_destination.getText(),this.tf_departueFrom.getText(),this.tf_flightCompany.getText(),luggageData,this.tf_vacationType.getText(),(this.cb_includeFlightBacl.isSelected() ? 1 : 0));
+        this.data.add(data);
         if(controller.checkTextFields())
             controller.notifyPassengerAdded();
         else

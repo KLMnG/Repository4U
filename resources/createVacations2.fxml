@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
+<?import Controls.DateTimePicker?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.CreateVacationsView">
    <top>
       <AnchorPane prefHeight="76.0" prefWidth="1020.0" style="-fx-background-color: #3D9999;" BorderPane.alignment="CENTER">
@@ -120,13 +121,16 @@
             <TextField fx:id="tf_width" layoutX="410.0" layoutY="467.0" prefHeight="25.0" prefWidth="83.0" visible="false" />
             <Button fx:id="b_addPassenger" layoutX="731.0" layoutY="532.0" mnemonicParsing="false" onAction="#addPassenger" text="Add passenger" />
             <Button fx:id="b_done" layoutX="832.0" layoutY="532.0" mnemonicParsing="false" onAction="#saveTicket" text="Done" />
-            <TableView layoutX="55.0" layoutY="212.0" prefHeight="56.0" prefWidth="888.0">
+            <TableView fx:id="tbl_tickets" layoutX="55.0" layoutY="212.0" prefHeight="56.0" prefWidth="888.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="col_ticketNum" prefWidth="110.0" text="Ticket Number" />
+                  <TableColumn fx:id="col_flightCompany" prefWidth="144.0" text="Flight Company" />
+                  <TableColumn fx:id="col_departure" prefWidth="134.0" text="Departure" />
+                  <TableColumn fx:id="col_destination" prefWidth="136.0" text="Destination" />
+                  <TableColumn fx:id="col_flghtDate" prefWidth="116.0" text="Flight Date" />
               </columns>
             </TableView>
-            <DatePicker fx:id="dp_flightDate" layoutX="309.0" layoutY="344.0" />
+            <DateTimePicker fx:id="dp_flightDate" layoutX="309.0" layoutY="344.0" />
             <Label layoutX="733.0" layoutY="346.0" text="price" textFill="WHITE">
                <font>
                   <Font size="15.0" />
