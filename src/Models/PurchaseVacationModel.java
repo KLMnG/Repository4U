@@ -18,7 +18,7 @@ public class PurchaseVacationModel {
         con = new DBConnection();
     }
 
-    public void addPurchaseVacation(int code_ticket, String userNameSeller){
+    public boolean addPurchaseVacation(int code_ticket, String userNameSeller){
 
         String userNameBuyer = UserModel.getUsername();
 
@@ -36,6 +36,7 @@ public class PurchaseVacationModel {
 
         } catch (SQLException e) {
         }
+        return true;
     }
 
     public Map<String,String> listOfBuyers(String seller){
