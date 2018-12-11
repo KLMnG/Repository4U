@@ -14,10 +14,10 @@
         <columns>
           <TableColumn fx:id="col_from" prefWidth="135.0" text="From" />
           <TableColumn fx:id="col_to" prefWidth="138.0" text="To" />
-            <TableColumn fx:id="col_depart" prefWidth="67.0" text="Depart" />
-            <TableColumn fx:id="col_days" prefWidth="65.0" text="Days" />
-            <TableColumn fx:id="col_travelers" prefWidth="63.0" text="Travelers" />
-            <TableColumn fx:id="col_price" minWidth="0.0" prefWidth="50.0" text="Price" />
+            <TableColumn fx:id="col_depart" prefWidth="73.0" text="Depart" />
+            <TableColumn fx:id="col_days" prefWidth="83.0" text="Days" />
+            <TableColumn fx:id="col_travelers" prefWidth="89.0" text="Travelers" />
+            <TableColumn fx:id="col_price" minWidth="0.0" prefWidth="81.0" text="Price" />
         </columns>
       </TableView>
       <Label layoutX="355.0" layoutY="22.0" text="Hello guest" />

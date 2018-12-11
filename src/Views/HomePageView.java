@@ -28,6 +28,7 @@ public class HomePageView implements IView{
     public TableColumn col_depart;
     public TableColumn col_travelers;
     public TableColumn col_price;
+    public TableColumn col_hotel;
 
     private HomePageController controller;
     private ObservableList<VacationData> data;
@@ -65,6 +66,7 @@ public class HomePageView implements IView{
         col_price.setCellValueFactory(
                 new PropertyValueFactory<VacationData,Integer>("Price")
         );
+
 
         this.tv_vacations.setItems(data);
     }
