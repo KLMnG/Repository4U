@@ -40,8 +40,8 @@ public class VacationInfoLoggedinController extends AController{
     public void PurchaseVacation() {
         String message = "Purchase vacation permition added successfully";
         if (!this.model.AskToPurchase());
-            message = "Error while trying to add permistion to database";
-        //this.view.ShowAlert(message);
+            message = "Error while trying to add request to database";
+        this.view.ShowInfoAlert(message);
     }
 
     public void back()

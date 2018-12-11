@@ -20,9 +20,6 @@ public class PurchaseVacationController extends AController {
         this.model = model;
     }
 
-    public void initializeView() {
-
-    }
     @Override
     public void setView(IView view) {
         this.view = (PurchaseVacationView)view;
