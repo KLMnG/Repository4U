@@ -1,6 +1,7 @@
 package Controllers;
 
 import General.PapaController;
+import General.PurchaseMessage;
 import General.VacationData;
 import Models.PurchaseVacationModel;
 import Models.UserModel;
@@ -8,6 +9,7 @@ import Views.IView;
 import Views.MassegesRequestsView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MassagesRequestsController extends AController {
@@ -31,11 +33,11 @@ public class MassagesRequestsController extends AController {
     }
 
     public void getCommitList() {
-        ArrayList<String> tmp = new ArrayList<>();
-        Map<String, String> CommitList = model.listOfBuyers(UserModel.getUsername());
-        tmp.addAll(CommitList.values());
+        List <PurchaseMessage> CommitList = model.listOfSellers(UserModel.getUsername());
+        List <PurchaseMessage> ConfirmList = model.listOfBuyers(UserModel.getUsername());
 
-        this.view.addToTable(tmp);
+        this.view.addToTableCommit(CommitList);
+        this.view.addToTableConfirm(ConfirmList);
 
     }
 
@@ -44,18 +46,15 @@ public class MassagesRequestsController extends AController {
     public void openVacationInfoWindows() {
 
 
+    }
 
+    public void Confirm(PurchaseMessage getSelectedConfirmMessage) {
+        model.confirmVacationInDB(UserModel.getUsername(),getSelectedConfirmMessage.getPurchase_User(),getSelectedConfirmMessage.getVacationCode());
 
     }
 
-    public void Confirm() {
-        model.confirmVacationInDB(UserModel.getUsername(),"","");
-
-
-    }
-
-    public void OrderNow() {
-        boolean ifConfirmed = model.confirmation("", UserModel.getUsername());
+    public void OrderNow(PurchaseMessage getSelectedOrderMessage) {
+        boolean ifConfirmed = model.confirmation(getSelectedOrderMessage.getSeller_User(), UserModel.getUsername());
         if(ifConfirmed)
             SwapScene(PapaController.Views.PurchesVacation);
     }

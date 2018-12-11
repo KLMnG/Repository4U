@@ -2,6 +2,7 @@ package Views;
 
 import Controllers.AController;
 import Controllers.MassagesRequestsController;
+import General.PurchaseMessage;
 import General.VacationData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,8 +33,11 @@ public class MassegesRequestsView implements IView{
     public Button bn_confirm;
     public Button bn_orderNow;
 
-    private ObservableList<String> dataCommit;
-    private ObservableList<String> dataConfirm;
+
+
+
+    private ObservableList<PurchaseMessage> dataCommit;
+    private ObservableList<PurchaseMessage> dataConfirm;
 
     @Override
     public void setController(AController controller) {
@@ -46,24 +50,20 @@ public class MassegesRequestsView implements IView{
         this.dataCommit = FXCollections.observableArrayList();
 
         col_ticketCommit.setEditable(false);
-        tv_commitPurchase.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
+        tv_commitPurchase.setRowFactory(param -> {TableRow<PurchaseMessage> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    VacationData rowData = row.getItem();
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     bn_orderNow.setVisible(true);
-
-
-                    this.controller.openVacationInfoWindows();
                 }
             });
             return row ;
         });
 
         col_ticketCommit.setCellValueFactory(
-                new PropertyValueFactory<String,String>("Ticket Code")
+                new PropertyValueFactory<PurchaseMessage,String>("VacationCode")
         );
         col_sellerCommit.setCellValueFactory(
-                new PropertyValueFactory<String,String>("Seller user name")
+                new PropertyValueFactory<PurchaseMessage,String>("Seller_User")
         );
 
 
@@ -72,43 +72,39 @@ public class MassegesRequestsView implements IView{
             //////// for table tv_confirmationPurchase
         this.dataConfirm = FXCollections.observableArrayList();
 
-        col_ticketConfirm.setEditable(false);
         tv_confirmationPurchase.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    VacationData rowData = row.getItem();
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     bn_confirm.setVisible(true);
-
-
                 }
             });
             return row ;
         });
 
         col_ticketConfirm.setCellValueFactory(
-                new PropertyValueFactory<String,String>("Ticket Code")
+                new PropertyValueFactory<PurchaseMessage,String>("VacationCode")
         );
         col_buyer.setCellValueFactory(
-                new PropertyValueFactory<String,String>("Seller user name")
+                new PropertyValueFactory<PurchaseMessage,String>("Purchase_User")
         );
 
-
         this.tv_confirmationPurchase.setItems(dataConfirm);
-
-
-
-
-
     }
-    public void OrderNow(){
-        this.controller.OrderNow();
+    public void OrderNow(PurchaseMessage getSelectedOrderMessage){
+        this.controller.OrderNow(getSelectedOrderMessage);
     }
 
-
-    public void Confirm(){
-        this.controller.Confirm();
+    public PurchaseMessage getSelectedOrderMessage(){
+        return (PurchaseMessage)this.tv_commitPurchase.getSelectionModel().getSelectedItem();
     }
 
+    public PurchaseMessage getSelectedConfirmMessage(){
+        return (PurchaseMessage)this.tv_confirmationPurchase.getSelectionModel().getSelectedItem();
+    }
+
+    public void Confirm(PurchaseMessage getSelectedConfirmMessage){
+        this.controller.Confirm(getSelectedConfirmMessage);
+    }
 
 
 
@@ -116,7 +112,11 @@ public class MassegesRequestsView implements IView{
         controller.back();
     }
 
-    public void addToTable(List<String> tmp) {
+    public void addToTableCommit(List<PurchaseMessage> tmp) {
         dataCommit.addAll(tmp);
     }
+    public void addToTableConfirm(List<PurchaseMessage> tmp) {
+        dataConfirm.addAll( tmp);
+    }
+
 }

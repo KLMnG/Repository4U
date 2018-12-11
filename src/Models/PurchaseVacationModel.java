@@ -1,6 +1,7 @@
 package Models;
 
 import General.DBConnection;
+import General.PurchaseMessage;
 import General.VacationData;
 
 import java.sql.Connection;
@@ -64,29 +65,54 @@ public class PurchaseVacationModel {
         return false;
     }
 
-    public Map<String,String> listOfBuyers(String seller){
-        Map<String,String> buyers = new HashMap<>();
+    public List<PurchaseMessage> listOfBuyers(String seller){
         String sql = "SELECT buyer,code_vacation "
                 + "FROM RequestPurchase WHERE seller = ? ";
 
+        List<PurchaseMessage> lstmessage = null;
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt  = conn.prepareStatement(sql)){
 
             pstmt.setString(1,seller);
             ResultSet rs  = pstmt.executeQuery();
 
+            lstmessage = new ArrayList<PurchaseMessage>();
             while (rs.next()) {
                 String buyer = (rs.getString("buyer"));
-                String code =  (rs.getString("code_vacation"));
-                buyers.put(code,buyer);
+                int code = (rs.getInt("code_vacation"));
+                PurchaseMessage msg = new PurchaseMessage(seller,buyer,code,"");
+                lstmessage.add(msg);
             }
         } catch (SQLException e) {
         }
         // now we have map with all the codeVacation and his buyers
-        return buyers;
+        return lstmessage;
+    }
+    public List<PurchaseMessage> listOfSellers(String buyer){
+        String sql = "SELECT seller,code_vacation "
+                + "FROM RequestPurchase WHERE buyer = ? ";
+
+        List<PurchaseMessage> lstmessage = null;
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){
+
+            pstmt.setString(1,buyer);
+            ResultSet rs  = pstmt.executeQuery();
+
+            lstmessage = new ArrayList<PurchaseMessage>();
+            while (rs.next()) {
+                String seller = (rs.getString("seller"));
+                int code =  (rs.getInt("code_vacation"));
+                PurchaseMessage msg = new PurchaseMessage(seller,buyer,code,"");
+                lstmessage.add(msg);
+            }
+        } catch (SQLException e) {
+        }
+        // now we have map with all the codeVacation and his buyers
+        return lstmessage;
     }
 
-    public void confirmVacationInDB(String seller, String buyer, String code_ticket){
+    public void confirmVacationInDB(String seller, String buyer, int code_ticket){
         String sql = "UPDATE RequestPurchase SET confirm_seller = ? "+
                     "WHERE seller = ? AND buyer = ? AND code_vacation = ?";
 
@@ -96,7 +122,7 @@ public class PurchaseVacationModel {
             pstmt.setInt(1, 1);
             pstmt.setString(2, seller);
             pstmt.setString(3, buyer);
-            pstmt.setString(4, code_ticket);
+            pstmt.setInt(4, code_ticket);
 
             pstmt.executeUpdate();
 
