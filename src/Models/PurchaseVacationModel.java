@@ -20,10 +20,10 @@ public class PurchaseVacationModel {
         con = new DBConnection();
     }
 
-    public boolean addPurchaseVacation(String code_ticket, String userNameSeller){
+    public boolean addPurchaseVacation(int codeVacation, String userNameSeller){
 
         String userNameBuyer = UserModel.getUsername();
-        if(!isExist(userNameSeller,code_ticket)) {
+        if(!isExist(userNameSeller,codeVacation)) {
             String sql = "INSERT INTO RequestPurchase(seller,buyer,code_vacation,confirm_seller,confirm_buyer) Values(?,?,?,?,?)";
 
             try (Connection conn = con.getSQLLiteDBConnection();
@@ -31,7 +31,7 @@ public class PurchaseVacationModel {
 
                 pstmt.setString(1, userNameSeller);
                 pstmt.setString(2, userNameBuyer);
-                pstmt.setString(3, code_ticket);
+                pstmt.setInt(3, codeVacation);
                 pstmt.setInt(4, 0);
                 pstmt.setInt(5, 1);
                 pstmt.executeUpdate();
@@ -43,14 +43,14 @@ public class PurchaseVacationModel {
         return true;
     }
 
-    public boolean isExist(String seller, String codeTicket){
+    public boolean isExist(String seller, int codeVacation){
         String sql = "SELECT buyer FROM RequestPurchase WHERE seller = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, seller);
-            pstmt.setString(2, codeTicket);
+            pstmt.setInt(2, codeVacation);
 
             ResultSet rs = pstmt.executeQuery();
 
@@ -195,12 +195,4 @@ public class PurchaseVacationModel {
         } catch (SQLException e) {
         }
     }
-
-
-
-
-//    public static void main(String[] args) {
-//        PurchaseVacationModel p = new PurchaseVacationModel();
-//        p.addPayment("1234", "02-20");
-//    }
 }
