@@ -26,7 +26,7 @@ public class HomePageLoggedInController extends AController{
     }
 
     public void initializeView() {
-        //this.view.setUserGesture("♥ Hello " + this.model.getUserName() + " ♥");
+        this.view.setUserGesture("♥ Hello " + this.model.getUserName() + " ♥");
 
     }
     public void getVacations() {
