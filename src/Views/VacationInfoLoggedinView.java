@@ -86,4 +86,6 @@ public class VacationInfoLoggedinView implements IView{
         Alert alert = new Alert(Alert.AlertType.ERROR,alertMessage, ButtonType.OK);
         alert.show();
     }
+
+
 }

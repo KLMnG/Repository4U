@@ -1,6 +1,7 @@
 package Controllers;
 
 import General.PapaController;
+import General.VacationData;
 import Models.PurchaseVacationModel;
 import Views.IView;
 import Views.PurchaseVacationView;
@@ -25,14 +26,11 @@ public class PurchaseVacationController extends AController {
     }
 
     public void back() {
-        SwapScene(PapaController.Views.HomePage);
+        SwapScene(PapaController.Views.MassegesRequests);
     }
 
-    public void showVacationInfo(){
-        //List<String> data = model.read()//need to insert all the codes here !
-    }
     public void payment(){
-        view.lb_response.setVisible(true);
+       // view.lb_response.setVisible(true);
         String creditNumber = view.tf_creditNumber.getText();
         String creditMonth = (String) view.cb_month.getValue();
         String creditYear = (String) view.cb_year.getValue();
@@ -40,15 +38,14 @@ public class PurchaseVacationController extends AController {
         if(creditNumber != null && creditMonth != null && creditYear != null){
             if (isValidCreditNumber(creditNumber) && creditNumber.length() == 16) {
                 model.addPayment(creditNumber,creditMonth+"-"+creditYear);
-                view.lb_response.setText("Payment success !");
-                view.lb_response.setStyle("-fx-text-fill: green;");
+                view.showAlert();
+                model.removeRequest(model.getSeller(), model.getBuyer(), model.getVacationCode());
+                SwapScene(PapaController.Views.MassegesRequests);
             }else{
-                view.lb_response.setText("Wrong Parameters");
-                view.lb_response.setStyle("-fx-text-fill: red;");
+                view.showWarning("Invalid credit card number");
             }
         }else{
-            view.lb_response.setText("Empty Parameters");
-            view.lb_response.setStyle("-fx-text-fill: red;");
+            view.showWarning("Empty parameters");
         }
     }
 
