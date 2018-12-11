@@ -38,7 +38,7 @@ public class CreateVacationsController extends AController{
 
     public void notifyPassengerAdded() {
 
-        model.addPassenger(view.getTf_timeToStay().getText(), view.getTf_vacationType().getText(), view.getCb_hotel().getEditor().getText(), view.getTf_ticketNum().getText(), view.getTf_flightCompany().getText(),
+        model.addPassenger(view.getTf_timeToStay().getText(), view.getTf_vacationType().getText(), view.getCb_hotel().getValue().toString(), view.getTf_ticketNum().getText(), view.getTf_flightCompany().getText(),
                 view.getTf_departueFrom().getText(), view.getCb_passangerType().getEditor().getText(),
                 view.getCb_includeFlightBacl().getText(),view.getDp_flightDate().getValue().toString()
                 ,view.getTf_destination().getText(), view.getCb_luggage(), view.getTf_weight().getText(), view.getTf_height().getText(), view.getTf_width().getText(),view.getTf_price().getText());
@@ -55,5 +55,10 @@ public class CreateVacationsController extends AController{
         return  !(view.getTf_price().getText().equals("")||view.getTf_departueFrom().getText().equals("")||view.getTf_ticketNum().getText().equals("")
         || view.getTf_flightCompany().getText().equals("")||view.dp_flightDate.getValue().toString().equals("")||view.getTf_destination().getText().equals(""));
 
+    }
+
+    public void initialize() {
+        List<String>hotelNames = model.getHotelsName();
+        view.getCb_hotel().getItems().addAll(hotelNames);
     }
 }

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.CreateVacationsView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.CreateVacationsView">
    <top>
       <AnchorPane prefHeight="76.0" prefWidth="1020.0" style="-fx-background-color: #3D9999;" BorderPane.alignment="CENTER">
          <children>
@@ -87,12 +88,12 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cb_hotel" layoutX="581.0" layoutY="95.0" prefHeight="25.0" prefWidth="89.0" visible="false" />
                   <CheckBox fx:id="cb_includeVacation" layoutX="39.0" layoutY="60.0" mnemonicParsing="false" onAction="#showVacationTributes" prefHeight="22.0" prefWidth="138.0" text="Include vacation" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </CheckBox>
+                  <ChoiceBox fx:id="cb_hotel" layoutX="581.0" layoutY="95.0" prefHeight="29.0" prefWidth="92.0" />
                </children>
             </AnchorPane>
             <Label fx:id="lb_weight" layoutX="27.0" layoutY="469.0" text="weight" textFill="WHITE" visible="false">

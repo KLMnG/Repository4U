@@ -193,13 +193,4 @@ public class PurchaseVacationModel {
         } catch (SQLException e) {
         }
     }
-
-
-
-
-
-//    public static void main(String[] args) {
-//        PurchaseVacationModel p = new PurchaseVacationModel();
-//        p.addPayment("1234", "02-20");
-//    }
 }
