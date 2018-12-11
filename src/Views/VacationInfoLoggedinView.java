@@ -3,6 +3,8 @@ package Views;
 import Controllers.AController;
 import Controllers.VacationInfoLoggedinController;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 public class VacationInfoLoggedinView implements IView{
@@ -76,6 +78,12 @@ public class VacationInfoLoggedinView implements IView{
         this.controller.PurchaseVacation();
     }
 
-    public void ShowAlert() {
+    public void ShowInfoAlert(String alertMessage) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,alertMessage, ButtonType.OK);
+        alert.show();
+    }
+    public void ShowErrorAlert(String alertMessage) {
+        Alert alert = new Alert(Alert.AlertType.ERROR,alertMessage, ButtonType.OK);
+        alert.show();
     }
 }
