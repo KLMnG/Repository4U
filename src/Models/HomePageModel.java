@@ -17,8 +17,9 @@ public class HomePageModel {
     }
 
 
-    public VacationData getVacations() {
-        return vacationModel.getSelectedVacationData();
+    public Map<String, VacationData> getVacations() {
+        vacationModel.read();
+        return vacationModel.getVacationData();
     }
 
     public void setSelectedVacationCode(int selectedVacation) {

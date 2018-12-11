@@ -30,25 +30,11 @@ public class HomePageView implements IView{
     public TableColumn col_price;
 
     private HomePageController controller;
-
+    private ObservableList<VacationData> data;
 
     public void initialize(){
 
-        ObservableList<VacationData> data = FXCollections.observableArrayList();
-
-        List<TicketData> lst_t = new ArrayList<>();
-        HotelData h = new HotelData("12","234","234");
-        NightStayData n1 = new NightStayData(3,h);
-        NightStayData n2 = new NightStayData(3,h);
-        NightStayData n3 = new NightStayData(3,h);
-        lst_t.add(new TicketData("1",",","","1","1",null,"1",null,0));
-        lst_t.add(new TicketData("1",",","","1","1",null,"1",null,0));
-        lst_t.add(new TicketData("1",",","","1","1",null,"1",null,0));
-        lst_t.add(new TicketData("1",",","","1","1",null,"1",null,0));
-
-        data.add(new VacationData(lst_t,n1,500,"23",1,4));
-        data.add(new VacationData(lst_t,n2,6000,"23",2,7));
-        data.add(new VacationData(lst_t,n3,300,"23",3,7));
+        this.data = FXCollections.observableArrayList();
 
         col_from.setEditable(false);
         tv_vacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
@@ -80,11 +66,10 @@ public class HomePageView implements IView{
                 new PropertyValueFactory<VacationData,Integer>("Price")
         );
 
-        tv_vacations.setItems(data);
+        this.tv_vacations.setItems(data);
     }
 
     private void initializeView() {
-
         this.controller.getVacations();
     }
 
@@ -101,9 +86,9 @@ public class HomePageView implements IView{
         initializeView();
     }
 
-    public void addToTable(List<String[]> listVac){
 
-     
+    public void addToTable(List<VacationData> vc){
+        data.addAll(vc);
     }
 
 
