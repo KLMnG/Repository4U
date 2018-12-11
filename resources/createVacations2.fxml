@@ -88,12 +88,12 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cb_hotel" layoutX="581.0" layoutY="95.0" prefHeight="25.0" prefWidth="89.0" visible="false" />
                   <CheckBox fx:id="cb_includeVacation" layoutX="39.0" layoutY="60.0" mnemonicParsing="false" onAction="#showVacationTributes" prefHeight="22.0" prefWidth="138.0" text="Include vacation" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </CheckBox>
+                  <ChoiceBox fx:id="cb_hotel" layoutX="581.0" layoutY="95.0" prefHeight="29.0" prefWidth="92.0" />
                </children>
             </AnchorPane>
             <Label fx:id="lb_weight" layoutX="27.0" layoutY="469.0" text="weight" textFill="WHITE" visible="false">

@@ -29,7 +29,7 @@ public class CreateVacationsView implements IView {
     public TextField tf_destination;
     public TextField tf_timeToStay;
     public TextField tf_vacationType;
-    public ComboBox cb_hotel;
+    public ChoiceBox cb_hotel;
     public CheckBox cb_includeVacation;
     public CheckBox cb_luggage;
     public TextField tf_weight;
@@ -116,7 +116,7 @@ public class CreateVacationsView implements IView {
         return tf_vacationType;
     }
 
-    public ComboBox getCb_hotel() {
+    public ChoiceBox getCb_hotel() {
         return cb_hotel;
     }
 
@@ -149,6 +149,7 @@ public class CreateVacationsView implements IView {
     @Override
     public void setController(AController controller) {
         this.controller = (CreateVacationsController) controller;
+        this.controller.initialize();
     }
 
     public void addPassenger(ActionEvent actionEvent) {
