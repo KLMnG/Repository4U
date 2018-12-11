@@ -29,6 +29,7 @@ public class VacationModel {
 
     private List<String> vacation;
     private List<List<String>> tickets;
+    private int selectedVacationCode;
 
     public VacationModel(UserModel userModel, ModelTicketDB modelTicketDB) {
         this.con = new DBConnection();
@@ -68,12 +69,12 @@ public class VacationModel {
                     seller = new User(rs.getString("Username"),"Password","FirstName","LastName","City","BirthDate");
                     hotelData = new HotelData("codeH",rs.getString("address"),rs.getString("rate"));
                     luggageData = new LuggageData(0,rs.getInt("weight"),rs.getInt("height"),rs.getInt("width"));
-                    nightStayData = new NightStayData(0,rs.getInt("time_to_stay"),hotelData);
+                    nightStayData = new NightStayData(0,hotelData);
                     vacationType = rs.getString("vacation_type");
                     price = rs.getInt("Price");
 
                 TicketData ticketData = new TicketData(rs.getString("ticketCode"),rs.getString("departure_from"),rs.getString("destination"),rs.getString("departure_date"),rs.getString("flight_company"),luggageData,rs.getString("ticket_type"),seller,rs.getInt("includes_flight_back"));
-                VacationData vacationD = new VacationData(new ArrayList<TicketData>(), nightStayData, price, vacationType, rs.getInt("VacationCode"));
+                VacationData vacationD = new VacationData(new ArrayList<TicketData>(), nightStayData, price, vacationType, rs.getInt("VacationCode"),rs.getInt("time_to_stay"));
 
                 if(!vacations.containsKey(rs.getString("VacationCode"))){
                     vacations.put(rs.getString("VacationCode"),vacationD);
@@ -87,12 +88,15 @@ public class VacationModel {
         }
     }
 
-    public Map<String, VacationData> getVacationData() {
-        return vacations;
+    public Map<String,VacationData> getVacationData() {
+        return this.vacations;
     }
 
+    public VacationData getSelectedVacationData() {
+        return this.vacations.get(this.selectedVacationCode);
+    }
     public void addPassenger(String tf_timeToStay, String tf_vacationType, String cb_hotel, String tf_ticketNum, String tf_flightCompany, String tf_departueFrom, String cb_passangerType,
-                             String cb_includeFlightBacl,String dp_flightDate,String tf_destination,CheckBox cb_luggage, String tf_weight, String tf_height, String tf_width) {
+                             String cb_includeFlightBacl,String dp_flightDate,String tf_destination,CheckBox cb_luggage, String tf_weight, String tf_height, String tf_width,String tf_price) {
 
         if ((vacation.size() == 0 && !tf_timeToStay.equals(""))|| !vacation.get(0).equals(tf_timeToStay) || !vacation.get(1).equals(tf_vacationType) || !vacation.get(2).equals(cb_hotel)) {
             vacation = new ArrayList<>();
@@ -102,6 +106,7 @@ public class VacationModel {
 
         }
         List<String> ticket = new ArrayList<>();
+        ticket.add(tf_price);
         ticket.add(tf_ticketNum);
         ticket.add(tf_flightCompany);
         ticket.add(tf_departueFrom);
@@ -119,8 +124,11 @@ public class VacationModel {
 
 
     public void saveTickets() {
-        modelTicketDB.saveTickets(vacation,tickets);
+        this.modelTicketDB.saveTickets(vacation,tickets);
 
     }
 
+    public void setSelectedVacationCode(int selectedVacationCode) {
+        this.selectedVacationCode = selectedVacationCode;
+    }
 }

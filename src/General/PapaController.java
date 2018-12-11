@@ -35,7 +35,7 @@ public class PapaController {
         this.views.put(Views.LoginWindow,"/Login.fxml");
         this.views.put(Views.RegisterWindow,"/Register.fxml");
         this.views.put(Views.HomePageLoggedIn,"/HomePageLoggedin.fxml");
-        this.views.put(Views.CreateVationWindow,"/createVacations.fxml");
+        this.views.put(Views.CreateVationWindow,"/createVacations2.fxml");
         this.views.put(Views.VacationInfo,"/VacationInfo.fxml");
         this.views.put(Views.VacationInfoLoggedIn,"/VacationInfoLoggedin.fxml");
 

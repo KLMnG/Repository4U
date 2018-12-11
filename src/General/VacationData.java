@@ -14,12 +14,25 @@ public class VacationData {
     private final SimpleStringProperty Depart;
     private final SimpleStringProperty Travelers;
     private final SimpleIntegerProperty Price;
+
     private List<TicketData> ticketData;
     private NightStayData nightStayData;
     private int code;
-
     private String VacationType;
 
+    public VacationData(List<TicketData> ticketData,NightStayData nightStayData,int price,String vacationType, int code,int timeToStay) {
+        this.ticketData = ticketData;
+        this.nightStayData = nightStayData;
+        this.VacationType = vacationType;
+
+        this.From = new SimpleStringProperty(ticketData.get(0).getFrom());
+        this.To = new SimpleStringProperty(ticketData.get(0).getTo());
+        this.Days = new SimpleIntegerProperty(timeToStay);
+        this.Depart = new SimpleStringProperty(ticketData.get(0).getDepart());
+        this.Travelers = new SimpleStringProperty(ticketData.size() + "");
+        this.Price = new SimpleIntegerProperty(price);
+        this.code = code;
+    }
 
     public int getCode() {
         return code;
@@ -43,22 +56,6 @@ public class VacationData {
 
     public void setNightStayData(NightStayData nightStayData) {
         this.nightStayData = nightStayData;
-    }
-
-
-
-    public VacationData(List<TicketData> ticketData,NightStayData nightStayData,int price,String vacationType, int code) {
-        this.ticketData = ticketData;
-        this.nightStayData = nightStayData;
-        this.VacationType = vacationType;
-
-        this.From = new SimpleStringProperty(ticketData.get(0).getFrom());
-        this.To = new SimpleStringProperty(ticketData.get(0).getTo());
-        this.Days = new SimpleIntegerProperty(nightStayData.getTimeToStay());
-        this.Depart = new SimpleStringProperty(ticketData.get(0).getDepart());
-        this.Travelers = new SimpleStringProperty(ticketData.size() + "");
-        this.Price = new SimpleIntegerProperty(price);
-        this.code = code;
     }
 
     public String getFrom() {
@@ -116,4 +113,5 @@ public class VacationData {
     public void setVacationType(String vacationType) {
         VacationType = vacationType;
     }
+
 }

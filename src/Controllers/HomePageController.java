@@ -48,5 +48,10 @@ public class HomePageController extends AController {
     }
 
 
+    public void openVacationInfoWindows() {
+        VacationData v = this.view.getSelectedVacation();
+        this.model.setSelectedVacationCode(v.getCode());
+        SwapScene(PapaController.Views.VacationInfo);
 
+    }
 }

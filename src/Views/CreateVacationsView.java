@@ -29,7 +29,13 @@ public class CreateVacationsView implements IView {
     public TextField tf_height;
     public TextField tf_width;
     public DatePicker dp_flightDate;
-
+    public Label lb_hotel;
+    public Label lb_vacationType;
+    public Label lb_timeToStay;
+    public Label lb_weight;
+    public Label lb_height;
+    public Label lb_width;
+    public TextField tf_price;
 
     public TextField getTf_ticketNum() {
         return tf_ticketNum;
@@ -104,12 +110,54 @@ public class CreateVacationsView implements IView {
 
     public void addPassenger(ActionEvent actionEvent) {
 
-            controller.notifyPassengerAdded();
+        controller.notifyPassengerAdded();
 
-        }
+    }
 
     public void saveTicket(ActionEvent actionEvent) {
         controller.saveTickets();
 
+    }
+
+    public void showVacationTributes(ActionEvent actionEvent) {
+        if (!cb_includeVacation.isSelected()) {
+            tf_timeToStay.visibleProperty().setValue(true);
+            tf_vacationType.visibleProperty().setValue(true);
+            cb_hotel.visibleProperty().setValue(true);
+            lb_hotel.visibleProperty().setValue(true);
+            lb_vacationType.visibleProperty().setValue(true);
+            lb_timeToStay.visibleProperty().setValue(true);
+        } else {
+            tf_timeToStay.visibleProperty().setValue(false);
+            tf_vacationType.visibleProperty().setValue(false);
+            cb_hotel.visibleProperty().setValue(false);
+            lb_hotel.visibleProperty().setValue(false);
+            lb_vacationType.visibleProperty().setValue(false);
+            lb_timeToStay.visibleProperty().setValue(false);
+
+        }
+    }
+
+
+    public void showLuggageAtribuets(ActionEvent actionEvent) {
+        if (!cb_luggage.isSelected()) {
+            lb_weight.visibleProperty().setValue(true);
+            lb_height.visibleProperty().setValue(true);
+            lb_width.visibleProperty().setValue(true);
+            tf_weight.visibleProperty().setValue(true);
+            tf_height.visibleProperty().setValue(true);
+            tf_width.visibleProperty().setValue(true);
+        } else {
+            lb_weight.visibleProperty().setValue(false);
+            lb_height.visibleProperty().setValue(false);
+            lb_width.visibleProperty().setValue(false);
+            tf_weight.visibleProperty().setValue(false);
+            tf_height.visibleProperty().setValue(false);
+            tf_width.visibleProperty().setValue(false);
+        }
+    }
+
+    public TextField getTf_price() {
+        return tf_price;
     }
 }

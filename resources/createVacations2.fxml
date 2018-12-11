@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.CreateVacationsView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.CreateVacationsView">
    <top>
       <AnchorPane prefHeight="76.0" prefWidth="1020.0" style="-fx-background-color: #3D9999;" BorderPane.alignment="CENTER">
          <children>
@@ -127,6 +127,12 @@
               </columns>
             </TableView>
             <DatePicker fx:id="dp_flightDate" layoutX="309.0" layoutY="344.0" />
+            <Label layoutX="733.0" layoutY="346.0" text="price" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_price" layoutX="791.0" layoutY="344.0" prefHeight="25.0" prefWidth="83.0" />
          </children>
       </AnchorPane>
    </center>

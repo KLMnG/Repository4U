@@ -37,7 +37,7 @@ public class CreateVacationsController extends AController{
         model.addPassenger(view.getTf_timeToStay().getText(), view.getTf_vacationType().getText(), view.getCb_hotel().getEditor().getText(), view.getTf_ticketNum().getText(), view.getTf_flightCompany().getText(),
                 view.getTf_departueFrom().getText(), view.getCb_passangerType().getEditor().getText(),
                 view.getCb_includeFlightBacl().getText(),view.getDp_flightDate().getValue().toString()
-                ,view.getTf_destination().getText(), view.getCb_luggage(), view.getTf_weight().getText(), view.getTf_height().getText(), view.getTf_width().getText());
+                ,view.getTf_destination().getText(), view.getCb_luggage(), view.getTf_weight().getText(), view.getTf_height().getText(), view.getTf_width().getText(),view.getTf_price().getText());
 
 
 

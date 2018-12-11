@@ -21,4 +21,8 @@ public class HomePageModel {
         vacationModel.read();
         return vacationModel.getVacationData();
     }
+
+    public void setSelectedVacationCode(int selectedVacation) {
+        this.vacationModel.setSelectedVacationCode(selectedVacation);
+    }
 }

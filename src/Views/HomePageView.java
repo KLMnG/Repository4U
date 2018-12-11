@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -35,17 +36,16 @@ public class HomePageView implements IView{
 
         this.data = FXCollections.observableArrayList();
 
-//       List<TicketData> lst_t = new ArrayList<>();
-//       HotelData h = new HotelData("12","234","234");
-//       NightStayData n1 = new NightStayData(3,4,h);
-//       NightStayData n2 = new NightStayData(3,7,h);
-//       NightStayData n3 = new NightStayData(3,10,h);
-//       lst_t.add(new TicketData("1","1","1","1",null,"1",null));
-//       lst_t.add(new TicketData("1","1","1","1",null,"1",null));
-//       lst_t.add(new TicketData("1","1","1","1",null,"1",null));
-//       data.add(new VacationData(lst_t,n1,500,"23"));
-//       data.add(new VacationData(lst_t,n2,6000,"23"));
-//       data.add(new VacationData(lst_t,n3,300,"23"));
+        col_from.setEditable(false);
+        tv_vacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    VacationData rowData = row.getItem();
+                    this.controller.openVacationInfoWindows();
+                }
+            });
+            return row ;
+        });
 
         col_from.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("From")
@@ -69,7 +69,9 @@ public class HomePageView implements IView{
         this.tv_vacations.setItems(data);
     }
 
-
+    private void initializeView() {
+        this.controller.getVacations();
+    }
 
     public void Signin(ActionEvent actionEvent) {
         this.controller.openLoginWindow();
@@ -81,15 +83,16 @@ public class HomePageView implements IView{
     @Override
     public void setController(AController controller) {
         this.controller = (HomePageController) controller;
-        ((HomePageController) controller).getVacations();
-
-
+        initializeView();
     }
+
 
     public void addToTable(List<VacationData> vc){
         data.addAll(vc);
     }
 
 
-
+    public VacationData getSelectedVacation() {
+        return (VacationData) this.tv_vacations.getSelectionModel().getSelectedItem();
+    }
 }
