@@ -1,5 +1,6 @@
 package Models;
 
+import General.VacationData;
 import javafx.collections.ObservableList;
 
 import java.util.List;
@@ -16,7 +17,8 @@ public class HomePageModel {
     }
 
 
-    public void getVacations() {
-        vacationModel.getVacationData();
+    public Map<String, VacationData> getVacations() {
+        vacationModel.read();
+        return vacationModel.getVacationData();
     }
 }

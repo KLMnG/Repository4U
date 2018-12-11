@@ -31,6 +31,7 @@ public class VacationModel {
     private List<List<String>> tickets;
 
     public VacationModel(UserModel userModel, ModelTicketDB modelTicketDB) {
+        this.con = new DBConnection();
         this.userModel = userModel;
         this.modelTicketDB = modelTicketDB;
         this.vacation=new ArrayList<>();
@@ -39,14 +40,15 @@ public class VacationModel {
     }
 
     public void read() {
-        String sql = "SELECT Tickets.code as ticketCode, flight_company,departure_date, includes_flight_back" +
-                "departure_from, destination, ticket_type, " +
-                "Users.Username as Username, Users.Password as Password, Users.BirthDate as BirthDate, Users.FirstName as FirstName, Users.LastName as LastName, Users.City as City  " +
-                "Luggages.weight as weight,Luggages.height as height,Luggages.width as width" +
-                ",Vacations.code as VacationCode, Vacations.time_to_stay as time_to_stay, Vacations.vacation_type as vacation_type, " +
-                ",Hotels.code as codeH ,Hotels.address as address, Hotels.rate as rate, Price "
-                + "FROM Tickets, Luggages, Vacation, Hotels, Users ";
-
+        String sql = "SELECT Tickets.code as ticketCode, flight_company " +
+                ",departure_date, includes_flight_back, departure_from," +
+                " destination, ticket_type, Users.Username as Username" +
+                " , Users.Password as Password, Users.BirthDate as BirthDate," +
+                " Users.FirstName as FirstName, Users.LastName as LastName," +
+                " Users.City as City ,Luggages.weight as weight, Luggages.height as height, Luggages.width as width," +
+                " Vacations.code as VacationCode, Vacations.time_to_stay as time_to_stay, Vacations.vacation_type as vacation_type, " +
+                " Hotels.code as codeH ,Hotels.address as address, Hotels.rate as rate, price" +
+                " FROM Tickets, Luggages,Vacations, Hotels, Users ";
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt  = conn.prepareStatement(sql)){
 
@@ -73,10 +75,10 @@ public class VacationModel {
                 TicketData ticketData = new TicketData(rs.getString("ticketCode"),rs.getString("departure_from"),rs.getString("destination"),rs.getString("departure_date"),rs.getString("flight_company"),luggageData,rs.getString("ticket_type"),seller,rs.getInt("includes_flight_back"));
                 VacationData vacationD = new VacationData(new ArrayList<TicketData>(), nightStayData, price, vacationType, rs.getInt("VacationCode"));
 
-                if(!vacations.containsKey(rs.getString("ticketCode"))){
-                    vacations.put(rs.getString("ticketCode"),vacationD);
+                if(!vacations.containsKey(rs.getString("VacationCode"))){
+                    vacations.put(rs.getString("VacationCode"),vacationD);
                 }
-                vacations.get(rs.getString("ticketCode")).addToTicketData(ticketData);
+                vacations.get(rs.getString("VacationCode")).addToTicketData(ticketData);
             }
 
 
@@ -85,8 +87,8 @@ public class VacationModel {
         }
     }
 
-    public VacationData getVacationData() {
-        return null;
+    public Map<String, VacationData> getVacationData() {
+        return vacations;
     }
 
     public void addPassenger(String tf_timeToStay, String tf_vacationType, String cb_hotel, String tf_ticketNum, String tf_flightCompany, String tf_departueFrom, String cb_passangerType,
