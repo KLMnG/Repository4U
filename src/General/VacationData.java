@@ -14,12 +14,40 @@ public class VacationData {
     private final SimpleStringProperty Depart;
     private final SimpleStringProperty Travelers;
     private final SimpleIntegerProperty Price;
-
-    private String VacationType;
     private List<TicketData> ticketData;
     private NightStayData nightStayData;
+    private int code;
 
-    public VacationData(List<TicketData> ticketData,NightStayData nightStayData,int price,String vacationType) {
+    private String VacationType;
+
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public List<TicketData> getTicketData() {
+        return ticketData;
+    }
+
+    public void addToTicketData(TicketData ticketDataToAdd) {
+        ticketData.add(ticketDataToAdd);
+    }
+
+    public NightStayData getNightStayData() {
+        return nightStayData;
+    }
+
+    public void setNightStayData(NightStayData nightStayData) {
+        this.nightStayData = nightStayData;
+    }
+
+
+
+    public VacationData(List<TicketData> ticketData,NightStayData nightStayData,int price,String vacationType, int code) {
         this.ticketData = ticketData;
         this.nightStayData = nightStayData;
         this.VacationType = vacationType;
@@ -30,6 +58,7 @@ public class VacationData {
         this.Depart = new SimpleStringProperty(ticketData.get(0).getDepart());
         this.Travelers = new SimpleStringProperty(ticketData.size() + "");
         this.Price = new SimpleIntegerProperty(price);
+        this.code = code;
     }
 
     public String getFrom() {
