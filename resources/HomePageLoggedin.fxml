@@ -6,26 +6,47 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.HomePageLoggedinView">
-   <children>
-      <TableView fx:id="tv_vacations" layoutY="125.0" prefHeight="275.0" prefWidth="600.0">
-        <columns>
-          <TableColumn fx:id="col_from" prefWidth="135.0" text="From" />
-          <TableColumn fx:id="col_to" prefWidth="138.0" text="To" />
-            <TableColumn fx:id="col_depart" prefWidth="67.0" text="Depart" />
-            <TableColumn fx:id="col_days" prefWidth="65.0" text="Days" />
-            <TableColumn fx:id="col_travelers" prefWidth="63.0" text="Travelers" />
-            <TableColumn fx:id="col_price" minWidth="0.0" prefWidth="50.0" text="Price" />
-        </columns>
-      </TableView>
-      <Label fx:id="lb_Gesture" layoutX="355.0" layoutY="22.0" text="" />
-      <MenuButton layoutX="546.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="9.0" text="MenuButton">
-        <items>
-          <MenuItem mnemonicParsing="false" onAction="#openCreateVecation" text="Add Vacation" />
-          <MenuItem fx:id="mi_showReq" mnemonicParsing="false" onAction="#openViewMessages" text="View Messages" />
-            <MenuItem mnemonicParsing="false" onAction="#Signout" text="Sign out" />
-        </items>
-      </MenuButton>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.HomePageLoggedinView">
+    <children>
+        <TableView fx:id="tv_vacations" layoutX="46.0" layoutY="77.0" prefHeight="156.0" prefWidth="584.0">
+            <columns>
+                <TableColumn fx:id="col_from" prefWidth="135.0" text="From hjh" />
+                <TableColumn fx:id="col_to" prefWidth="138.0" text="To" />
+                <TableColumn fx:id="col_depart" prefWidth="67.0" text="Depart" />
+                <TableColumn fx:id="col_days" prefWidth="65.0" text="Days" />
+                <TableColumn fx:id="col_travelers" prefWidth="63.0" text="Travelers" />
+                <TableColumn fx:id="col_price" minWidth="0.0" prefWidth="50.0" text="Price" />
+            </columns>
+        </TableView>
+        <MenuButton layoutX="669.0" layoutY="27.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="9.0" text="MenuButton">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#openCreateVecation" text="Add Vacation" />
+                <MenuItem fx:id="mi_showReq" mnemonicParsing="false" onAction="#openViewMessages" text="View Messages" />
+                <MenuItem mnemonicParsing="false" onAction="#Signout" text="Sign out" />
+                <MenuItem mnemonicParsing="false" onAction="#openViewVacations" text="View My Vacations" />
+            </items>
+        </MenuButton>
+        <TableView fx:id="tv_vacationsExchange" layoutX="46.0" layoutY="275.0" prefHeight="156.0" prefWidth="584.0">
+            <columns>
+                <TableColumn fx:id="col_from1" prefWidth="135.0" text="From" />
+                <TableColumn fx:id="col_to1" prefWidth="138.0" text="To" />
+                <TableColumn fx:id="col_depart1" prefWidth="67.0" text="Depart" />
+                <TableColumn fx:id="col_days1" prefWidth="65.0" text="Days" />
+                <TableColumn fx:id="col_travelers1" prefWidth="71.0" text="Travelers" />
+            </columns>
+        </TableView>
+        <Label layoutX="287.0" layoutY="39.0" prefHeight="25.0" prefWidth="137.0" text="Vacations for sale">
+            <font>
+                <Font name="Yu Gothic Regular" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="lb_vacationEx" layoutX="268.0" layoutY="242.0" prefHeight="25.0" prefWidth="176.0" text="Vacations for exchange">
+            <font>
+                <Font name="Yu Gothic Regular" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="lb_Gesture" layoutX="239.0" layoutY="267.0" prefHeight="17.0" prefWidth="233.0" text="Sorry, you dont have any vacations for exchange" textFill="#e80b0b" visible="false" />
+    </children>
 </AnchorPane>
