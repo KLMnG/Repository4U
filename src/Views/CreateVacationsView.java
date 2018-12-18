@@ -174,7 +174,7 @@ public class CreateVacationsView implements IView {
 
         }
         if (this.controller.ValidateInput()) {
-            TicketData data = new TicketData(this.tf_ticketNum.getText(), this.tf_departueFrom.getText(), this.tf_destination.getText(), this.tf_departueFrom.getText(), this.tf_flightCompany.getText(), weight,height,width, this.tf_vacationType.getText(), (this.cb_includeFlightBacl.isSelected() ? 1 : 0));
+            TicketData data = new TicketData(this.tf_ticketNum.getText(), this.tf_departueFrom.getText(), this.tf_destination.getText(), this.dp_flightDate.getValue().toString(), this.tf_flightCompany.getText(), weight,height,width, this.tf_vacationType.getText(), (this.cb_includeFlightBacl.isSelected() ? 1 : 0),-1);
             this.data.add(data);
             controller.notifyPassengerAdded();
         }
