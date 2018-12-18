@@ -122,6 +122,7 @@ public class MassegesRequestsView implements IView{
 
     public void Confirm(ActionEvent actionEvent) {
         this.controller.Confirm(getSelectedConfirmMessage());
+        this.controller.confirmation();
         initialize();
 
     }
