@@ -110,4 +110,9 @@ public class HomePageLoggedinView implements IView{
         this.controller.showReq();
 
     }
+
+    public void openViewVacations(ActionEvent actionEvent) {
+
+        
+    }
 }
