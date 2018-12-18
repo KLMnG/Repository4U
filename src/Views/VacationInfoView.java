@@ -10,6 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.List;
+
 public class VacationInfoView implements IView{
 
 
@@ -93,5 +95,10 @@ public class VacationInfoView implements IView{
 
     public void back(ActionEvent actionEvent) {
         this.controller.back();
+    }
+
+    public void setTicketTableView(List<TicketData> ticketTableView) {
+        this.data.clear();
+        this.data.setAll(ticketTableView);
     }
 }
