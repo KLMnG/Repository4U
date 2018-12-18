@@ -3,6 +3,7 @@ package Views;
 import Controllers.AController;
 import Controllers.VacationInfoLoggedinController;
 import General.TicketData;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -36,6 +37,8 @@ public class VacationInfoLoggedinView implements IView{
     private ObservableList<TicketData> data;
 
     public void initialize(){
+
+        this.data = FXCollections.observableArrayList();
 
         col_flightCompany.setCellValueFactory(
                 new PropertyValueFactory<TicketData,String>("Airline")
@@ -115,7 +118,6 @@ public class VacationInfoLoggedinView implements IView{
         Alert alert = new Alert(Alert.AlertType.ERROR,alertMessage, ButtonType.OK);
         alert.show();
     }
-
 
     public void setTicketTableView(List<TicketData> ticketTableView) {
         this.data.clear();

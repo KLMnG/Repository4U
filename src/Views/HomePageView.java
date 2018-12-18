@@ -23,7 +23,6 @@ public class HomePageView implements IView{
     public TableColumn col_depart;
     public TableColumn col_travelers;
     public TableColumn col_price;
-    public TableColumn col_hotel;
 
     private HomePageController controller;
     private ObservableList<VacationData> data;
@@ -87,7 +86,6 @@ public class HomePageView implements IView{
     public void addToTable(List<VacationData> vc){
         data.addAll(vc);
     }
-
 
     public VacationData getSelectedVacation() {
         return (VacationData) this.tv_vacations.getSelectionModel().getSelectedItem();

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="1177.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.VacationInfoView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="1177.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.VacationInfoView">
     <top>
         <AnchorPane prefHeight="66.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
@@ -42,26 +42,6 @@
                                 <Font size="15.0" />
                             </font>
                         </Label>
-                        <Label layoutX="17.0" layoutY="255.0" text="Luggage:" underline="true">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="24.0" layoutY="282.0" text="Weight:">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="120.0" layoutY="283.0" text="Width:">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="206.0" layoutY="283.0" text="Height:">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                        </Label>
                         <TableView fx:id="tbl_tickets" layoutX="14.0" layoutY="78.0" prefHeight="102.0" prefWidth="515.0">
                             <columns>
                                 <TableColumn fx:id="col_flightCompany" prefWidth="117.0" text="Flight Company" />
@@ -72,9 +52,32 @@
                         </TableView>
                         <Label fx:id="lb_airline" layoutX="73.0" layoutY="56.0" prefHeight="22.0" prefWidth="117.0" text="Label" />
                         <Label fx:id="lb_return" layoutX="72.0" layoutY="189.0" text="Label" />
-                        <Label fx:id="lb_weight" layoutX="81.0" layoutY="285.0" text="Label" />
-                        <Label fx:id="lb_width" layoutX="169.0" layoutY="286.0" text="Label" />
-                        <Label fx:id="lb_height" layoutX="259.0" layoutY="286.0" text="Label" />
+                  <AnchorPane fx:id="ap_luggage" layoutX="9.0" layoutY="251.0" prefHeight="63.0" prefWidth="329.0">
+                     <children>
+                              <Label fx:id="lb_width" text="" layoutX="65" layoutY="38"/>
+                              <Label fx:id="lb_weight" text="" layoutX="173" layoutY="38"/>
+                              <Label fx:id="lb_height" text="" layoutX="275" layoutY="38"/>
+                              <Label text="Height:" layoutY="35" layoutX="225">
+                                  <font>
+                                      <Font size="15.0" />
+                                  </font>
+                              </Label>
+                              <Label text="Width:" layoutY="35" layoutX="20">
+                                  <font>
+                                      <Font size="15.0" />
+                                  </font>
+                              </Label>
+                              <Label text="Weight:" layoutY="35" layoutX="120">
+                                  <font>
+                                      <Font size="15.0" />
+                                  </font>
+                              </Label>
+                              <Label text="Luggage:" layoutX="15" layoutY="5" underline="true">
+                                  <font>
+                                      <Font size="15.0" />
+                                  </font>
+                              </Label>
+                     </children></AnchorPane>
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="590.0">

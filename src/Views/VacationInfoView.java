@@ -3,17 +3,22 @@ package Views;
 import Controllers.AController;
 import Controllers.VacationInfoController;
 import General.TicketData;
+import General.VacationData;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
 import java.util.List;
 
 public class VacationInfoView implements IView{
-
 
 
     private VacationInfoController controller;
@@ -32,11 +37,29 @@ public class VacationInfoView implements IView{
     public TableColumn col_departure;
     public TableColumn col_destination;
     public TableColumn col_flghtDate;
+    public AnchorPane ap_luggage;
 
     private ObservableList<TicketData> data;
+    private SimpleBooleanProperty luggageBinding;
 
     public void initialize(){
 
+        this.data = FXCollections.observableArrayList();
+        this.luggageBinding = new SimpleBooleanProperty(false);
+        this.ap_luggage.visibleProperty().bind(luggageBinding);
+
+        this.tbl_tickets.setRowFactory(param -> {TableRow<TicketData> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
+                    TicketData rowData = row.getItem();
+                    this.luggageBinding.setValue(true);
+                    this.SetLuggageData(rowData);
+                }
+                else if(row.isEmpty())
+                    this.luggageBinding.setValue(false);
+            });
+            return row ;
+        });
         col_flightCompany.setCellValueFactory(
                 new PropertyValueFactory<TicketData,String>("Airline")
         );
@@ -84,7 +107,6 @@ public class VacationInfoView implements IView{
         this.lb_weight.setText(lb_weight);
     }
 
-
     public void setLb_width(String lb_width) {
         this.lb_width.setText(lb_width);
     }
@@ -101,4 +123,14 @@ public class VacationInfoView implements IView{
         this.data.clear();
         this.data.setAll(ticketTableView);
     }
+
+
+    private void SetLuggageData(TicketData rowData) {
+        this.lb_height.setText(rowData.getHeight() + "");
+        this.lb_weight.setText(rowData.getWeight() + "");
+        this.lb_width.setText(rowData.getWidth() + "");
+
+
+    }
+
 }

@@ -59,16 +59,6 @@ public class CreateVacationsView implements IView {
 
         this.data = FXCollections.observableArrayList();
 
-//        tbl_tickets.setRowFactory(param -> {TableRow<TicketData> row = new TableRow<>();
-//            row.setOnMouseClicked(event -> {
-//                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-//                    tbl_tickets rowData = row.getItem();
-//                    this.controller.openVacationInfoWindows();
-//                }
-//            });
-//            return row ;
-//        });
-
         col_ticketNum.setCellValueFactory(
                 new PropertyValueFactory<TicketData, String>("code")
         );

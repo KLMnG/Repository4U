@@ -33,4 +33,5 @@ public class VacationInfoController extends AController {
     {
         SwapScene(PapaController.Views.HomePage);
     }
+
 }

@@ -18,7 +18,7 @@ public class HomePageModel {
 
 
     public Map<Integer, VacationData> getVacations() {
-        vacationModel.read();
+        this.vacationModel.read();
         return vacationModel.getVacationData();
     }
 

@@ -41,6 +41,8 @@ public class VacationModel {
     }
 
     public void read() {
+        this.vacations = new HashMap<>();
+
         String sql = "SELECT Tickets.code as ticketCode, flight_company \n" +
                 "                ,departure_date, includes_flight_back, departure_from,\n" +
                 "                 destination, ticket_type, weight, height, width, Users.Username as Username\n" +
