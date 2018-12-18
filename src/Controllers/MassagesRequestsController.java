@@ -41,6 +41,8 @@ public class MassagesRequestsController extends AController {
 
     }
 
+    public void confirmation(){SwapScene(PapaController.Views.PurchesVacation);}
+
 
 
 
