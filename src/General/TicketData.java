@@ -11,19 +11,23 @@ public class TicketData {
     private SimpleStringProperty To;
     private SimpleStringProperty Depart;
     private SimpleStringProperty Airline;
-    private LuggageData luggageData;
+    private int weight;
+    private int height;
+    private int width;
     private String TicketType;
     private boolean includes_flight_back;
     private int vacation;
 
 
-    public TicketData(String code, String from, String to, String depart, String airline, LuggageData luggageData, String ticketType, int includes_flight_back,int vacation ) {
+    public TicketData(String code, String from, String to, String depart, String airline, int weight, int height, int width, String ticketType, int includes_flight_back, int vacation) {
         this.code = new SimpleStringProperty(code);
         this.From = new SimpleStringProperty(from);
         this.To = new SimpleStringProperty(to);
         this.Depart = new SimpleStringProperty(depart);
         this.Airline = new SimpleStringProperty(airline);
-        this.luggageData = luggageData;
+        this.weight = weight;
+        this.height = height;
+        this.width = width;
         this.TicketType = ticketType;
         this.includes_flight_back = (includes_flight_back != 0);
         this.vacation = vacation;
@@ -78,12 +82,28 @@ public class TicketData {
         Airline.set(airline);
     }
 
-    public LuggageData getLuggageData() {
-        return luggageData;
+    public int getWeight() {
+        return weight;
     }
 
-    public void setLuggageData(LuggageData luggageData) {
-        this.luggageData = luggageData;
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
     }
 
     public String getTicketType() {
@@ -94,11 +114,11 @@ public class TicketData {
         TicketType = ticketType;
     }
 
-    public int getVacation(){
+    public int getVacation() {
         return vacation;
     }
 
-    public void setVacation(int vacation){
+    public void setVacation(int vacation) {
         this.vacation = vacation;
     }
 
