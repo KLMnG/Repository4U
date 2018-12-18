@@ -9,18 +9,14 @@ public class PurchaseMessage {
     private final SimpleStringProperty Seller_User;
     private final SimpleStringProperty Purchase_User;
     private final SimpleIntegerProperty VacationCode;
-    private final SimpleStringProperty Message;
+    private String Date;
 
 
-    public SimpleStringProperty messageProperty() {
-        return Message;
-    }
-
-    public PurchaseMessage(String seller_User, String purchase_User, int vacationCode, String message) {
+    public PurchaseMessage(String seller_User, String purchase_User, int vacationCode, String Date) {
         this.Seller_User = new SimpleStringProperty(seller_User);
         this.Purchase_User = new SimpleStringProperty(purchase_User);
         this.VacationCode = new SimpleIntegerProperty(vacationCode);
-        this.Message = new SimpleStringProperty(message);
+        this.Date = Date;
     }
 
     public String getSeller_User() {
@@ -47,11 +43,12 @@ public class PurchaseMessage {
         this.VacationCode.set(vacationCode);
     }
 
-    public String getMessage() {
-        return Message.get();
+    public String getDate() {
+        return Date;
     }
 
-    public void setMessage(String message) {
-        this.Message.set(message);
+    public void setDate(String date){
+        this.Date = date;
     }
+
 }

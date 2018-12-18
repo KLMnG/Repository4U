@@ -7,18 +7,23 @@ import java.util.List;
 
 public class VacationData {
 
+    private int code;
+    private String VacationType;
+    private enum State{
+        FOR_SELL,
+        FOR_EXCHANGE,
+        INVISIBLE;
+    }
+    private State state;
 
-    private final SimpleStringProperty From;
-    private final SimpleStringProperty To;
     private final SimpleIntegerProperty Days;
-    private final SimpleStringProperty Depart;
     private final SimpleStringProperty Travelers;
     private final SimpleIntegerProperty Price;
 
     private List<TicketData> ticketData;
-    private NightStayData nightStayData;
-    private int code;
-    private String VacationType;
+
+    private User Seller;
+
 
     public User getSeller() {
         return Seller;
@@ -28,22 +33,32 @@ public class VacationData {
         Seller = seller;
     }
 
-    private User Seller;
+    public void setStateToExchange(){
+        state = State.FOR_EXCHANGE;
+    }
 
+    public void setStateToInVisible(){
+        state = State.INVISIBLE;
+    }
 
-    public VacationData(List<TicketData> ticketData,NightStayData nightStayData,int price,String vacationType, int code,int timeToStay,User seller) {
+    public void setStateToSell(){
+        state = State.FOR_SELL;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public VacationData(List<TicketData> ticketData, int price, String vacationType, int code, int timeToStay, User seller) {
         this.ticketData = ticketData;
-        this.nightStayData = nightStayData;
         this.VacationType = vacationType;
 
-        this.From = new SimpleStringProperty(ticketData.get(0).getFrom());
-        this.To = new SimpleStringProperty(ticketData.get(0).getTo());
         this.Days = new SimpleIntegerProperty(timeToStay);
-        this.Depart = new SimpleStringProperty(ticketData.get(0).getDepart());
         this.Travelers = new SimpleStringProperty(ticketData.size() + "");
         this.Price = new SimpleIntegerProperty(price);
         this.code = code;
         this.Seller = seller;
+        state = State.FOR_SELL;
     }
 
     public int getCode() {
@@ -62,44 +77,12 @@ public class VacationData {
         ticketData.add(ticketDataToAdd);
     }
 
-    public NightStayData getNightStayData() {
-        return nightStayData;
-    }
-
-    public void setNightStayData(NightStayData nightStayData) {
-        this.nightStayData = nightStayData;
-    }
-
-    public String getFrom() {
-        return From.get();
-    }
-
-    public void setFrom(String from) {
-        this.From.set(from);
-    }
-
     public int getDays() {
         return Days.get();
     }
 
     public void setDays(int days) {
         this.Days.set(days);
-    }
-
-    public String getDepart() {
-        return Depart.get();
-    }
-
-    public void setDepart(String depart) {
-        this.Depart.set(depart);
-    }
-
-    public String getTo() {
-        return To.get();
-    }
-
-    public void setTo(String to) {
-        this.To.set(to);
     }
 
     public String getTravelers() {
