@@ -1,11 +1,11 @@
 package Controllers;
 
+import General.HotelData;
 import General.PapaController;
 import Models.VacationModel;
 import Views.CreateVacationsView;
 import Views.IView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CreateVacationsController extends AController{
@@ -38,16 +38,17 @@ public class CreateVacationsController extends AController{
         String weight = "";
         String height= "";
         String width = "";
-
+        HotelData hotelData;
         if (view.cb_includeVacation.isSelected()){
-            hotel = view.getCb_hotel().getValue().toString();
-            vacationType = view.getTf_vacationType().getText();
-            timeToStay = view.getTf_timeToStay().getText();
+//            hotel = view.getCb_hotel().getValue().toString();
+//            vacationType = view.getTf_vacationType().getText();
+//            timeToStay = view.getTf_timeToStay().getText();
+            hotelData=new HotelData(view.getCb_hotel().getValue().toString(),view.getTf_vacationType().getText(),view.getTf_timeToStay().getText());
         }
         if (view.cb_luggage.isSelected()){
-            weight = view.getTf_weight().getText();
-            height = view.getTf_height().getText();
-            width = view.getTf_width().getText();
+//            weight = view.getTf_weight().getText();
+//            height = view.getTf_height().getText();
+//            width = view.getTf_width().getText();
         }
 
         model.addPassenger(timeToStay,vacationType , hotel, view.getTf_ticketNum().getText(), view.getTf_flightCompany().getText(),

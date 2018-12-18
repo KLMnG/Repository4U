@@ -46,10 +46,10 @@ public class VacationModel {
                 " destination, ticket_type, Users.Username as Username" +
                 " , Users.Password as Password, Users.BirthDate as BirthDate," +
                 " Users.FirstName as FirstName, Users.LastName as LastName," +
-                " Users.City as City ,Luggages.weight as weight, Luggages.height as height, Luggages.width as width," +
+                " Users.City as City ,weight, height,width," +
                 " Vacations.code as VacationCode, Vacations.time_to_stay as time_to_stay, Vacations.vacation_type as vacation_type, " +
                 " Hotels.code as codeH ,Hotels.address as address, Hotels.rate as rate, price" +
-                " FROM Tickets, Luggages,Vacations, Hotels, Users ";
+                " FROM Tickets, Vacations, Hotels, Users ";
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -59,16 +59,15 @@ public class VacationModel {
             while (rs.next()) {
                 User seller = new User(rs.getString("Username"), "Password", "FirstName", "LastName", "City", "BirthDate");
                 HotelData hotelData = new HotelData(rs.getString("codeH"), rs.getString("address"), rs.getString("rate"));
-                LuggageData luggageData = new LuggageData(0, rs.getInt("weight"), rs.getInt("height"), rs.getInt("width"));
                 String vacationType = rs.getString("vacation_type");
                 int price = rs.getInt("Price");
 
-                TicketData ticketData = new TicketData(rs.getString("ticketCode"), rs.getString("departure_from"), rs.getString("destination"), rs.getString("departure_date"), rs.getString("flight_company"), luggageData, rs.getString("ticket_type"), rs.getInt("includes_flight_back"));
+                TicketData ticketData = new TicketData(rs.getString("ticketCode"), rs.getString("departure_from"), rs.getString("destination"), rs.getString("departure_date"), rs.getString("flight_company"), rs.getInt("weight"),rs.getInt("height"),rs.getInt("width"), rs.getString("ticket_type"), rs.getInt("includes_flight_back"));
 
                 if (!vacations.containsKey(rs.getInt("VacationCode"))) {
                     List<TicketData> lst = new ArrayList<TicketData>();
                     lst.add(ticketData);
-                    VacationData vacationD = new VacationData(lst, nightStayData, price, vacationType, rs.getInt("VacationCode"), rs.getInt("time_to_stay"), seller);
+                    VacationData vacationD = new VacationData(lst,price, vacationType, rs.getInt("VacationCode"), rs.getInt("time_to_stay"), seller);
                     vacations.put(rs.getInt("VacationCode"), vacationD);
                 } else vacations.get(rs.getInt("VacationCode")).addToTicketData(ticketData);
             }

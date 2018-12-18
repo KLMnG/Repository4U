@@ -3,7 +3,6 @@ package Views;
 import Controllers.AController;
 import Controllers.CreateVacationsController;
 import Controls.DateTimePicker;
-import General.LuggageData;
 import General.TicketData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,10 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
 
 public class CreateVacationsView implements IView {
 
@@ -51,7 +46,8 @@ public class CreateVacationsView implements IView {
     public TableView tbl_tickets;
 
     private ObservableList<TicketData> data;
-    public void initialize(){
+
+    public void initialize() {
 
         this.cb_passangerType.getItems().addAll(
                 "Regular",
@@ -74,19 +70,19 @@ public class CreateVacationsView implements IView {
 //        });
 
         col_ticketNum.setCellValueFactory(
-                new PropertyValueFactory<TicketData,String>("code")
+                new PropertyValueFactory<TicketData, String>("code")
         );
         col_flightCompany.setCellValueFactory(
-                new PropertyValueFactory<TicketData,String>("Airline")
+                new PropertyValueFactory<TicketData, String>("Airline")
         );
         col_departure.setCellValueFactory(
-                new PropertyValueFactory<TicketData,String>("From")
+                new PropertyValueFactory<TicketData, String>("From")
         );
         col_destination.setCellValueFactory(
-                new PropertyValueFactory<TicketData,String>("To")
+                new PropertyValueFactory<TicketData, String>("To")
         );
         col_flghtDate.setCellValueFactory(
-                new PropertyValueFactory<TicketData,String>("Depart")
+                new PropertyValueFactory<TicketData, String>("Depart")
         );
 
         this.tbl_tickets.setItems(data);
@@ -161,20 +157,24 @@ public class CreateVacationsView implements IView {
     }
 
     public void addPassenger(ActionEvent actionEvent) {
-        LuggageData luggageData = null;
-
+        int weight = -1;
+        int height = -1;
+        int width = -1;
         if (cb_luggage.isSelected()) {
-            int weight = -1;
-            int height = -1;
-            int width = -1;
-            try{
-                luggageData = new LuggageData(-1, Integer.parseInt(this.tf_weight.getText()), Integer.parseInt(this.tf_weight.getText()), Integer.parseInt(this.tf_weight.getText()));
-            }catch (NumberFormatException e){
-                luggageData = new LuggageData(-1, -1,-1,-1);
+
+            try {
+                weight = Integer.parseInt(this.tf_weight.getText());
+                height = Integer.parseInt(this.tf_weight.getText());
+                width = Integer.parseInt(this.tf_weight.getText());
+            } catch (NumberFormatException e) {
+                weight = 0;
+                height = 0;
+                width = 0;
             }
+
         }
-        if(this.controller.ValidateInput()) {
-            TicketData data = new TicketData(this.tf_ticketNum.getText(),this.tf_departueFrom.getText(),this.tf_destination.getText(),this.tf_departueFrom.getText(),this.tf_flightCompany.getText(),luggageData,this.tf_vacationType.getText(),(this.cb_includeFlightBacl.isSelected() ? 1 : 0));
+        if (this.controller.ValidateInput()) {
+            TicketData data = new TicketData(this.tf_ticketNum.getText(), this.tf_departueFrom.getText(), this.tf_destination.getText(), this.tf_departueFrom.getText(), this.tf_flightCompany.getText(), weight,height,width, this.tf_vacationType.getText(), (this.cb_includeFlightBacl.isSelected() ? 1 : 0));
             this.data.add(data);
             controller.notifyPassengerAdded();
         }
@@ -227,12 +227,12 @@ public class CreateVacationsView implements IView {
         return tf_price;
     }
 
-    public void back(){
+    public void back() {
         controller.back();
     }
 
     public void ShowErrorAlert(String alertMessage) {
-        Alert alert = new Alert(Alert.AlertType.ERROR,alertMessage, ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.ERROR, alertMessage, ButtonType.OK);
         alert.show();
     }
 
