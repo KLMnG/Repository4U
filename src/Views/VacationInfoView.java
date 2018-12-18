@@ -2,31 +2,58 @@ package Views;
 
 import Controllers.AController;
 import Controllers.VacationInfoController;
+import General.TicketData;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class VacationInfoView implements IView{
+
 
 
     private VacationInfoController controller;
 
     public Label lb_airline;
-    public Label lb_from;
-    public Label lb_depart;
     public Label lb_return;
     public Label lb_weight;
-    public Label lb_to;
     public Label lb_width;
     public Label lb_height;
     public Label lb_timetostay;
     public Label lb_hotelname;
     public Label lb_vacationtype;
 
+    public TableView tbl_tickets;
+    public TableColumn col_flightCompany;
+    public TableColumn col_departure;
+    public TableColumn col_destination;
+    public TableColumn col_flghtDate;
+
+    private ObservableList<TicketData> data;
+
+    public void initialize(){
+
+        col_flightCompany.setCellValueFactory(
+                new PropertyValueFactory<TicketData,String>("Airline")
+        );
+        col_departure.setCellValueFactory(
+                new PropertyValueFactory<TicketData,String>("From")
+        );
+        col_destination.setCellValueFactory(
+                new PropertyValueFactory<TicketData,String>("To")
+        );
+        col_flghtDate.setCellValueFactory(
+                new PropertyValueFactory<TicketData,String>("Depart")
+        );
+
+        this.tbl_tickets.setItems(data);
+    }
+
     public void setLb_timetostay(Label lb_timetostay) {
         this.lb_timetostay = lb_timetostay;
     }
-
-
 
 
     @Override
@@ -47,14 +74,6 @@ public class VacationInfoView implements IView{
         this.lb_airline.setText(lb_airline);
     }
 
-    public void setLb_from(String lb_from) {
-        this.lb_from.setText(lb_from);
-    }
-
-    public void setLb_depart(String lb_depart) {
-        this.lb_depart.setText(lb_depart);
-    }
-
     public void setLb_return(String lb_arrival) {
         this.lb_return.setText(lb_arrival);
     }
@@ -63,9 +82,6 @@ public class VacationInfoView implements IView{
         this.lb_weight.setText(lb_weight);
     }
 
-    public void setLb_to(String lb_to) {
-        this.lb_to.setText(lb_to);
-    }
 
     public void setLb_width(String lb_width) {
         this.lb_width.setText(lb_width);
