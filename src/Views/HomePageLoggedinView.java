@@ -113,6 +113,6 @@ public class HomePageLoggedinView implements IView{
 
     public void openViewVacations(ActionEvent actionEvent) {
 
-        
+
     }
 }
