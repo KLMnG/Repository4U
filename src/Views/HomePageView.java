@@ -2,9 +2,6 @@ package Views;
 
 import Controllers.AController;
 import Controllers.HomePageController;
-import General.HotelData;
-import General.NightStayData;
-import General.TicketData;
 import General.VacationData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,9 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 public class HomePageView implements IView{
 

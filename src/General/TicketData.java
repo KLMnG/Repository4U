@@ -14,9 +14,10 @@ public class TicketData {
     private LuggageData luggageData;
     private String TicketType;
     private boolean includes_flight_back;
+    private int vacation;
 
 
-    public TicketData(String code, String from, String to, String depart, String airline, LuggageData luggageData, String ticketType, int includes_flight_back) {
+    public TicketData(String code, String from, String to, String depart, String airline, LuggageData luggageData, String ticketType, int includes_flight_back,int vacation ) {
         this.code = new SimpleStringProperty(code);
         this.From = new SimpleStringProperty(from);
         this.To = new SimpleStringProperty(to);
@@ -25,6 +26,7 @@ public class TicketData {
         this.luggageData = luggageData;
         this.TicketType = ticketType;
         this.includes_flight_back = (includes_flight_back != 0);
+        this.vacation = vacation;
     }
 
 
@@ -43,6 +45,7 @@ public class TicketData {
     public void setCode(String code) {
         this.code.set(code);
     }
+
     public String getFrom() {
         return From.get();
     }
@@ -89,6 +92,14 @@ public class TicketData {
 
     public void setTicketType(String ticketType) {
         TicketType = ticketType;
+    }
+
+    public int getVacation(){
+        return vacation;
+    }
+
+    public void setVacation(int vacation){
+        this.vacation = vacation;
     }
 
 }
