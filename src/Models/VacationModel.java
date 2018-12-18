@@ -60,7 +60,6 @@ public class VacationModel {
                 User seller = new User(rs.getString("Username"), "Password", "FirstName", "LastName", "City", "BirthDate");
                 HotelData hotelData = new HotelData(rs.getString("codeH"), rs.getString("address"), rs.getString("rate"));
                 LuggageData luggageData = new LuggageData(0, rs.getInt("weight"), rs.getInt("height"), rs.getInt("width"));
-                NightStayData nightStayData = new NightStayData(0, hotelData);
                 String vacationType = rs.getString("vacation_type");
                 int price = rs.getInt("Price");
 
