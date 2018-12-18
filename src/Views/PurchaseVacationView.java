@@ -13,27 +13,15 @@ public class PurchaseVacationView implements IView {
 
     private PurchaseVacationController controller;
 
-    public TextField tf_creditNumber;
-    public ChoiceBox cb_year;
-    public ChoiceBox cb_month;
-    public Button btn_pay;
+    public Button b_got;
 
     @Override
     public void setController(AController controller) {
         this.controller = (PurchaseVacationController)controller;
-        this.controller.initialize();
     }
 
-    public void showAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Purchase success");
-        alert.setHeaderText(null);
-        alert.setContentText("Thank you for your purchase");
-        alert.showAndWait();
-    }
-
-    public void pay(ActionEvent actionEvent){
-        controller.payment();
+    public void got(ActionEvent actionEvent){
+        controller.gotMoney();
     }
 
     public void back(ActionEvent actionEvent){
@@ -41,11 +29,10 @@ public class PurchaseVacationView implements IView {
     }
 
     public void showWarning(String str){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error Dialog");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thank you !");
         alert.setHeaderText(null);
         alert.setContentText(str);
-
         alert.showAndWait();
     }
 
