@@ -80,7 +80,6 @@ public class VacationInfoView implements IView{
         this.lb_timetostay = lb_timetostay;
     }
 
-
     @Override
     public void setController(AController controller) {
         this.controller = (VacationInfoController) controller;
@@ -124,13 +123,10 @@ public class VacationInfoView implements IView{
         this.data.setAll(ticketTableView);
     }
 
-
     private void SetLuggageData(TicketData rowData) {
         this.lb_height.setText(rowData.getHeight() + "");
         this.lb_weight.setText(rowData.getWeight() + "");
         this.lb_width.setText(rowData.getWidth() + "");
-
-
     }
 
 }
