@@ -3,6 +3,7 @@ package Views;
 import Controllers.AController;
 import Controllers.VacationInfoController;
 import General.TicketData;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -36,6 +37,7 @@ public class VacationInfoView implements IView{
     private ObservableList<TicketData> data;
 
     public void initialize(){
+        this.data = FXCollections.observableArrayList();
 
         col_flightCompany.setCellValueFactory(
                 new PropertyValueFactory<TicketData,String>("Airline")

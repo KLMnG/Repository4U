@@ -19,6 +19,10 @@ public class VacationData {
     private final SimpleIntegerProperty Days;
     private final SimpleStringProperty Travelers;
     private final SimpleIntegerProperty Price;
+//    private final SimpleStringProperty From;
+//    private final SimpleStringProperty To;
+//    private final SimpleStringProperty Date;
+
 
     private List<TicketData> ticketData;
 
@@ -107,6 +111,18 @@ public class VacationData {
 
     public void setVacationType(String vacationType) {
         VacationType = vacationType;
+    }
+
+    public String getFrom() {
+        return this.ticketData.get(0).getFrom();
+    }
+
+    public String getTo() {
+        return this.ticketData.get(0).getTo();
+    }
+
+    public String getDepart() {
+        return this.ticketData.get(0).getDepart();
     }
 
 }
