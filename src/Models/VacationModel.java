@@ -29,6 +29,7 @@ public class VacationModel {
 
     private List<String> vacation;
     private List<List<String>> tickets;
+    private List<TicketData> ticketDataToSave;
     private int selectedVacationCode;
 
     public VacationModel(UserModel userModel, ModelTicketDB modelTicketDB) {
@@ -38,6 +39,7 @@ public class VacationModel {
         this.vacation = new ArrayList<>();
         this.tickets = new ArrayList<>();
         this.vacations = new HashMap<>();
+        this.ticketDataToSave=new ArrayList<>();
     }
 
     public void read() {
@@ -118,10 +120,16 @@ public class VacationModel {
     }
 
 
-    public void saveTickets() {
+    public void saveTickets(VacationData vacationData) {
         this.modelTicketDB.saveTickets(vacation, tickets);
         this.tickets = new ArrayList<>();
         this.vacation = new ArrayList<>();
+
+
+
+
+        vacationData.addTickets(ticketDataToSave);
+        this.modelTicketDB.saveTickets(vacationData);
 
     }
 
@@ -149,5 +157,9 @@ public class VacationModel {
 
         }
         return hotelsName;
+    }
+
+    public void addPassenger(TicketData ticketData) {
+        ticketDataToSave.add(ticketData);
     }
 }

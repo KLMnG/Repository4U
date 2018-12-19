@@ -4,6 +4,7 @@ import Controllers.AController;
 import Controllers.CreateVacationsController;
 import Controls.DateTimePicker;
 import General.TicketData;
+import General.VacationData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +46,7 @@ public class CreateVacationsView implements IView {
     public TableColumn col_flghtDate;
     public TableView tbl_tickets;
 
+    private VacationData vacationData;
     private ObservableList<TicketData> data;
 
     public void initialize() {
@@ -164,14 +166,23 @@ public class CreateVacationsView implements IView {
 
         }
         if (this.controller.ValidateInput()) {
-            TicketData data = new TicketData(this.tf_ticketNum.getText(), this.tf_departueFrom.getText(), this.tf_destination.getText(), this.dp_flightDate.getValue().toString(), this.tf_flightCompany.getText(), weight,height,width, this.tf_vacationType.getText(), (this.cb_includeFlightBacl.isSelected() ? 1 : 0),-1);
-            this.data.add(data);
-            controller.notifyPassengerAdded();
+            TicketData ticketData = new TicketData(this.tf_ticketNum.getText(),
+                    this.tf_departueFrom.getText(), this.tf_destination.getText(),
+                    this.dp_flightDate.getValue().toString(),
+                    this.tf_flightCompany.getText(), weight,height,width,
+                    this.tf_vacationType.getText(), (this.cb_includeFlightBacl.isSelected() ? 1 : 0),
+                    -1);
+
+            this.data.add(ticketData);
+            controller.notifyPassengerAdded(ticketData);
         }
     }
 
     public void saveTicket(ActionEvent actionEvent) {
-        controller.saveTickets();
+        int price=Integer.parseInt(tf_price.getText());
+        int timeToStay=Integer.parseInt(tf_timeToStay.getText());
+        VacationData vacationData=new VacationData(null,price,tf_vacationType.getText(),0,timeToStay,null);
+        controller.saveTickets(vacationData);
         controller.swapScene();
     }
 

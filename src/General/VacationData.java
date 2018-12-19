@@ -8,26 +8,33 @@ import java.util.List;
 public class VacationData {
 
     private int code;
+
     private String VacationType;
-    private enum State{
+
+    private enum State {
         FOR_SELL,
         FOR_EXCHANGE,
         INVISIBLE;
-    }
-    private State state;
 
+    }
+
+    private State state;
     private final SimpleIntegerProperty Days;
+
     private final SimpleStringProperty Travelers;
     private final SimpleIntegerProperty Price;
 //    private final SimpleStringProperty From;
 //    private final SimpleStringProperty To;
 //    private final SimpleStringProperty Date;
 
-
     private List<TicketData> ticketData;
 
     private User Seller;
 
+
+    public void addTickets(List<TicketData> ticketDataToSave) {
+        ticketData = ticketDataToSave;
+    }
 
     public User getSeller() {
         return Seller;
@@ -37,15 +44,15 @@ public class VacationData {
         Seller = seller;
     }
 
-    public void setStateToExchange(){
+    public void setStateToExchange() {
         state = State.FOR_EXCHANGE;
     }
 
-    public void setStateToInVisible(){
+    public void setStateToInVisible() {
         state = State.INVISIBLE;
     }
 
-    public void setStateToSell(){
+    public void setStateToSell() {
         state = State.FOR_SELL;
     }
 

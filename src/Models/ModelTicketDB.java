@@ -3,6 +3,7 @@ package Models;
 
 import General.DBConnection;
 import General.User;
+import General.VacationData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -171,6 +172,38 @@ public class ModelTicketDB {
 
     }
 
+    public void saveTickets(VacationData vacationData) {
+        int vacationCode = -1;
+        vacationCode = createVacationAndReturn(vacationData);
+
+
+    }
+
+    private int createVacationAndReturn(VacationData vacationData) {
+        String sql = "INSERT INTO Vacations(time_to_stay,vacation_type,hotel,owner,state,price) VALUES(?,?,?,?,?,?)";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1,vacationData.getDays());
+            pstmt.setString(2,vacationData.getVacationType());
+            pstmt.setString(3, vacationData.getHotel().getCode());
+            pstmt.setString(4,UserModel.getUsername());
+            pstmt.setString(5, vacationData.getState());
+            pstmt.setInt(6,vacationData.getPrice());
+
+
+
+                    pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
+        }
+        int code = getVCode(username);
+
+        return code;
+    }
+
     private int createVacationAndReturn(String username) {
         String sql = "INSERT INTO Vacations(seller) VALUES(?)";
 
@@ -210,7 +243,6 @@ public class ModelTicketDB {
         deleteTickets(code);
         deleteVacation(code);
     }
-
     private void deleteVacation(String code){
         String sql = "DELETE FROM Vacations WHERE code = ?";
 
@@ -226,6 +258,7 @@ public class ModelTicketDB {
             System.out.println(e.getMessage());
         }
     }
+
     private void deleteTickets(String code){
         String sql = "DELETE FROM Tickets WHERE vacation = ?";
 
@@ -241,7 +274,6 @@ public class ModelTicketDB {
             System.out.println(e.getMessage());
         }
     }
-
 
 
 }
