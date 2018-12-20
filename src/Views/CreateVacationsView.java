@@ -181,7 +181,7 @@ public class CreateVacationsView implements IView {
     public void saveTicket(ActionEvent actionEvent) {
         int price=Integer.parseInt(tf_price.getText());
         int timeToStay=Integer.parseInt(tf_timeToStay.getText());
-        VacationData vacationData=new VacationData(null,price,tf_vacationType.getText(),0,timeToStay,null);
+        VacationData vacationData=new VacationData(null,price,tf_vacationType.getText(),0,timeToStay,null,cb_hotel.getAccessibleText());
         controller.saveTickets(vacationData);
         controller.swapScene();
     }

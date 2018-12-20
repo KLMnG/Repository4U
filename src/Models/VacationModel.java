@@ -74,7 +74,7 @@ public class VacationModel {
                 if (!vacations.containsKey(rs.getInt("VacationCode"))) {
                     List<TicketData> lst = new ArrayList<>();
                     lst.add(ticketData);
-                    VacationData vacationD = new VacationData(lst,price, vacationType, rs.getInt("VacationCode"), rs.getInt("time_to_stay"), seller);
+                    VacationData vacationD = new VacationData(lst,price, vacationType, rs.getInt("VacationCode"), rs.getInt("time_to_stay"), seller,rs.getString("hotelName"));
                     vacations.put(rs.getInt("VacationCode"), vacationD);
                 } else vacations.get(rs.getInt("VacationCode")).addToTicketData(ticketData);
             }
@@ -121,15 +121,17 @@ public class VacationModel {
 
 
     public void saveTickets(VacationData vacationData) {
-        this.modelTicketDB.saveTickets(vacation, tickets);
-        this.tickets = new ArrayList<>();
-        this.vacation = new ArrayList<>();
+//        this.modelTicketDB.saveTickets(vacation, tickets);
+//        this.tickets = new ArrayList<>();
+//        this.vacation = new ArrayList<>();
 
 
 
 
-        vacationData.addTickets(ticketDataToSave);
+        vacationData.addTickets(this.ticketDataToSave);
         this.modelTicketDB.saveTickets(vacationData);
+
+
 
     }
 

@@ -18,6 +18,7 @@ public class VacationData {
 
     }
 
+    private String hotelName;
     private State state;
     private final SimpleIntegerProperty Days;
 
@@ -56,11 +57,18 @@ public class VacationData {
         state = State.FOR_SELL;
     }
 
-    public State getState() {
-        return state;
+    public String getHotelName() {
+        return hotelName;
     }
 
-    public VacationData(List<TicketData> ticketData, int price, String vacationType, int code, int timeToStay, User seller) {
+    /**
+     * public State getState() {
+     * return state;
+     * }
+     **/
+
+    public VacationData(List<TicketData> ticketData, int price, String vacationType, int code,
+                        int timeToStay, User seller, String hotel) {
         this.ticketData = ticketData;
         this.VacationType = vacationType;
 
@@ -69,7 +77,8 @@ public class VacationData {
         this.Price = new SimpleIntegerProperty(price);
         this.code = code;
         this.Seller = seller;
-        state = State.FOR_SELL;
+        this.hotelName = hotel;
+        this.state = State.FOR_SELL;
     }
 
     public int getCode() {
@@ -130,6 +139,10 @@ public class VacationData {
 
     public String getDepart() {
         return this.ticketData.get(0).getDepart();
+    }
+
+    public String getState() {
+        return state.toString();
     }
 
 }

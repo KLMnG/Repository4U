@@ -2,6 +2,7 @@ package Models;
 
 
 import General.DBConnection;
+import General.TicketData;
 import General.User;
 import General.VacationData;
 
@@ -9,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ModelTicketDB {
@@ -50,8 +50,7 @@ public class ModelTicketDB {
                 pstmt.executeUpdate();
             } catch (SQLException e) {
             }
-        }
-        else{
+        } else {
             String sql = "INSERT INTO Tickets(code,flight_company,departure_date," +
                     "includes_flight_back,destination," +
                     "ticket_type,departure_from,vacation,seller,price) VALUES(?,?,?,?,?,?,?,?,?,?)";
@@ -82,21 +81,24 @@ public class ModelTicketDB {
 
     }
 
-    private int getVCode(String username) {
+    private int getVCode(VacationData vacationData) {
         String sql = "SELECT max(code) as code "
-                + "FROM Vacations WHERE seller = ?";
+                + "FROM Vacations WHERE owner = ?,time_to_Stay=?,vacation_type=?,hotel=?,state=?,price=?";
 
         int code = -1;
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, username);
+            pstmt.setString(1, UserModel.getUsername());
+            pstmt.setInt(2, vacationData.getDays());
+            pstmt.setString(3, vacationData.getVacationType());
+            pstmt.setString(4, vacationData.getHotelName());
+            pstmt.setString(5, vacationData.getState());
+            pstmt.setInt(6, vacationData.getPrice());
             ResultSet rs = pstmt.executeQuery();
 
 
-            while (rs.next()) {
-                code = (rs.getInt("code"));
-            }
+            code = (rs.getInt("code"));
         } catch (SQLException e) {
         }
 //        if (sql.equals(""))
@@ -104,26 +106,26 @@ public class ModelTicketDB {
         return code;
     }
 
-    private int createVacationAndReturn(String username,String timeOfStay, String vacationType, String hotel) {
-        String sql = "INSERT INTO Vacations(seller,time_Of_Stay,vacation_Type,hotel) VALUES(?,?,?,?)";
+//    private int createVacationAndReturn(String username, String timeOfStay, String vacationType, String hotel) {
+//        String sql = "INSERT INTO Vacations(seller,time_Of_Stay,vacation_Type,hotel) VALUES(?,?,?,?)";
+//
+//        try (Connection conn = con.getSQLLiteDBConnection();
+//             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//
+//            pstmt.setString(1, username);
+//            pstmt.setInt(2, Integer.parseInt(timeOfStay));
+//            pstmt.setString(3, vacationType);
+//            pstmt.setString(4, hotel);
+//
+//
+//        } catch (SQLException e) {
+//        }
+//        int code = getVCode(username);
+//
+//        return code;
+//    }
 
-        try (Connection conn = con.getSQLLiteDBConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, username);
-            pstmt.setInt(2, Integer.parseInt(timeOfStay));
-            pstmt.setString(3, vacationType);
-            pstmt.setString(4, hotel);
-
-
-        } catch (SQLException e) {
-        }
-        int code = getVCode(username);
-
-        return code;
-    }
-
-    private String getLCode(int weight, int height, int width) {
+   /** private String getLCode(int weight, int height, int width) {
         String sql = "SELECT code"
                 + "FROM Luggage WHERE weight = ?,weight = ?,weight=?";
 
@@ -144,9 +146,9 @@ public class ModelTicketDB {
         if (sql.equals(""))
             sql = createLuggageAndReturn(weight, height, width);
         return sql;
-    }
+    }*/
 
-    private String createLuggageAndReturn(int weight, int height, int width) {
+  /**  private String createLuggageAndReturn(int weight, int height, int width) {
         String sql = "INSERT INTO Luggages(weight,height,height) VALUES(?,?,?)";
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -160,23 +162,54 @@ public class ModelTicketDB {
         return getLCode(weight, height, width);
 
 
-    }
+    }*/
 
-    public void saveTickets(List<String> vacation, List<List<String>> tickets) {
-        int vacationCode = -1;
-        if (vacation.size() > 0 && !(vacation.get(0).trim().isEmpty() || vacation.get(1).trim().isEmpty() || vacation.get(2).trim().isEmpty()))
-            vacationCode = createVacationAndReturn(UserModel.getUsername(),vacation.get(0), vacation.get(1), vacation.get(2));
-        else
-            vacationCode = createVacationAndReturn(UserModel.getUsername());
-        saveTickets(vacationCode, tickets);
-
-    }
-
+//    public void saveTickets(List<String> vacation, List<List<String>> tickets) {
+//        int vacationCode = -1;
+//        if (vacation.size() > 0 && !(vacation.get(0).trim().isEmpty() || vacation.get(1).trim().isEmpty() || vacation.get(2).trim().isEmpty()))
+//            vacationCode = createVacationAndReturn(UserModel.getUsername(), vacation.get(0), vacation.get(1), vacation.get(2));
+//        else
+//            vacationCode = createVacationAndReturn(UserModel.getUsername());
+//        saveTickets(vacationCode, tickets);
+//
+//    }
+//
     public void saveTickets(VacationData vacationData) {
         int vacationCode = -1;
         vacationCode = createVacationAndReturn(vacationData);
+        for (TicketData td :
+                vacationData.getTicketData()) {
+            saveTicket(td,vacationCode);
+
+        }
 
 
+    }
+
+    private void saveTicket(TicketData ticketData, int vacationCode) {
+        String sql = "INSERT INTO Tickets(code,flight_company,departure_date," +
+                "includes_flight_back,luggage,destination," +
+                "ticket_type,departure_from,vacation,seller,price) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+
+            pstmt.setString(1, ticketCode);
+            pstmt.setString(2, flightCompanyName);
+            pstmt.setString(3, depatureDate);
+            pstmt.setInt(4, flightBackValue);
+            pstmt.setInt(5, Integer.parseInt(luggageCode));
+            pstmt.setString(6, destinationCountry);
+            pstmt.setString(7, typeOfPassenger);
+            pstmt.setString(8, departureCountry);
+            pstmt.setInt(9, vacationCode);
+            pstmt.setString(10, UserName);
+            pstmt.setInt(11, Integer.parseInt(price));
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+        }
     }
 
     private int createVacationAndReturn(VacationData vacationData) {
@@ -184,32 +217,12 @@ public class ModelTicketDB {
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1,vacationData.getDays());
-            pstmt.setString(2,vacationData.getVacationType());
-            pstmt.setString(3, vacationData.getHotel().getCode());
-            pstmt.setString(4,UserModel.getUsername());
+            pstmt.setInt(1, vacationData.getDays());
+            pstmt.setString(2, vacationData.getVacationType());
+            pstmt.setString(3, vacationData.getHotelName());
+            pstmt.setString(4, UserModel.getUsername());
             pstmt.setString(5, vacationData.getState());
-            pstmt.setInt(6,vacationData.getPrice());
-
-
-
-                    pstmt.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println(e.getStackTrace());
-        }
-        int code = getVCode(username);
-
-        return code;
-    }
-
-    private int createVacationAndReturn(String username) {
-        String sql = "INSERT INTO Vacations(seller) VALUES(?)";
-
-        try (Connection conn = con.getSQLLiteDBConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, username);
+            pstmt.setInt(6, vacationData.getPrice());
 
             pstmt.executeUpdate();
 
@@ -217,12 +230,31 @@ public class ModelTicketDB {
             System.out.println(e.getMessage());
             System.out.println(e.getStackTrace());
         }
-         int code = getVCode(username);
+
+        int code = getVCode(vacationData);
 
         return code;
     }
 
-    private void saveTickets(int vacationCode, List<List<String>> tickets) {
+//    private int createVacationAndReturn(String username) {
+//        String sql = "INSERT INTO Vacations(seller) VALUES(?)";
+//
+//        try (Connection conn = con.getSQLLiteDBConnection();
+//             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//            pstmt.setString(1, username);
+//
+//            pstmt.executeUpdate();
+//
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//            System.out.println(e.getStackTrace());
+//        }
+//        int code = getVCode(username);
+//
+//        return code;
+//    }
+
+   /** private void saveTickets(int vacationCode, List<List<String>> tickets) {
         String luggageCode;
         for (List<String> ticket : tickets) {
             if (ticket.size() == 11)
@@ -232,18 +264,19 @@ public class ModelTicketDB {
             addTicketWithLuggage(vacationCode, luggageCode, ticket);
 
         }
-    }
+    }*/
 
-    private void addTicketWithLuggage(int vacationCode, String luggageCode, List<String> ticket) {
-        addTicket(UserModel.getUsername(), ticket.get(1),ticket.get(0), ticket.get(2), ticket.get(6), ticket.get(5).equals("1"), luggageCode, ticket.get(7), ticket.get(4), ticket.get(3), vacationCode);
-    }
+  /**  private void addTicketWithLuggage(int vacationCode, String luggageCode, List<String> ticket) {
+        addTicket(UserModel.getUsername(), ticket.get(1), ticket.get(0), ticket.get(2), ticket.get(6), ticket.get(5).equals("1"), luggageCode, ticket.get(7), ticket.get(4), ticket.get(3), vacationCode);
+    }**/
 
 
-    public void removeVacation(String code){
+    public void removeVacation(String code) {
         deleteTickets(code);
         deleteVacation(code);
     }
-    private void deleteVacation(String code){
+
+    private void deleteVacation(String code) {
         String sql = "DELETE FROM Vacations WHERE code = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -259,7 +292,7 @@ public class ModelTicketDB {
         }
     }
 
-    private void deleteTickets(String code){
+    private void deleteTickets(String code) {
         String sql = "DELETE FROM Tickets WHERE vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
