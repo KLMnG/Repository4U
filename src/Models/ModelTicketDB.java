@@ -188,25 +188,25 @@ public class ModelTicketDB {
 
     private void saveTicket(TicketData ticketData, int vacationCode) {
         String sql = "INSERT INTO Tickets(code,flight_company,departure_date," +
-                "includes_flight_back,luggage,destination," +
-                "ticket_type,departure_from,vacation,seller,price) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                "includes_flight_back,destination," +
+                "ticket_type,departure_from,vacation,weight,height,width) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
 
-            pstmt.setString(1, ticketCode);
-            pstmt.setString(2, flightCompanyName);
-            pstmt.setString(3, depatureDate);
-            pstmt.setInt(4, flightBackValue);
-            pstmt.setInt(5, Integer.parseInt(luggageCode));
-            pstmt.setString(6, destinationCountry);
-            pstmt.setString(7, typeOfPassenger);
-            pstmt.setString(8, departureCountry);
-            pstmt.setInt(9, vacationCode);
-            pstmt.setString(10, UserName);
-            pstmt.setInt(11, Integer.parseInt(price));
+            pstmt.setString(1, ticketData.getCode());
+            pstmt.setString(2, ticketData.getAirline());
+            pstmt.setString(3, ticketData.getDepart());
+            pstmt.setInt(4, ticketData.getIncludes_flight_back()? 1 : 0);
+            pstmt.setString(5, ticketData.getTo());
+            pstmt.setString(6, ticketData.getTicketType());
+            pstmt.setString(7, ticketData.getFrom());
+            pstmt.setInt(8,vacationCode );
+            pstmt.setInt(9, ticketData.getWeight());
+            pstmt.setInt(10, ticketData.getHeight());
+            pstmt.setInt(11, ticketData.getWidth());
             pstmt.executeUpdate();
         } catch (SQLException e) {
         }

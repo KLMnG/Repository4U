@@ -19,6 +19,7 @@ public class TicketData {
     private int vacation;
 
 
+
     public TicketData(String code, String from, String to, String depart, String airline, int weight, int height, int width, String ticketType, int includes_flight_back, int vacation) {
         this.code = new SimpleStringProperty(code);
         this.From = new SimpleStringProperty(from);
@@ -31,6 +32,7 @@ public class TicketData {
         this.TicketType = ticketType;
         this.includes_flight_back = (includes_flight_back != 0);
         this.vacation = vacation;
+
     }
 
 
@@ -121,5 +123,7 @@ public class TicketData {
     public void setVacation(int vacation) {
         this.vacation = vacation;
     }
+
+
 
 }
