@@ -1,7 +1,9 @@
 package General;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.CheckBox;
 
 public class TicketData {
 
@@ -32,9 +34,7 @@ public class TicketData {
         this.TicketType = ticketType;
         this.includes_flight_back = (includes_flight_back != 0);
         this.vacation = vacation;
-
     }
-
 
     public boolean getIncludes_flight_back() {
         return includes_flight_back;

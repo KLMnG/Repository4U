@@ -60,7 +60,6 @@ public class VacationModel {
 
             ResultSet rs = pstmt.executeQuery();
 
-
             while (rs.next()) {
                 User seller = new User(rs.getString("Username"), "Password", "FirstName", "LastName", "City", "BirthDate");
                 String vacationType = rs.getString("vacation_type");
@@ -74,7 +73,8 @@ public class VacationModel {
                 if (!vacations.containsKey(rs.getInt("VacationCode"))) {
                     List<TicketData> lst = new ArrayList<>();
                     lst.add(ticketData);
-                    VacationData vacationD = new VacationData(lst,price, vacationType, rs.getInt("VacationCode"), rs.getInt("time_to_stay"), seller,rs.getString("hotelName"));
+                    HotelData hotelData = new HotelData(rs.getString("hotelName"),rs.getString("address"),rs.getString("rate"));
+                    VacationData vacationD = new VacationData(lst,price, vacationType, rs.getInt("VacationCode"), rs.getInt("time_to_stay"), seller,hotelData);
                     vacations.put(rs.getInt("VacationCode"), vacationD);
                 } else vacations.get(rs.getInt("VacationCode")).addToTicketData(ticketData);
             }

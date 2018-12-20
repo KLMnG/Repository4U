@@ -1,6 +1,7 @@
 package General;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.List;
@@ -11,22 +12,13 @@ public class VacationData {
 
     private String VacationType;
 
-    private enum State {
-        FOR_SELL,
-        FOR_EXCHANGE,
-        INVISIBLE;
+    private enum State {FOR_SELL,FOR_EXCHANGE,INVISIBLE;}
 
-    }
-
-    private String hotelName;
+    private HotelData hotel;
     private State state;
     private final SimpleIntegerProperty Days;
-
     private final SimpleStringProperty Travelers;
     private final SimpleIntegerProperty Price;
-//    private final SimpleStringProperty From;
-//    private final SimpleStringProperty To;
-//    private final SimpleStringProperty Date;
 
     private List<TicketData> ticketData;
 
@@ -57,27 +49,33 @@ public class VacationData {
         state = State.FOR_SELL;
     }
 
-    public String getHotelName() {
-        return hotelName;
-    }
-
     /**
      * public State getState() {
      * return state;
      * }
      **/
 
-    public VacationData(List<TicketData> ticketData, int price, String vacationType, int code,
-                        int timeToStay, User seller, String hotel) {
+    public VacationData(List<TicketData> ticketData, int price, String vacationType, int code,int timeToStay, User seller, String hotel) {
         this.ticketData = ticketData;
         this.VacationType = vacationType;
-
         this.Days = new SimpleIntegerProperty(timeToStay);
         this.Travelers = new SimpleStringProperty(ticketData.size() + "");
         this.Price = new SimpleIntegerProperty(price);
         this.code = code;
         this.Seller = seller;
-        this.hotelName = hotel;
+        this.hotel = new HotelData(hotel,"","");
+        this.state = State.FOR_SELL;
+    }
+
+    public VacationData(List<TicketData> ticketData, int price, String vacationType, int code,int timeToStay, User seller, HotelData hotel) {
+        this.ticketData = ticketData;
+        this.VacationType = vacationType;
+        this.Days = new SimpleIntegerProperty(timeToStay);
+        this.Travelers = new SimpleStringProperty(ticketData.size() + "");
+        this.Price = new SimpleIntegerProperty(price);
+        this.code = code;
+        this.Seller = seller;
+        this.hotel = hotel;
         this.state = State.FOR_SELL;
     }
 
@@ -143,6 +141,10 @@ public class VacationData {
 
     public String getState() {
         return state.toString();
+    }
+
+    public HotelData getHotel() {
+        return this.hotel;
     }
 
 }

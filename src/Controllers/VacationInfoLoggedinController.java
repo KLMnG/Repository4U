@@ -25,6 +25,11 @@ public class VacationInfoLoggedinController extends AController{
     public void initializeView() {
         VacationData vd = this.model.getSelectedVacationData();
         this.view.setTicketTableView(vd.getTicketData());
+        this.view.setLb_hotelname(vd.getHotel().getCode());
+        this.view.setLb_address(vd.getHotel().getAddress());
+        this.view.setLb_rate(vd.getHotel().getRate());
+        this.view.setLb_vacationtype(vd.getVacationType());
+        this.view.setLb_timetostay(vd.getDays() + "");
     }
 
     public void PurchaseVacation() {

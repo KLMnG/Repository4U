@@ -92,7 +92,7 @@ public class ModelTicketDB {
             pstmt.setString(1, UserModel.getUsername());
             pstmt.setInt(2, vacationData.getDays());
             pstmt.setString(3, vacationData.getVacationType());
-            pstmt.setString(4, vacationData.getHotelName());
+            pstmt.setString(4, vacationData.getHotel().getCode());
             pstmt.setString(5, vacationData.getState());
             pstmt.setInt(6, vacationData.getPrice());
             ResultSet rs = pstmt.executeQuery();
@@ -219,7 +219,7 @@ public class ModelTicketDB {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, vacationData.getDays());
             pstmt.setString(2, vacationData.getVacationType());
-            pstmt.setString(3, vacationData.getHotelName());
+            pstmt.setString(3, vacationData.getHotel().getCode());
             pstmt.setString(4, UserModel.getUsername());
             pstmt.setString(5, vacationData.getState());
             pstmt.setInt(6, vacationData.getPrice());
