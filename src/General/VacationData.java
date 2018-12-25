@@ -24,11 +24,6 @@ public class VacationData {
 
     private User Seller;
 
-
-    public void addTickets(List<TicketData> ticketDataToSave) {
-        ticketData = ticketDataToSave;
-    }
-
     public User getSeller() {
         return Seller;
     }
