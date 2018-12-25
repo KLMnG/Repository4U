@@ -19,6 +19,8 @@ public class PurchaseVacationModel {
     private int VacationCode;
     private String Seller ;
 
+    private String DateT;
+
     public int getVacationCode() {
         return VacationCode;
     }
@@ -44,17 +46,24 @@ public class PurchaseVacationModel {
     }
 
     private String Buyer;
+    public String getDateT() {
+        return DateT;
+    }
+
+    public void setDateT(String dateT) {
+        DateT = dateT;
+    }
 
 
     public PurchaseVacationModel() {
         con = new DBConnection();
     }
 
-    public boolean addPurchaseVacation(int codeVacation, String userNameSeller){
+    public boolean addPurchaseVacation(int codeVacation, String userNameSeller, String DateT){
 
         String userNameBuyer = UserModel.getUsername();
         if(!isExist(userNameSeller,codeVacation)) {
-            String sql = "INSERT INTO RequestPurchases(seller,buyer,code_vacation,confirm_seller,confirm_buyer) Values(?,?,?,?,?)";
+            String sql = "INSERT INTO RequestPurchases(seller,buyer,code_vacation,DateT,confirm_seller,confirm_buyer) Values(?,?,?,?,?,?)";
 
             try (Connection conn = con.getSQLLiteDBConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -62,8 +71,9 @@ public class PurchaseVacationModel {
                 pstmt.setString(1, userNameSeller);
                 pstmt.setString(2, userNameBuyer);
                 pstmt.setInt(3, codeVacation);
-                pstmt.setInt(4, 0);
-                pstmt.setInt(5, 1);
+                pstmt.setString(4, DateT);
+                pstmt.setInt(5, 0);
+                pstmt.setInt(6, 1);
                 pstmt.executeUpdate();
 
             } catch (SQLException e) {
@@ -74,7 +84,7 @@ public class PurchaseVacationModel {
     }
 
     public boolean isExist(String seller, int codeVacation){
-        String sql = "SELECT buyer FROM RequestPurchases WHERE seller = ? AND code_vacation = ?";
+        String sql = "SELECT buyer FROM RequestPurchase WHERE seller = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

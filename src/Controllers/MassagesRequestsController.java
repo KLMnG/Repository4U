@@ -48,6 +48,9 @@ public class MassagesRequestsController extends AController {
 
 
     public void Confirm(PurchaseMessage getSelectedConfirmMessage) {
+        this.model.setSeller(UserModel.getUsername());
+        this.model.setBuyer(getSelectedConfirmMessage.getPurchase_User());
+        this.model.setVacationCode(getSelectedConfirmMessage.getVacationCode());
         model.confirmVacationInDB(UserModel.getUsername(),getSelectedConfirmMessage.getPurchase_User(),getSelectedConfirmMessage.getVacationCode());
 
     }
