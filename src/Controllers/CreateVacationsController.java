@@ -49,12 +49,12 @@ public class CreateVacationsController extends AController {
         String height = "";
         String width = "";
         HotelData hotelData;
-        if (view.cb_includeVacation.isSelected()) {
+
 //            hotel = view.getCb_hotel().getValue().toString();
 //            vacationType = view.getTf_vacationType().getText();
 //            timeToStay = view.getTf_timeToStay().getText();
             hotelData = new HotelData(view.getCb_hotel().getValue().toString(), view.getTf_vacationType().getText(), view.getTf_timeToStay().getText());
-        }
+
         if (view.cb_luggage.isSelected()) {
 //            weight = view.getTf_weight().getText();
 //            height = view.getTf_height().getText();
@@ -91,14 +91,17 @@ public class CreateVacationsController extends AController {
             message += ("Price,must be numbers only\n");
         }
 
-        if (this.view.cb_includeVacation.isSelected() && (view.getCb_hotel().getValue().toString().trim().isEmpty() || view.getTf_vacationType().getText().trim().isEmpty() || view.getTf_timeToStay().getText().trim().isEmpty())) {
-            message += "If Include Vacation is checked Hotel,Vacation type,Time Of Stay\n";
-            try {
-                Integer.parseInt(view.getTf_timeToStay().getText());
-            } catch (NumberFormatException e) {
-                message += ("Price,must be numbers only\n");
-            }
+        if(view.getTf_timeToStay().getText().trim().isEmpty()){
+            message +="must include time of stay";
         }
+//        if ((view.getCb_hotel().getValue().toString().trim().isEmpty() || view.getTf_vacationType().getText().trim().isEmpty() || view.getTf_timeToStay().getText().trim().isEmpty())) {
+//            message += "If Include Vacation is checked Hotel,Vacation type,Time Of Stay\n";
+//            try {
+//                Integer.parseInt(view.getTf_timeToStay().getText());
+//            } catch (NumberFormatException e) {
+//                message += ("Price,must be numbers only\n");
+//            }
+//        }
 
         if (this.view.cb_luggage.isSelected() && (this.view.tf_width.getText().trim().isEmpty() || this.view.tf_weight.getText().trim().isEmpty() || this.view.tf_height.getText().trim().isEmpty())) {
             message += "If Luggage is checked Height,Weight,Width must be filled\n";
@@ -119,7 +122,7 @@ public class CreateVacationsController extends AController {
             }
         }
         try {
-            if ( this.view.getDp_flightDate() == null || new SimpleDateFormat("dd/MM/yyyy").parse(this.view.getDp_flightDate() + "").before(new Date())) {
+            if ( this.view.getDp_flightDate() == null || new SimpleDateFormat("dd/MM/yyyy").parse(this.view.getDp_flightDate().getEditor().getText()).before(new Date())) {
                 message += "Ticket can't have an expiered date\n";
             }
         } catch (ParseException e) {

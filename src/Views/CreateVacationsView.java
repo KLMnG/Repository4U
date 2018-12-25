@@ -26,7 +26,6 @@ public class CreateVacationsView implements IView {
     public TextField tf_timeToStay;
     public TextField tf_vacationType;
     public ChoiceBox cb_hotel;
-    public CheckBox cb_includeVacation;
     public CheckBox cb_luggage;
     public TextField tf_weight;
     public TextField tf_height;
@@ -117,9 +116,7 @@ public class CreateVacationsView implements IView {
         return cb_hotel;
     }
 
-    public CheckBox getCb_includeVacation() {
-        return cb_includeVacation;
-    }
+
 
     public CheckBox getCb_luggage() {
         return cb_luggage;
@@ -187,24 +184,7 @@ public class CreateVacationsView implements IView {
         controller.swapScene();
     }
 
-    public void showVacationTributes(ActionEvent actionEvent) {
-        if (cb_includeVacation.isSelected()) {
-            tf_timeToStay.visibleProperty().setValue(true);
-            tf_vacationType.visibleProperty().setValue(true);
-            cb_hotel.visibleProperty().setValue(true);
-            lb_hotel.visibleProperty().setValue(true);
-            lb_vacationType.visibleProperty().setValue(true);
-            lb_timeToStay.visibleProperty().setValue(true);
-        } else {
-            tf_timeToStay.visibleProperty().setValue(false);
-            tf_vacationType.visibleProperty().setValue(false);
-            cb_hotel.visibleProperty().setValue(false);
-            lb_hotel.visibleProperty().setValue(false);
-            lb_vacationType.visibleProperty().setValue(false);
-            lb_timeToStay.visibleProperty().setValue(false);
 
-        }
-    }
 
 
     public void showLuggageAtribuets(ActionEvent actionEvent) {
