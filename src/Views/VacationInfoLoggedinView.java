@@ -27,6 +27,10 @@ public class VacationInfoLoggedinView implements IView{
     public Label lb_address;
     public Label lb_rate;
 
+
+    public Label lb_vacationPrice;
+
+
     public TableView tbl_tickets;
     public TableColumn col_flightCompany;
     public TableColumn col_departure;
@@ -89,6 +93,12 @@ public class VacationInfoLoggedinView implements IView{
     public void setController(AController controller) {
         this.controller = (VacationInfoLoggedinController) controller;
         this.controller.initializeView();
+    }
+
+
+
+    public void setLb_vacationPrice(int price) {
+        this.lb_vacationPrice.setText(price + "");
     }
 
     public void setLb_address(String lb_address) {

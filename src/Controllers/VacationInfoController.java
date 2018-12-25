@@ -31,6 +31,7 @@ public class VacationInfoController extends AController {
         this.view.setLb_rate(vd.getHotel().getRate());
         this.view.setLb_vacationtype(vd.getVacationType());
         this.view.setLb_timetostay(vd.getDays() + "");
+        this.view.setLb_vacationPrice(vd.getPrice());
     }
 
 
