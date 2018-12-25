@@ -62,7 +62,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cb_passangerType" layoutX="858.0" layoutY="329.0" prefHeight="22.0" prefWidth="84.0" />
+            <ComboBox fx:id="cb_passangerType" layoutX="858.0" layoutY="329.0" prefHeight="22.0" prefWidth="120.0" />
             <Label layoutX="523.0" layoutY="375.0" prefHeight="21.0" prefWidth="80.0" text="destination" textFill="WHITE">
                <font>
                   <Font size="15.0" />

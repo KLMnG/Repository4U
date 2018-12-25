@@ -8,6 +8,12 @@ import Models.VacationModel;
 import Views.CreateVacationsView;
 import Views.IView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 public class CreateVacationsController extends AController {
@@ -104,6 +110,20 @@ public class CreateVacationsController extends AController {
             } catch (NumberFormatException e) {
                 message += ("Width,Height,Weight must be numbers only\n");
             }
+        }
+
+        for (TicketData td : this.view.getTickets()) {
+            if (td.getCode().equals(this.view.getTf_ticketNum().getText())) {
+                message += "Ticket Number must be unique\n";
+                break;
+            }
+        }
+        try {
+            if ( this.view.getDp_flightDate() == null || new SimpleDateFormat("dd/MM/yyyy").parse(this.view.getDp_flightDate() + "").before(new Date())) {
+                message += "Ticket can't have an expiered date\n";
+            }
+        } catch (ParseException e) {
+
         }
 
 

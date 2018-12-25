@@ -45,16 +45,14 @@ public class VacationModel {
     public void read() {
         this.vacations = new HashMap<>();
 
-        String sql = "SELECT Tickets.code as ticketCode, flight_company \n" +
-                "                ,departure_date, includes_flight_back, departure_from,\n" +
-                "                 destination, ticket_type, weight, height, width, Users.Username as Username\n" +
-                "                 , Users.Password as Password, Users.BirthDate as BirthDate,\n" +
-                "                 Users.FirstName as FirstName, Users.LastName as LastName,\n" +
-                "                 Users.City as City,\n" +
-                "                 Vacations.code as VacationCode, Vacations.time_to_stay as time_to_stay, Vacations.vacation_type as vacation_type,\n" +
-                "                 Vacations.hotel as hotel, Vacations.owner as owner, Vacations.price as price, Vacations.state as state, \n" +
-                "                 Hotels.code as hotelName ,Hotels.address as address, Hotels.rate as rate\n" +
-                "                 FROM Tickets, Vacations, Hotels, Users ";
+        String sql = "SELECT Tickets.code as ticketCode, flight_company ,departure_date, includes_flight_back, departure_from, destination, ticket_type, weight, height, width, \n" +
+                "Users.Username as Username, Users.Password as Password, Users.BirthDate as BirthDate,Users.FirstName as FirstName, Users.LastName as LastName, Users.City as City,\n" +
+                "Vacations.code as VacationCode, Vacations.time_to_stay as time_to_stay, Vacations.vacation_type as vacation_type, Vacations.hotel as hotel, Vacations.owner as owner, Vacations.price as price, Vacations.state as state, \n" +
+                "Hotels.code as hotelName ,Hotels.address as address, Hotels.rate as rate\n" +
+                "FROM Tickets\n" +
+                "left join Vacations on Vacations.code = Tickets.vacation\n" +
+                "left join Hotels on Hotels.code = Vacations.hotel\n" +
+                "left join Users on Vacations.owner = Users.Username ";
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 

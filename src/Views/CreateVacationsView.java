@@ -49,6 +49,7 @@ public class CreateVacationsView implements IView {
     private VacationData vacationData;
     private ObservableList<TicketData> data;
 
+
     public void initialize() {
 
         this.cb_passangerType.getItems().addAll(
@@ -181,7 +182,7 @@ public class CreateVacationsView implements IView {
     public void saveTicket(ActionEvent actionEvent) {
         int price=Integer.parseInt(tf_price.getText());
         int timeToStay=Integer.parseInt(tf_timeToStay.getText());
-        VacationData vacationData=new VacationData(this.data,price,tf_vacationType.getText(),0,timeToStay,null,cb_hotel.getAccessibleText());
+        VacationData vacationData=new VacationData(this.data,price,tf_vacationType.getText(),0,timeToStay,null,cb_hotel.getSelectionModel().getSelectedItem().toString());
         controller.saveTickets(vacationData);
         controller.swapScene();
     }
@@ -222,6 +223,10 @@ public class CreateVacationsView implements IView {
             tf_height.visibleProperty().setValue(false);
             tf_width.visibleProperty().setValue(false);
         }
+    }
+
+    public ObservableList<TicketData> getTickets() {
+        return data;
     }
 
     public TextField getTf_price() {

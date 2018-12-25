@@ -21,7 +21,7 @@ public class ModelTicketDB {
 
     private int getVCode(VacationData vacationData) {
         String sql = "SELECT max(code) as code "
-                + "FROM Vacations WHERE owner = ?,time_to_Stay=?,vacation_type=?,hotel=?,state=?,price=?";
+                + "FROM Vacations WHERE owner = ? and time_to_Stay=? and vacation_type=? and hotel=? and state=? and price=?";
 
         int code = -1;
         try (Connection conn = con.getSQLLiteDBConnection();
