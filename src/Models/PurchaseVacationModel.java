@@ -54,7 +54,7 @@ public class PurchaseVacationModel {
 
         String userNameBuyer = UserModel.getUsername();
         if(!isExist(userNameSeller,codeVacation)) {
-            String sql = "INSERT INTO RequestPurchase(seller,buyer,code_vacation,confirm_seller,confirm_buyer) Values(?,?,?,?,?)";
+            String sql = "INSERT INTO RequestPurchases(seller,buyer,code_vacation,confirm_seller,confirm_buyer) Values(?,?,?,?,?)";
 
             try (Connection conn = con.getSQLLiteDBConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -74,7 +74,7 @@ public class PurchaseVacationModel {
     }
 
     public boolean isExist(String seller, int codeVacation){
-        String sql = "SELECT buyer FROM RequestPurchase WHERE seller = ? AND code_vacation = ?";
+        String sql = "SELECT buyer FROM RequestPurchases WHERE seller = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -90,13 +90,14 @@ public class PurchaseVacationModel {
             }
 
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
         return false;
     }
 
     public List<PurchaseMessage> listOfBuyers(String seller){
         String sql = "SELECT buyer,code_vacation "
-                + "FROM RequestPurchase WHERE seller = ? ";
+                + "FROM RequestPurchases WHERE seller = ? ";
 
         List<PurchaseMessage> lstmessage = null;
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -119,7 +120,7 @@ public class PurchaseVacationModel {
     }
     public List<PurchaseMessage> listOfSellers(String buyer){
         String sql = "SELECT seller,code_vacation "
-                + "FROM RequestPurchase WHERE buyer = ? ";
+                + "FROM RequestPurchases WHERE buyer = ? ";
 
         List<PurchaseMessage> lstmessage = null;
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -142,7 +143,7 @@ public class PurchaseVacationModel {
     }
 
     public void confirmVacationInDB(String seller, String buyer, int code_vacation){
-        String sql = "UPDATE RequestPurchase SET confirm_seller = ? "+
+        String sql = "UPDATE RequestPurchases SET confirm_seller = ? "+
                     "WHERE seller = ? AND buyer = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -164,7 +165,7 @@ public class PurchaseVacationModel {
         List <Integer> arrl = null;
 
         String sql = "SELECT confirm_seller,confirm_buyer "
-                + "FROM RequestPurchase WHERE seller = ? AND buyer = ?";
+                + "FROM RequestPurchases WHERE seller = ? AND buyer = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt  = conn.prepareStatement(sql)){
@@ -207,7 +208,7 @@ public class PurchaseVacationModel {
     }
 
     public void removeRequest(String  seller, String buyer, int code_vacation){
-        String sql = "DELETE FROM RequestPurchase WHERE seller = ? AND buyer = ? AND code_vacation = ?";
+        String sql = "DELETE FROM RequestPurchases WHERE seller = ? AND buyer = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
