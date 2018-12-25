@@ -65,4 +65,9 @@ public class HomePageLoggedInController extends AController{
 
     }
 
+    public void openViewVacations() {
+
+
+
+    }
 }
