@@ -84,7 +84,7 @@ public class PurchaseVacationModel {
     }
 
     public boolean isExist(String seller, int codeVacation){
-        String sql = "SELECT buyer FROM RequestPurchases WHERE seller = ? AND code_vacation = ?";
+        String sql = "SELECT buyer FROM RequestPurchase WHERE seller = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -100,6 +100,7 @@ public class PurchaseVacationModel {
             }
 
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
         return false;
     }
@@ -232,7 +233,4 @@ public class PurchaseVacationModel {
         } catch (SQLException e) {
         }
     }
-
-
-  
 }
