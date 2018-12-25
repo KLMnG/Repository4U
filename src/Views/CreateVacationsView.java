@@ -45,7 +45,6 @@ public class CreateVacationsView implements IView {
     public TableColumn col_flghtDate;
     public TableView tbl_tickets;
 
-    private VacationData vacationData;
     private ObservableList<TicketData> data;
 
 
@@ -147,9 +146,9 @@ public class CreateVacationsView implements IView {
     }
 
     public void addPassenger(ActionEvent actionEvent) {
-        int weight = -1;
-        int height = -1;
-        int width = -1;
+        int weight = 0;
+        int height = 0;
+        int width = 0;
         if (cb_luggage.isSelected()) {
 
             try {
@@ -172,7 +171,6 @@ public class CreateVacationsView implements IView {
                     -1);
 
             this.data.add(ticketData);
-            controller.notifyPassengerAdded(ticketData);
         }
     }
 
@@ -183,9 +181,6 @@ public class CreateVacationsView implements IView {
         controller.saveTickets(vacationData);
         controller.swapScene();
     }
-
-
-
 
     public void showLuggageAtribuets(ActionEvent actionEvent) {
         if (cb_luggage.isSelected()) {

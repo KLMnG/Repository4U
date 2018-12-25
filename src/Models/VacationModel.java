@@ -26,21 +26,14 @@ public class VacationModel {
     private ModelTicketDB modelTicketDB;
     private Map<Integer, VacationData> vacations;
 
-
-    private List<String> vacation;
-    private List<List<String>> tickets;
-    private List<TicketData> ticketDataToSave;
     private int selectedVacationCode;
 
     public VacationModel(UserModel userModel, ModelTicketDB modelTicketDB) {
         this.con = new DBConnection();
         this.userModel = userModel;
         this.modelTicketDB = modelTicketDB;
-        this.vacation = new ArrayList<>();
-        this.tickets = new ArrayList<>();
         this.vacations = new HashMap<>();
-        this.ticketDataToSave=new ArrayList<>();
-    }
+}
 
     public void read() {
         this.vacations = new HashMap<>();
@@ -90,47 +83,8 @@ public class VacationModel {
         return this.vacations.get(this.selectedVacationCode);
     }
 
-    public void addPassenger(String tf_timeToStay, String tf_vacationType, String cb_hotel, String tf_ticketNum, String tf_flightCompany, String tf_departueFrom, String cb_passangerType,
-                             String cb_includeFlightBacl, String dp_flightDate, String tf_destination, CheckBox cb_luggage, String tf_weight, String tf_height, String tf_width, String tf_price) {
-
-        if (vacation.size() == 0 || ((!tf_timeToStay.equals("")) || !vacation.get(0).equals(tf_timeToStay) || !vacation.get(1).equals(tf_vacationType) || !vacation.get(2).equals(cb_hotel))) {
-            vacation = new ArrayList<>();
-            vacation.add(tf_timeToStay);
-            vacation.add(tf_vacationType);
-            vacation.add(cb_hotel);
-
-        }
-        List<String> ticket = new ArrayList<>();
-        ticket.add(tf_price);
-        ticket.add(tf_ticketNum);
-        ticket.add(tf_flightCompany);
-        ticket.add(tf_departueFrom);
-        ticket.add(cb_passangerType);
-        ticket.add(cb_includeFlightBacl);
-        ticket.add(dp_flightDate);
-        ticket.add(tf_destination);
-        if (cb_luggage.isSelected()) {
-            ticket.add(tf_weight);
-            ticket.add(tf_height);
-            ticket.add(tf_width);
-        }
-        tickets.add(ticket);
-    }
-
-
     public void saveTickets(VacationData vacationData) {
-//        this.modelTicketDB.saveTickets(vacation, tickets);
-//        this.tickets = new ArrayList<>();
-//        this.vacation = new ArrayList<>();
-
-
-
-
-        vacationData.addTickets(this.ticketDataToSave);
         this.modelTicketDB.saveTickets(vacationData);
-
-
-
     }
 
     public void setSelectedVacationCode(int selectedVacationCode) {
@@ -157,9 +111,5 @@ public class VacationModel {
 
         }
         return hotelsName;
-    }
-
-    public void addPassenger(TicketData ticketData) {
-        ticketDataToSave.add(ticketData);
     }
 }
