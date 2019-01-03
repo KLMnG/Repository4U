@@ -2,6 +2,9 @@ package Models;
 
 import General.VacationData;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,4 +32,6 @@ public class VacationInfoLoggedinExchangeModel {
     public boolean AskToExchange(VacationData vacation) {
         return this.purchaseVacationModel.addPurchaseVacation(vacationModel.getSelectedVacationData().getCode(),vacationModel.getSelectedVacationData().getSeller().getUsername(), LocalDate.now().toString());
     }
+
+
 }

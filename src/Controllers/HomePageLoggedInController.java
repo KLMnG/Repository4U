@@ -29,6 +29,7 @@ public class HomePageLoggedInController extends AController{
         this.view.setUserGesture("♥ Hello " + this.model.getUserName() + " ♥");
 
     }
+
     public void getVacations() {
         this.view.addToSellTable(model.getVacationsByType(VacationData.State.FOR_SELL));
         this.view.addToExchangeTable(model.getVacationsByType(VacationData.State.FOR_EXCHANGE));
