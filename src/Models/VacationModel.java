@@ -120,4 +120,92 @@ public class VacationModel {
         }
         return hotelsName;
     }
+
+    public List<VacationData> getAllVacationByType(String user,String state){
+
+        this.vacations = new HashMap<>();
+        List<VacationData> allVacation= new ArrayList<>();;
+        VacationData vacationD;
+        String sql = "SELECT Tickets.code as ticketCode, flight_company ,departure_date, includes_flight_back, departure_from, destination, ticket_type, weight, height, width, \n" +
+                "Users.Username as Username, Users.Password as Password, Users.BirthDate as BirthDate,Users.FirstName as FirstName, Users.LastName as LastName, Users.City as City,\n" +
+                "Vacations.code as VacationCode, Vacations.time_to_stay as time_to_stay, Vacations.vacation_type as vacation_type, Vacations.hotel as hotel, Vacations.owner as owner, Vacations.price as price, Vacations.state as state, \n" +
+                "Hotels.code as hotelName ,Hotels.address as address, Hotels.rate as rate\n" +
+                "FROM Tickets\n" +
+                "left join Vacations on Vacations.code = Tickets.vacation\n" +
+                "left join Hotels on Hotels.code = Vacations.hotel\n" +
+                "left join Users on Vacations.owner = Users.Username\n" +
+                "WHERE NOT Vacations.owner = ? AND Vacation.state = ?";
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,user);
+            pstmt.setString(2,state);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                User seller = new User(rs.getString("Username"), "Password", "FirstName", "LastName", "City", "BirthDate");
+                String vacationType = rs.getString("vacation_type");
+                int price = rs.getInt("price");
+
+                TicketData ticketData = new TicketData(rs.getString("ticketCode"), rs.getString("departure_from"), rs.getString("destination"),
+                        rs.getString("departure_date"), rs.getString("flight_company"), rs.getInt("weight"),
+                        rs.getInt("height"),rs.getInt("width"), rs.getString("ticket_type"),
+                        rs.getInt("includes_flight_back"),rs.getInt("VacationCode"));
+
+                if (!vacations.containsKey(rs.getInt("VacationCode"))) {
+                    List<TicketData> lst = new ArrayList<>();
+                    lst.add(ticketData);
+                    HotelData hotelData = new HotelData(rs.getString("hotelName"),rs.getString("address"),rs.getString("rate"));
+                    vacationD = new VacationData(lst,price, vacationType, rs.getInt("VacationCode"), rs.getInt("time_to_stay"), seller,hotelData);
+                    allVacation.add(vacationD);
+                    vacations.put(rs.getInt("VacationCode"), vacationD);
+                } else vacations.get(rs.getInt("VacationCode")).addToTicketData(ticketData);
+
+            }
+
+
+        } catch (SQLException e) {
+        }
+        return allVacation;
+    }
+
+    public void setNewStateForVacation(String vacationCode, String newState){
+
+        String sql = "UPDATE Vacations SET state = ? "+
+                "WHERE code_vacation = ?";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, newState);
+            pstmt.setString(2, vacationCode);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+
+
+
+    }
+
+    public void changeOwnersVacations(String user1,String codeNewVacation1, String user2, String codeNewVacation2){
+        changeOwnerVacation(user1,codeNewVacation1);
+        changeOwnerVacation(user2,codeNewVacation2);
+    }
+
+    private void changeOwnerVacation(String user1, String code) {
+
+        String sql = "UPDATE Vacations SET owner = ? "+
+                "WHERE code_vacation = ?";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, user1);
+            pstmt.setString(2, code);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+    }
 }
