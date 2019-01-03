@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="656.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ViewMyVacationsView">
+<AnchorPane prefHeight="656.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ViewMyVacationsView">
    <children>
       <Label fx:id="lb_Gesture" layoutX="249.0" layoutY="277.0" prefHeight="17.0" prefWidth="233.0" text="Sorry, you dont have any vacations for exchange" textFill="#e80b0b" visible="false" />
       <Label layoutX="304.0" layoutY="56.0" prefHeight="25.0" prefWidth="105.0" text="My Vacations">
@@ -28,7 +28,7 @@
          </columns>
       </TableView>
       <Button layoutX="7.0" layoutY="17.0" mnemonicParsing="false" text="&lt;-back" />
-      <RadioButton layoutX="261.0" layoutY="448.0" mnemonicParsing="false" onAction="#ChangeState" prefHeight="17.0" prefWidth="86.0" text="For Sale">
+      <RadioButton layoutX="261.0" layoutY="448.0" mnemonicParsing="false" onAction="#ChangeStateToSale" prefHeight="17.0" prefWidth="86.0" text="For Sale">
          <font>
             <Font size="14.0" />
          </font></RadioButton>
@@ -37,7 +37,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <RadioButton layoutX="261.0" layoutY="475.0" mnemonicParsing="false" onAction="#ChangeState" prefHeight="20.0" prefWidth="113.0" text="For Exchange">
+      <RadioButton layoutX="261.0" layoutY="475.0" mnemonicParsing="false" onAction="#ChangeStateToSale" prefHeight="20.0" prefWidth="113.0" text="For Exchange">
          <font>
             <Font size="14.0" />
          </font></RadioButton>

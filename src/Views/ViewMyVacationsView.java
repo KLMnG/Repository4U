@@ -21,7 +21,7 @@ public class ViewMyVacationsView implements IView {
     private ViewMyVacationsController controller;
 
     @FXML
-    public TableView tv_vacations;
+    public TableView tv_MyVacations;
     public TableColumn col_from;
     public TableColumn col_to;
     public TableColumn col_days;
@@ -43,7 +43,7 @@ public class ViewMyVacationsView implements IView {
         this.data = FXCollections.observableArrayList();
 
         col_from.setEditable(false);
-        tv_vacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
+        tv_MyVacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     VacationData rowData = row.getItem();
@@ -77,7 +77,7 @@ public class ViewMyVacationsView implements IView {
         );
 
 
-        this.tv_vacations.setItems(data);
+        this.tv_MyVacations.setItems(data);
     }
 
     private void initializeView() {
@@ -85,7 +85,7 @@ public class ViewMyVacationsView implements IView {
     }
 
     public VacationData getSelectedVacation() {
-        return (VacationData) this.tv_vacations.getSelectionModel().getSelectedItem();
+        return (VacationData) this.tv_MyVacations.getSelectionModel().getSelectedItem();
     }
 
     public void addToTable(ArrayList<VacationData> tmp) {

@@ -208,4 +208,21 @@ public class VacationModel {
         } catch (SQLException e) {
         }
     }
+    ///// for exchange ///////////
+    public void addNewExchange(String user1, String user2, int codeVacation1, int codeVacation2){
+        String sql = "INSERT INTO Exchange(user1,user2,code1,code2) VALUES(?,?,?,?)";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, user1);
+            pstmt.setString(2, user2);
+            pstmt.setInt(3, codeVacation1);
+            pstmt.setInt(4, codeVacation2);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+    }
 }
