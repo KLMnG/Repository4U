@@ -74,6 +74,18 @@ public class VacationData {
         this.state = State.FOR_SELL;
     }
 
+    public VacationData(List<TicketData> ticketData, int price, String vacationType, int code,int timeToStay, User seller, HotelData hotel, State state) {
+        this.ticketData = ticketData;
+        this.VacationType = vacationType;
+        this.Days = new SimpleIntegerProperty(timeToStay);
+        this.Travelers = new SimpleStringProperty(ticketData.size() + "");
+        this.Price = new SimpleIntegerProperty(price);
+        this.code = code;
+        this.Seller = seller;
+        this.hotel = hotel;
+        this.state = state;
+    }
+
     public int getCode() {
         return code;
     }

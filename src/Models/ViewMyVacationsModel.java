@@ -28,11 +28,9 @@ public class ViewMyVacationsModel {
         return allVaca;
     }
 
-    public void ChangeState(VacationData vacationData, String state) {
-        if(state.equals("for sale"))
-        vacationModel.setNewStateForVacation(vacationData.getCode()+"", VacationData.State.FOR_SELL);
-        else
-            vacationModel.setNewStateForVacation(vacationData.getCode()+"", VacationData.State.FOR_EXCHANGE);
+    public void ChangeState(VacationData vacationData, VacationData.State state) {
+        vacationModel.setNewStateForVacation(vacationData.getCode(), state);
+
     }
 
     public void setSelectedVacationCode(int selectedVacationCode) {

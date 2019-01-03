@@ -24,11 +24,11 @@
             <TableColumn fx:id="col_days" prefWidth="65.0" text="Days" />
             <TableColumn fx:id="col_travelers" prefWidth="81.0" text="Travelers" />
             <TableColumn fx:id="col_price" minWidth="0.0" prefWidth="81.0" text="Price" />
-            <TableColumn fx:id="col_vacationState" prefWidth="94.0" text="Vacation state" />
+            <TableColumn fx:id="col_vacationState" prefWidth="94.0" text="VacationState" />
          </columns>
       </TableView>
-      <Button layoutX="7.0" layoutY="17.0" mnemonicParsing="false" text="&lt;-back" />
-      <RadioButton layoutX="261.0" layoutY="448.0" mnemonicParsing="false" onAction="#ChangeStateToSale" prefHeight="17.0" prefWidth="86.0" text="For Sale">
+      <Button layoutX="7.0" layoutY="17.0" mnemonicParsing="false" onAction="#back" text="&lt;-back" />
+      <RadioButton fx:id="rb_forSale" layoutX="261.0" layoutY="448.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="86.0" text="For Sale">
          <font>
             <Font size="14.0" />
          </font></RadioButton>
@@ -37,9 +37,10 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <RadioButton layoutX="261.0" layoutY="475.0" mnemonicParsing="false" onAction="#ChangeStateToSale" prefHeight="20.0" prefWidth="113.0" text="For Exchange">
+      <RadioButton fx:id="rb_forExchange" layoutX="261.0" layoutY="475.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="113.0" text="For Exchange">
          <font>
             <Font size="14.0" />
          </font></RadioButton>
+      <Button fx:id="bn_change" layoutX="456.0" layoutY="456.0" mnemonicParsing="false" onAction="#ChangeState" prefHeight="25.0" prefWidth="95.0" text="CHANGE" />
    </children>
 </AnchorPane>

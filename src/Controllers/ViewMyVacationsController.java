@@ -45,9 +45,15 @@ public class ViewMyVacationsController extends AController {
 
     }
 
-    public void ChangeState(String state) {
+    public void ChangeState(VacationData.State state) {
         VacationData vacationData  = this.model.getSelectedVacationCode();
         this.model.ChangeState(vacationData, state);
+
+    }
+
+    public void back() {
+        SwapScene(PapaController.Views.HomePageLoggedIn);
+
 
     }
 }
