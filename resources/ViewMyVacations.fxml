@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="656.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.ViewMyVacationsView">
+   <children>
+      <Label fx:id="lb_Gesture" layoutX="249.0" layoutY="277.0" prefHeight="17.0" prefWidth="233.0" text="Sorry, you dont have any vacations for exchange" textFill="#e80b0b" visible="false" />
+      <Label layoutX="304.0" layoutY="56.0" prefHeight="25.0" prefWidth="105.0" text="My Vacations">
+         <font>
+            <Font name="Yu Gothic Regular" size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tv_MyVacations" layoutX="61.0" layoutY="122.0" prefHeight="244.0" prefWidth="628.0">
+         <columns>
+            <TableColumn fx:id="col_from" prefWidth="104.0" text="From" />
+            <TableColumn fx:id="col_to" prefWidth="86.0" text="To" />
+            <TableColumn fx:id="col_depart" prefWidth="116.0" text="Depart" />
+            <TableColumn fx:id="col_days" prefWidth="65.0" text="Days" />
+            <TableColumn fx:id="col_travelers" prefWidth="81.0" text="Travelers" />
+            <TableColumn fx:id="col_price" minWidth="0.0" prefWidth="81.0" text="Price" />
+            <TableColumn fx:id="col_vacationState" prefWidth="94.0" text="Vacation state" />
+         </columns>
+      </TableView>
+      <Button layoutX="7.0" layoutY="17.0" mnemonicParsing="false" text="&lt;-back" />
+      <RadioButton layoutX="261.0" layoutY="448.0" mnemonicParsing="false" onAction="#ChangeState" prefHeight="17.0" prefWidth="86.0" text="For Sale">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <Label layoutX="94.0" layoutY="456.0" prefHeight="27.0" prefWidth="155.0" text="Change state to">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="261.0" layoutY="475.0" mnemonicParsing="false" onAction="#ChangeState" prefHeight="20.0" prefWidth="113.0" text="For Exchange">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+   </children>
+</AnchorPane>
