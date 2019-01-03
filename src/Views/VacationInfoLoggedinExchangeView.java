@@ -4,6 +4,7 @@ import Controllers.AController;
 import Controllers.VacationInfoLoggedinController;
 import Controllers.VacationInfoLoggedinExchangeController;
 import General.TicketData;
+import General.VacationData;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,10 +15,10 @@ import javafx.scene.layout.AnchorPane;
 
 import java.util.List;
 
-public class VacationInfoLoggedinView implements IView{
+public class VacationInfoLoggedinExchangeView implements IView {
 
 
-    private VacationInfoLoggedinController controller;
+    private VacationInfoLoggedinExchangeController controller;
 
     public Label lb_weight;
     public Label lb_width;
@@ -38,11 +39,23 @@ public class VacationInfoLoggedinView implements IView{
     public TableColumn col_destination;
     public TableColumn col_flghtDate;
     public TableColumn col_flghtBack;
+
+    public TableView tbl_myTickets;
+    public TableColumn col_from;
+    public TableColumn col_to;
+    public TableColumn col_days;
+    public TableColumn col_depart;
+    public TableColumn col_travelers;
+    public TableColumn col_price;
+
+
     public AnchorPane ap_luggage;
     public AnchorPane ap_hotel;
     public AnchorPane ap_moreinfo;
 
     private ObservableList<TicketData> data;
+    private ObservableList<VacationData> myTicketsData;
+
     private SimpleBooleanProperty luggageBinding;
     private SimpleBooleanProperty hotelBinding;
     private SimpleBooleanProperty moreinfoBinding;
@@ -50,6 +63,7 @@ public class VacationInfoLoggedinView implements IView{
     public void initialize(){
 
         this.data = FXCollections.observableArrayList();
+        this.myTicketsData = FXCollections.observableArrayList();
         this.luggageBinding = new SimpleBooleanProperty(false);
         this.hotelBinding = new SimpleBooleanProperty(false);
         this.moreinfoBinding = new SimpleBooleanProperty(false);
@@ -87,12 +101,32 @@ public class VacationInfoLoggedinView implements IView{
                 new PropertyValueFactory<TicketData, Boolean>("includes_flight_back")
         );
 
-        this.tbl_tickets.setItems(data);
+        col_from.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("From")
+        );
+        col_to.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("To")
+        );
+        col_days.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("Days")
+        );
+        col_depart.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("Depart")
+        );
+        col_travelers.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("Travelers")
+        );
+        col_price.setCellValueFactory(
+                new PropertyValueFactory<VacationData,Integer>("Price")
+        );
+
+
+        this.tbl_myTickets.setItems(myTicketsData);
     }
 
     @Override
     public void setController(AController controller) {
-        this.controller = (VacationInfoLoggedinController) controller;
+        this.controller = (VacationInfoLoggedinExchangeController) controller;
         this.controller.initializeView();
     }
 
@@ -134,10 +168,6 @@ public class VacationInfoLoggedinView implements IView{
         this.controller.back();
     }
 
-    public void PurchaseVacation(ActionEvent actionEvent) {
-        this.controller.PurchaseVacation();
-    }
-
     public void ShowInfoAlert(String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION,alertMessage, ButtonType.OK);
         alert.show();
@@ -152,9 +182,18 @@ public class VacationInfoLoggedinView implements IView{
         this.data.setAll(ticketTableView);
     }
 
+    public void setMyVacationTableView(List<VacationData> ticketTableView) {
+        this.myTicketsData.clear();
+        this.myTicketsData.setAll(ticketTableView);
+    }
+
     private void SetLuggageData(TicketData rowData) {
         this.lb_height.setText(rowData.getHeight() + "");
         this.lb_weight.setText(rowData.getWeight() + "");
         this.lb_width.setText(rowData.getWidth() + "");
+    }
+
+    public void ExchangeVacation(ActionEvent actionEvent) {
+        this.controller.ExchangeVacation((VacationData)this.tbl_myTickets.getSelectionModel().getSelectedItem());
     }
 }
