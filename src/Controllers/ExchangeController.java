@@ -2,16 +2,16 @@ package Controllers;
 
 import General.PapaController;
 import General.VacationData;
-import Models.VacationInfoLoggedinExchangeModel;
+import Models.ExchangeModel;
 import Views.IView;
 import Views.VacationInfoLoggedinExchangeView;
 
-public class VacationInfoLoggedinExchangeController extends AController{
+public class ExchangeController extends AController{
 
     private VacationInfoLoggedinExchangeView view;
-    private VacationInfoLoggedinExchangeModel model;
+    private ExchangeModel model;
 
-    public VacationInfoLoggedinExchangeController(PapaController papa, VacationInfoLoggedinExchangeModel model) {
+    public ExchangeController(PapaController papa, ExchangeModel model) {
         super(papa);
         this.model = model;
     }

@@ -78,11 +78,11 @@ public class HomePageLoggedinView implements IView{
 
         this.tv_ForSellVacations.setItems(ForSelldata);
 
-        tv_ForSellVacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
+        tv_ForExchangeVacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     VacationData rowData = row.getItem();
-                    this.controller.openVacationInfoWindows();
+                    this.controller.openVacationInfoExchangeWindows();
                 }
             });
             return row ;
@@ -137,6 +137,9 @@ public class HomePageLoggedinView implements IView{
 
     public VacationData getSelectedVacation() {
         return (VacationData) this.tv_ForSellVacations.getSelectionModel().getSelectedItem();
+    }
+    public VacationData getSelectedExchangeVacation() {
+        return (VacationData) this.tv_ForExchangeVacations.getSelectionModel().getSelectedItem();
     }
 
     public void Signout(ActionEvent actionEvent){

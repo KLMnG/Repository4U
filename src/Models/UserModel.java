@@ -138,12 +138,12 @@ public class UserModel {
         VacationData vacationD;
         String sql = "SELECT Tickets.code as ticketCode, flight_company ,departure_date, includes_flight_back, departure_from, destination, ticket_type, weight, height, width,\n" +
                 "                Users.Username as Username, Users.Password as Password, Users.BirthDate as BirthDate,Users.FirstName as FirstName, Users.LastName as LastName, Users.City as City,\n" +
-                "                Vacations.code as VacationCode, Vacations.time_to_stay as time_to_stay, Vacations.vacation_type as vacation_type, Vacations.hotel as hotel, Vacations.owner as owner, Vacations.price as price, Vacations.state as state,\n" +
+                "                Vacations.code as VacationCode, Vacations.time_to_stay as time_to_stay, Vacations.vacation_type as vacation_type, Vacations.hotel as hotel, Vacations.owner as owner, Vacations.price as price,\n" +
                 "                Hotels.code as hotelName ,Hotels.address as address, Hotels.rate as rate\n" +
                 "                FROM Tickets left join Vacations on Vacations.code = Tickets.vacation\n" +
                 "                left join Hotels on Hotels.code = Vacations.hotel\n" +
                 "                left join Users on Vacations.owner = Users.Username\n" +
-                "\t\t\t\twhere Vacations.owner = ? and\n" +
+                "                where Vacations.owner = ? and\n" +
                 "                Vacations.state = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -165,7 +165,7 @@ public class UserModel {
                     List<TicketData> lst = new ArrayList<>();
                     lst.add(ticketData);
                     HotelData hotelData = new HotelData(rs.getString("hotelName"),rs.getString("address"),rs.getString("rate"));
-                    vacationD = new VacationData(lst,price, vacationType, rs.getInt("VacationCode"), rs.getInt("time_to_stay"), seller,hotelData);
+                    vacationD = new VacationData(lst,price, vacationType, rs.getInt("VacationCode"), rs.getInt("time_to_stay"), seller,hotelData,state);
                     allVacation.add(vacationD);
                     vacations.put(rs.getInt("VacationCode"), vacationD);
                 } else vacations.get(rs.getInt("VacationCode")).addToTicketData(ticketData);

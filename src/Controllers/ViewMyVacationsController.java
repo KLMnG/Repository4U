@@ -39,6 +39,7 @@ public class ViewMyVacationsController extends AController {
 
 
     public void openChangeState() {
+
         VacationData v = this.view.getSelectedVacation();
         this.model.setSelectedVacationCode(v.getCode());
 
@@ -48,7 +49,6 @@ public class ViewMyVacationsController extends AController {
     public void ChangeState(VacationData.State state) {
         VacationData vacationData  = this.model.getSelectedVacationCode();
         this.model.ChangeState(vacationData, state);
-
     }
 
     public void back() {

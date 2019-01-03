@@ -65,9 +65,6 @@ public class MassagesRequestsController extends AController {
     }
 
 
-
-
-
     public void cancelConfirm(PurchaseMessage selectedConfirmMessage) {
         model.removeRequest(UserModel.getUsername(),selectedConfirmMessage.getPurchase_User(), selectedConfirmMessage.getVacationCode());
     }

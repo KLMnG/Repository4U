@@ -1,11 +1,9 @@
 package Views;
 
 import Controllers.AController;
-import Controllers.VacationInfoLoggedinController;
-import Controllers.VacationInfoLoggedinExchangeController;
+import Controllers.ExchangeController;
 import General.TicketData;
 import General.VacationData;
-import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +17,7 @@ import java.util.List;
 public class VacationInfoLoggedinExchangeView implements IView {
 
 
-    private VacationInfoLoggedinExchangeController controller;
+    private ExchangeController controller;
 
     public Label lb_weight;
     public Label lb_width;
@@ -41,7 +39,7 @@ public class VacationInfoLoggedinExchangeView implements IView {
     public TableColumn col_flghtDate;
     public TableColumn col_flghtBack;
 
-    public TableView tbl_myTickets;
+    public TableView tbl_myVacations;
     public TableColumn col_from;
     public TableColumn col_to;
     public TableColumn col_days;
@@ -55,7 +53,7 @@ public class VacationInfoLoggedinExchangeView implements IView {
     public AnchorPane ap_moreinfo;
 
     private ObservableList<TicketData> data;
-    private ObservableList<VacationData> myTicketsData;
+    private ObservableList<VacationData> myVacationsData;
 
     private SimpleBooleanProperty luggageBinding;
     private SimpleBooleanProperty hotelBinding;
@@ -66,7 +64,7 @@ public class VacationInfoLoggedinExchangeView implements IView {
     public void initialize(){
 
         this.data = FXCollections.observableArrayList();
-        this.myTicketsData = FXCollections.observableArrayList();
+        this.myVacationsData = FXCollections.observableArrayList();
         this.luggageBinding = new SimpleBooleanProperty(false);
         this.hotelBinding = new SimpleBooleanProperty(false);
         this.moreinfoBinding = new SimpleBooleanProperty(false);
@@ -75,15 +73,12 @@ public class VacationInfoLoggedinExchangeView implements IView {
         this.ap_hotel.visibleProperty().bind(hotelBinding);
         this.ap_moreinfo.visibleProperty().bind(moreinfoBinding);
 
-        this.tbl_tickets.setRowFactory(param -> {TableRow<TicketData> row = new TableRow<>();
+        this.tbl_myVacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
-                    TicketData rowData = row.getItem();
-                    this.luggageBinding.setValue(true);
-                    this.SetLuggageData(rowData);
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    VacationData rowData = row.getItem();
+
                 }
-                else if(row.isEmpty())
-                    this.luggageBinding.setValue(false);
             });
             return row ;
         });
@@ -103,6 +98,22 @@ public class VacationInfoLoggedinExchangeView implements IView {
         col_flghtBack.setCellValueFactory(
                 new PropertyValueFactory<TicketData, Boolean>("includes_flight_back")
         );
+
+        this.tbl_tickets.setRowFactory(param -> {TableRow<TicketData> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
+                    TicketData rowData = row.getItem();
+                    this.luggageBinding.setValue(true);
+                    this.SetLuggageData(rowData);
+                }
+                else if(row.isEmpty())
+                    this.luggageBinding.setValue(false);
+            });
+            return row ;
+        });
+
+
+        this.tbl_tickets.setItems(data);
 
         col_from.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("From")
@@ -124,19 +135,19 @@ public class VacationInfoLoggedinExchangeView implements IView {
         );
 
 
-        this.tbl_myTickets.setItems(myTicketsData);
+        this.tbl_myVacations.setItems(myVacationsData);
 
-        this.btnExchange.disableProperty().bind(new ObjectBinding<Boolean>() {
-            @Override
-            protected Boolean computeValue() {
-                return tbl_myTickets.getSelectionModel().getSelectedItem() == null;
-            }
-        });
+//        this.btnExchange.disableProperty().bind(new ObjectBinding<Boolean>() {
+//            @Override
+//            protected Boolean computeValue() {
+//                return tbl_myVacations.getSelectionModel().getSelectedItem() == null;
+//            }
+//        });
     }
 
     @Override
     public void setController(AController controller) {
-        this.controller = (VacationInfoLoggedinExchangeController) controller;
+        this.controller = (ExchangeController) controller;
         this.controller.initializeView();
     }
 
@@ -193,8 +204,8 @@ public class VacationInfoLoggedinExchangeView implements IView {
     }
 
     public void setMyVacationTableView(List<VacationData> ticketTableView) {
-        this.myTicketsData.clear();
-        this.myTicketsData.setAll(ticketTableView);
+        this.myVacationsData.clear();
+        this.myVacationsData.setAll(ticketTableView);
     }
 
     private void SetLuggageData(TicketData rowData) {
@@ -204,6 +215,6 @@ public class VacationInfoLoggedinExchangeView implements IView {
     }
 
     public void ExchangeVacation(ActionEvent actionEvent) {
-        this.controller.ExchangeVacation((VacationData)this.tbl_myTickets.getSelectionModel().getSelectedItem());
+        this.controller.ExchangeVacation((VacationData)this.tbl_myVacations.getSelectionModel().getSelectedItem());
     }
 }

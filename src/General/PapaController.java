@@ -15,7 +15,7 @@ public class PapaController {
 
     private Stage stage;
     private Scene scene;
-    public enum Views {HomePage, RegisterWindow, HomePageLoggedIn, LoginWindow,VacationInfo,VacationInfoLoggedIn,CreateVationWindow, MassegesRequests, ViewVacations, PurchesVacation, ViewMyVacations};
+    public enum Views {HomePage, RegisterWindow, HomePageLoggedIn, LoginWindow,VacationInfo,VacationInfoLoggedIn,VacationInfoExchangeLoggedIn,CreateVationWindow, MassegesRequests, ViewVacations, PurchesVacation, ViewMyVacations};
 
     private HashMap<Views,String> views;
     private HashMap<Views, AController> controllers;
@@ -40,6 +40,7 @@ public class PapaController {
         this.views.put(Views.CreateVationWindow, "/createVacations.fxml");
         this.views.put(Views.VacationInfo,"/VacationInfo.fxml");
         this.views.put(Views.VacationInfoLoggedIn,"/VacationInfoLoggedin.fxml");
+        this.views.put(Views.VacationInfoExchangeLoggedIn,"/VacationInfoLoggedInExchange.fxml");
         this.views.put(Views.MassegesRequests,"/MassagesRequests.fxml");
         this.views.put(Views.PurchesVacation,"/PurchaseVacation.fxml");
         this.views.put(Views.ViewMyVacations,"/ViewMyVacations.fxml");
@@ -54,6 +55,7 @@ public class PapaController {
         this.controllers.put(Views.CreateVationWindow,new CreateVacationsController(this,vacationModel));
         this.controllers.put(Views.VacationInfo,new VacationInfoController(this,vacationModel));
         this.controllers.put(Views.VacationInfoLoggedIn,new VacationInfoLoggedinController(this,new VacationInfoLoggedinModel(userModel,vacationModel,purchaseVacationModel)));
+        this.controllers.put(Views.VacationInfoExchangeLoggedIn,new ExchangeController(this,new ExchangeModel(vacationModel,userModel,purchaseVacationModel)));
         this.controllers.put(Views.MassegesRequests,new MassagesRequestsController(this,purchaseVacationModel));
         this.controllers.put(Views.PurchesVacation, new PurchaseVacationController(this,purchaseVacationModel));
         this.controllers.put(Views.ViewMyVacations, new ViewMyVacationsController(this,viewMyVacationModel));

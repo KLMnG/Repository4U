@@ -118,6 +118,12 @@
                     </children>
                 </AnchorPane>
             </children>
+            <Label layoutX="37.0" layoutY="470.0" prefHeight="21.0" prefWidth="41.0" text="price :">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <Label fx:id="lb_vacationPrice" layoutX="88.0" layoutY="472.0" text="Label" />
         </AnchorPane>
     </center>
     <bottom>

@@ -56,6 +56,12 @@ public class HomePageLoggedInController extends AController{
         SwapScene(PapaController.Views.VacationInfoLoggedIn);
     }
 
+    public void openVacationInfoExchangeWindows() {
+        VacationData v = this.view.getSelectedExchangeVacation();
+        this.model.setSelectedVacationCode(v.getCode());
+        SwapScene(PapaController.Views.VacationInfoExchangeLoggedIn);
+    }
+
     public void showReq() {
 
         SwapScene(PapaController.Views.MassegesRequests);

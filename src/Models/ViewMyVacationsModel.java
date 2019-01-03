@@ -4,13 +4,10 @@ import General.VacationData;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ViewMyVacationsModel {
     VacationModel vacationModel;
     UserModel userModel;
-    List<VacationData> forSale;
-    List <VacationData> forExchange;
 
     public ViewMyVacationsModel(UserModel userModel, VacationModel vacationModel){
         this.userModel = userModel;

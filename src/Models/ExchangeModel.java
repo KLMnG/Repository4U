@@ -8,13 +8,13 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class VacationInfoLoggedinExchangeModel {
+public class ExchangeModel {
 
     private VacationModel vacationModel;
     private UserModel userModel;
     private PurchaseVacationModel purchaseVacationModel;
 
-    public VacationInfoLoggedinExchangeModel(VacationModel vacationModel, UserModel userModel,PurchaseVacationModel purchaseVacationModel) {
+    public ExchangeModel(VacationModel vacationModel, UserModel userModel, PurchaseVacationModel purchaseVacationModel) {
         this.vacationModel = vacationModel;
         this.userModel = userModel;
         this.purchaseVacationModel = purchaseVacationModel;

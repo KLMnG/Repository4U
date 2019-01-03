@@ -2,7 +2,6 @@ package Views;
 
 import Controllers.AController;
 import Controllers.VacationInfoLoggedinController;
-import Controllers.VacationInfoLoggedinExchangeController;
 import General.TicketData;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
