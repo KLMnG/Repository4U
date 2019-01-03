@@ -38,6 +38,10 @@ public class HomePageLoggedinModel {
         this.vacationModel.read();
         return vacationModel.getVacationData();
     }
+    public Map<Integer,VacationData> getVacationsByType(String User,VacationData.State state) {
+        //this.vacationModel.getVacationData()
+        return vacationModel.getVacationData();
+    }
 
     public void setSelectedVacationCode(int selectedVacation) {
         this.vacationModel.setSelectedVacationCode(selectedVacation);

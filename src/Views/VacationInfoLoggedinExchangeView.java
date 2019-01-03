@@ -182,7 +182,7 @@ public class VacationInfoLoggedinExchangeView implements IView {
         this.data.setAll(ticketTableView);
     }
 
-    public void setMyTicketTableView(List<VacationData> ticketTableView) {
+    public void setMyVacationTableView(List<VacationData> ticketTableView) {
         this.myTicketsData.clear();
         this.myTicketsData.setAll(ticketTableView);
     }

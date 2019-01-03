@@ -132,7 +132,7 @@ public class UserModel {
         return arrl;
     }
 
-    public List<VacationData> getMyVacation(String user, String state){
+    public List<VacationData> getMyVacation(String user, VacationData.State state){
         Map<Integer, VacationData> vacations = new HashMap<>();
         List<VacationData> allVacation= new ArrayList<>();;
         VacationData vacationD;
@@ -149,7 +149,7 @@ public class UserModel {
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,user);
-            pstmt.setString(2,state);
+            pstmt.setString(2,state.toString());
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 User seller = new User(rs.getString("Username"), "Password", "FirstName", "LastName", "City", "BirthDate");

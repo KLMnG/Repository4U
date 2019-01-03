@@ -113,7 +113,7 @@ public class VacationModel {
         return hotelsName;
     }
 
-    public List<VacationData> getAllVacationByType(String user,String state){
+    public List<VacationData> getAllVacationByType(String user,VacationData.State state){
 
         this.vacations = new HashMap<>();
         List<VacationData> allVacation= new ArrayList<>();;
@@ -130,7 +130,7 @@ public class VacationModel {
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,user);
-            pstmt.setString(2,state);
+            pstmt.setString(2,state.toString());
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 User seller = new User(rs.getString("Username"), "Password", "FirstName", "LastName", "City", "BirthDate");
@@ -159,7 +159,7 @@ public class VacationModel {
         return allVacation;
     }
 
-    public void setNewStateForVacation(String vacationCode, String newState){
+    public void setNewStateForVacation(String vacationCode, VacationData.State newState){
 
         String sql = "UPDATE Vacations SET state = ? "+
                 "WHERE code_vacation = ?";
@@ -167,7 +167,7 @@ public class VacationModel {
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, newState);
+            pstmt.setString(1, newState.toString());
             pstmt.setString(2, vacationCode);
 
             pstmt.executeUpdate();

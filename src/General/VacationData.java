@@ -12,7 +12,7 @@ public class VacationData {
 
     private String VacationType;
 
-    private enum State {FOR_SELL,FOR_EXCHANGE,INVISIBLE;}
+    public enum State {FOR_SELL,FOR_EXCHANGE,INVISIBLE;}
 
     private HotelData hotel;
     private State state;

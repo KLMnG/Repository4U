@@ -21,23 +21,22 @@ public class HomePageLoggedinView implements IView{
 
     private HomePageLoggedInController controller;
 
-    public TableView tv_vacations;
-    public TableColumn col_from;
-    public TableColumn col_to;
-    public TableColumn col_days;
-    public TableColumn col_depart;
-    public TableColumn col_travelers;
-    public TableColumn col_price;
+    public TableView tv_ForSellVacations;
+    public TableColumn col_fromS;
+    public TableColumn col_toS;
+    public TableColumn col_daysS;
+    public TableColumn col_departS;
+    public TableColumn col_travelersS;
+    public TableColumn col_priceS;
 
-    private ObservableList<VacationData> data;
+    private ObservableList<VacationData> ForSelldata;
 
     public Label lb_Gesture;
     public void initialize(){
 
-        this.data = FXCollections.observableArrayList();
+        this.ForSelldata = FXCollections.observableArrayList();
 
-        col_from.setEditable(false);
-        tv_vacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
+        tv_ForSellVacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     VacationData rowData = row.getItem();
@@ -47,26 +46,26 @@ public class HomePageLoggedinView implements IView{
             return row ;
         });
 
-        col_from.setCellValueFactory(
+        col_fromS.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("From")
         );
-        col_to.setCellValueFactory(
+        col_toS.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("To")
         );
-        col_days.setCellValueFactory(
+        col_daysS.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("Days")
         );
-        col_depart.setCellValueFactory(
+        col_departS.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("Depart")
         );
-        col_travelers.setCellValueFactory(
+        col_travelersS.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("Travelers")
         );
-        col_price.setCellValueFactory(
+        col_priceS.setCellValueFactory(
                 new PropertyValueFactory<VacationData,Integer>("Price")
         );
 
-        this.tv_vacations.setItems(data);
+        this.tv_ForSellVacations.setItems(ForSelldata);
     }
 
     private void initializeView() {
@@ -87,11 +86,11 @@ public class HomePageLoggedinView implements IView{
 
 
     public void addToTable(List<VacationData> vc){
-        data.addAll(vc);
+        ForSelldata.addAll(vc);
     }
 
     public VacationData getSelectedVacation() {
-        return (VacationData) this.tv_vacations.getSelectionModel().getSelectedItem();
+        return (VacationData) this.tv_ForSellVacations.getSelectionModel().getSelectedItem();
     }
 
     public void Signout(ActionEvent actionEvent){
