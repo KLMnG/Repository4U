@@ -18,7 +18,7 @@ public class HomePageModel {
 
 
     public List<VacationData> getVacations() {
-        return vacationModel.getAllVacationByType(UserModel.getUsername(), VacationData.State.FOR_SELL);
+        return vacationModel.getVacationData();
     }
 
     public void setSelectedVacationCode(int selectedVacation) {

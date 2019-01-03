@@ -172,7 +172,7 @@ public class VacationModel {
                 "left join Vacations on Vacations.code = Tickets.vacation\n" +
                 "left join Hotels on Hotels.code = Vacations.hotel\n" +
                 "left join Users on Vacations.owner = Users.Username\n" +
-                "WHERE NOT Vacations.owner = ? AND Vacation.state = ?";
+                "WHERE NOT Vacations.owner = ? AND Vacations.state = ?";
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,user);

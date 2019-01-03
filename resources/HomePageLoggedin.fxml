@@ -35,6 +35,7 @@
                 <TableColumn fx:id="col_departE" prefWidth="123.0" text="Depart" />
                 <TableColumn fx:id="col_daysE" prefWidth="86.0" text="Days" />
                 <TableColumn fx:id="col_travelersE" prefWidth="86.0" text="Travelers" />
+                <TableColumn fx:id="col_priceE" minWidth="0.0" prefWidth="70.0" text="Price" />
             </columns>
         </TableView>
         <Label layoutX="287.0" layoutY="39.0" prefHeight="25.0" prefWidth="137.0" text="Vacations for sale">
