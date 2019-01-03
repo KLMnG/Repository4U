@@ -27,6 +27,7 @@ public class VacationModel {
     private Map<Integer, VacationData> vacations;
 
     private int selectedVacationCode;
+    private int SelectedVacationForChangeCode;
 
     public VacationModel(UserModel userModel, ModelTicketDB modelTicketDB) {
         this.con = new DBConnection();
@@ -89,6 +90,13 @@ public class VacationModel {
 
     public void setSelectedVacationCode(int selectedVacationCode) {
         this.selectedVacationCode = selectedVacationCode;
+    }
+    public void setSelectedVacationForChangeCode(int selectedVacationCode) {
+        this.SelectedVacationForChangeCode = selectedVacationCode;
+    }
+
+    public VacationData getSelectedVacationForChangeCode(){
+        return this.vacations.get(this.SelectedVacationForChangeCode);
     }
 
     public List<String> getHotelsName() {

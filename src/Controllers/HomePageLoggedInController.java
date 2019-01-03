@@ -66,7 +66,7 @@ public class HomePageLoggedInController extends AController{
     }
 
     public void openViewVacations() {
-
+        SwapScene(PapaController.Views.ViewMyVacations);
 
 
     }
