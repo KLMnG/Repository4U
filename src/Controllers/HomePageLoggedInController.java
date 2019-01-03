@@ -30,11 +30,7 @@ public class HomePageLoggedInController extends AController{
 
     }
     public void getVacations() {
-        ArrayList<VacationData> tmp = new ArrayList<>();
-        Map<Integer, VacationData> vacations = model.getVacations();
-        tmp.addAll(vacations.values());
-
-        this.view.addToTable(tmp);
+        this.view.addToTable(model.getVacations());
 
     }
 

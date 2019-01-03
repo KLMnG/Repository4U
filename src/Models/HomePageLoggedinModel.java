@@ -3,6 +3,7 @@ package Models;
 import General.User;
 import General.VacationData;
 
+import java.util.List;
 import java.util.Map;
 
 public class HomePageLoggedinModel {
@@ -34,13 +35,11 @@ public class HomePageLoggedinModel {
     }
 
 
-    public Map<Integer,VacationData> getVacations() {
-        this.vacationModel.read();
+    public List<VacationData> getVacations() {
         return vacationModel.getVacationData();
     }
-    public Map<Integer,VacationData> getVacationsByType(String User,VacationData.State state) {
-        //this.vacationModel.getVacationData()
-        return vacationModel.getVacationData();
+    public List<VacationData> getVacationsByType(String User,VacationData.State state) {
+        return vacationModel.getAllVacationByType(User,state);
     }
 
     public void setSelectedVacationCode(int selectedVacation) {

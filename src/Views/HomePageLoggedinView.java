@@ -30,11 +30,44 @@ public class HomePageLoggedinView implements IView{
     public TableColumn col_priceS;
 
     private ObservableList<VacationData> ForSelldata;
+    private ObservableList<VacationData> ForExchangedata;
 
     public Label lb_Gesture;
     public void initialize(){
 
         this.ForSelldata = FXCollections.observableArrayList();
+        this.ForExchangedata = FXCollections.observableArrayList();
+
+        tv_ForSellVacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    VacationData rowData = row.getItem();
+                    this.controller.openVacationInfoWindows();
+                }
+            });
+            return row ;
+        });
+
+        col_fromS.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("From")
+        );
+        col_toS.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("To")
+        );
+        col_daysS.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("Days")
+        );
+        col_departS.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("Depart")
+        );
+        col_travelersS.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("Travelers")
+        );
+        col_priceS.setCellValueFactory(
+                new PropertyValueFactory<VacationData,Integer>("Price")
+        );
+
+        this.tv_ForSellVacations.setItems(ForSelldata);
 
         tv_ForSellVacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -85,8 +118,11 @@ public class HomePageLoggedinView implements IView{
     }
 
 
-    public void addToTable(List<VacationData> vc){
+    public void addToSellTable(List<VacationData> vc){
         ForSelldata.addAll(vc);
+    }
+    public void addToExchangeTable(List<VacationData> vc){
+        For.addAll(vc);
     }
 
     public VacationData getSelectedVacation() {
