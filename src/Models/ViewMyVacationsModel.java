@@ -19,9 +19,9 @@ public class ViewMyVacationsModel {
 
 
 
-    public List<VacationData> getVacations() {//fix
-        List<VacationData> forSale = userModel.getMyVacation(UserModel.getUsername(),"");
-        List <VacationData> forExchange = userModel.getMyVacation(UserModel.getUsername(),"");
+    public List<VacationData> getVacations() {
+        List<VacationData> forSale = userModel.getMyVacation(UserModel.getUsername(),VacationData.State.FOR_SELL);
+        List <VacationData> forExchange = userModel.getMyVacation(UserModel.getUsername(),VacationData.State.FOR_EXCHANGE);
         List<VacationData> allVaca = new ArrayList<>();
         allVaca.addAll(forExchange);
         allVaca.addAll(forSale);
@@ -29,8 +29,10 @@ public class ViewMyVacationsModel {
     }
 
     public void ChangeState(VacationData vacationData, String state) {
-        vacationModel.setNewStateForVacation(vacationData.getCode()+"", state);
-
+        if(state.equals("for sale"))
+        vacationModel.setNewStateForVacation(vacationData.getCode()+"", VacationData.State.FOR_SELL);
+        else
+            vacationModel.setNewStateForVacation(vacationData.getCode()+"", VacationData.State.FOR_EXCHANGE);
     }
 
     public void setSelectedVacationCode(int selectedVacationCode) {

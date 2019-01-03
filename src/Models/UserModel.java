@@ -136,15 +136,15 @@ public class UserModel {
         Map<Integer, VacationData> vacations = new HashMap<>();
         List<VacationData> allVacation= new ArrayList<>();;
         VacationData vacationD;
-        String sql = "SELECT Tickets.code as ticketCode, flight_company ,departure_date, includes_flight_back, departure_from, destination, ticket_type, weight, height, width, \n" +
-                "Users.Username as Username, Users.Password as Password, Users.BirthDate as BirthDate,Users.FirstName as FirstName, Users.LastName as LastName, Users.City as City,\n" +
-                "Vacations.code as VacationCode, Vacations.time_to_stay as time_to_stay, Vacations.vacation_type as vacation_type, Vacations.hotel as hotel, Vacations.owner as owner, Vacations.price as price, Vacations.state as state, \n" +
-                "Hotels.code as hotelName ,Hotels.address as address, Hotels.rate as rate\n" +
-                "FROM Tickets\n" +
-                "left join Vacations on Vacations.code = Tickets.vacation\n" +
-                "left join Hotels on Hotels.code = Vacations.hotel\n" +
-                "left join Users on Vacations.owner = Users.Username\n" +
-                "WHERE Vacations.owner = ? AND Vacation.state = ?";
+        String sql = "SELECT Tickets.code as ticketCode, flight_company ,departure_date, includes_flight_back, departure_from, destination, ticket_type, weight, height, width,\n" +
+                "                Users.Username as Username, Users.Password as Password, Users.BirthDate as BirthDate,Users.FirstName as FirstName, Users.LastName as LastName, Users.City as City,\n" +
+                "                Vacations.code as VacationCode, Vacations.time_to_stay as time_to_stay, Vacations.vacation_type as vacation_type, Vacations.hotel as hotel, Vacations.owner as owner, Vacations.price as price, Vacations.state as state,\n" +
+                "                Hotels.code as hotelName ,Hotels.address as address, Hotels.rate as rate\n" +
+                "                FROM Tickets left join Vacations on Vacations.code = Tickets.vacation\n" +
+                "                left join Hotels on Hotels.code = Vacations.hotel\n" +
+                "                left join Users on Vacations.owner = Users.Username\n" +
+                "\t\t\t\twhere Vacations.owner = ? and\n" +
+                "                Vacations.state = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
