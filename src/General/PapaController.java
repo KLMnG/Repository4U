@@ -15,7 +15,7 @@ public class PapaController {
 
     private Stage stage;
     private Scene scene;
-    public enum Views {HomePage, RegisterWindow, HomePageLoggedIn, LoginWindow,VacationInfo,VacationInfoLoggedIn,CreateVationWindow, MassegesRequests, ViewVacations, PurchesVacation};
+    public enum Views {HomePage, RegisterWindow, HomePageLoggedIn, LoginWindow,VacationInfo,VacationInfoLoggedIn,CreateVationWindow, MassegesRequests, ViewVacations, PurchesVacation, ViewMyVacations};
 
     private HashMap<Views,String> views;
     private HashMap<Views, AController> controllers;
@@ -29,6 +29,7 @@ public class PapaController {
         UserModel userModel = new UserModel();
         ModelTicketDB modelTicketDB = new ModelTicketDB();
         VacationModel vacationModel = new VacationModel(userModel,modelTicketDB);
+        ViewMyVacationsModel viewMyVacationModel = new ViewMyVacationsModel(userModel, vacationModel);
         PurchaseVacationModel purchaseVacationModel = new PurchaseVacationModel();
 
 
@@ -41,7 +42,7 @@ public class PapaController {
         this.views.put(Views.VacationInfoLoggedIn,"/VacationInfoLoggedin.fxml");
         this.views.put(Views.MassegesRequests,"/MassagesRequests.fxml");
         this.views.put(Views.PurchesVacation,"/PurchaseVacation.fxml");
-        this.views.put(Views.ViewVacations,"/ViewVacations.fxml");
+        this.views.put(Views.ViewMyVacations,"/ViewMyVacations.fxml");
 
 
 
@@ -55,7 +56,7 @@ public class PapaController {
         this.controllers.put(Views.VacationInfoLoggedIn,new VacationInfoLoggedinController(this,new VacationInfoLoggedinModel(userModel,vacationModel,purchaseVacationModel)));
         this.controllers.put(Views.MassegesRequests,new MassagesRequestsController(this,purchaseVacationModel));
         this.controllers.put(Views.PurchesVacation, new PurchaseVacationController(this,purchaseVacationModel));
-       // this.controllers.put(Views.ViewVacations, new ViewVacationsController(this,ViewVacationsModel));
+        this.controllers.put(Views.ViewMyVacations, new ViewMyVacationsController(this,viewMyVacationModel));
 
 
     }

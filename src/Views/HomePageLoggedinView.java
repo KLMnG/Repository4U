@@ -66,6 +66,7 @@ public class HomePageLoggedinView implements IView{
                 new PropertyValueFactory<VacationData,Integer>("Price")
         );
 
+
         this.tv_vacations.setItems(data);
     }
 
