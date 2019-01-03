@@ -3,7 +3,6 @@ package Controllers;
 import General.PapaController;
 import General.VacationData;
 import Models.VacationInfoLoggedinExchangeModel;
-import Models.VacationInfoLoggedinModel;
 import Views.IView;
 import Views.VacationInfoLoggedinExchangeView;
 

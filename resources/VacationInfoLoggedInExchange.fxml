@@ -140,6 +140,6 @@
         </AnchorPane>
     </center>
     <bottom>
-        <Button mnemonicParsing="false" onAction="#ExchangeVacation" text="Exchange" BorderPane.alignment="CENTER" />
+        <Button fx:id="btnExchange" mnemonicParsing="false" onAction="#ExchangeVacation" text="Exchange" BorderPane.alignment="CENTER" />
     </bottom>
 </BorderPane>

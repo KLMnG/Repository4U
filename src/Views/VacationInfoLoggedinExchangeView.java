@@ -5,6 +5,7 @@ import Controllers.VacationInfoLoggedinController;
 import Controllers.VacationInfoLoggedinExchangeController;
 import General.TicketData;
 import General.VacationData;
+import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -59,6 +60,8 @@ public class VacationInfoLoggedinExchangeView implements IView {
     private SimpleBooleanProperty luggageBinding;
     private SimpleBooleanProperty hotelBinding;
     private SimpleBooleanProperty moreinfoBinding;
+
+    public Button btnExchange;
 
     public void initialize(){
 
@@ -122,6 +125,13 @@ public class VacationInfoLoggedinExchangeView implements IView {
 
 
         this.tbl_myTickets.setItems(myTicketsData);
+
+        this.btnExchange.disableProperty().bind(new ObjectBinding<Boolean>() {
+            @Override
+            protected Boolean computeValue() {
+                return tbl_myTickets.getSelectionModel().getSelectedItem() == null;
+            }
+        });
     }
 
     @Override

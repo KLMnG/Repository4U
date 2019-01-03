@@ -54,7 +54,6 @@ public class PurchaseVacationModel {
         DateT = dateT;
     }
 
-
     public PurchaseVacationModel() {
         con = new DBConnection();
     }
@@ -128,6 +127,7 @@ public class PurchaseVacationModel {
         // now we have map with all the codeVacation and his buyers
         return lstmessage;
     }
+
     public List<PurchaseMessage> listOfSellers(String buyer){
         String sql = "SELECT seller,code_vacation "
                 + "FROM RequestPurchases WHERE buyer = ? ";
@@ -233,4 +233,7 @@ public class PurchaseVacationModel {
         } catch (SQLException e) {
         }
     }
+
+
+
 }

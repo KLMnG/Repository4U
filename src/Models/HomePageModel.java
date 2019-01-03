@@ -17,8 +17,7 @@ public class HomePageModel {
     }
 
 
-    public Map<Integer, VacationData> getVacations() {
-        this.vacationModel.read();
+    public List<VacationData> getVacations() {
         return vacationModel.getVacationData();
     }
 
