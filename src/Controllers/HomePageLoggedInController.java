@@ -30,8 +30,8 @@ public class HomePageLoggedInController extends AController{
 
     }
     public void getVacations() {
-        this.view.addToTable(model.getVacations());
-
+        this.view.addToSellTable(model.getVacationsByType(VacationData.State.FOR_SELL));
+        this.view.addToExchangeTable(model.getVacationsByType(VacationData.State.FOR_EXCHANGE));
     }
 
     public void Signout() {

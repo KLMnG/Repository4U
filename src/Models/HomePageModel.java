@@ -17,9 +17,8 @@ public class HomePageModel {
     }
 
 
-    public Map<Integer, VacationData> getVacations() {
-        this.vacationModel.read();
-        return vacationModel.getVacationData();
+    public List<VacationData> getVacations() {
+        return vacationModel.getAllVacationByType(UserModel.getUsername(), VacationData.State.FOR_SELL);
     }
 
     public void setSelectedVacationCode(int selectedVacation) {

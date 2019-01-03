@@ -29,6 +29,14 @@ public class HomePageLoggedinView implements IView{
     public TableColumn col_travelersS;
     public TableColumn col_priceS;
 
+    public TableView tv_ForExchangeVacations;
+    public TableColumn col_fromE;
+    public TableColumn col_toE;
+    public TableColumn col_daysE;
+    public TableColumn col_departE;
+    public TableColumn col_travelersE;
+    public TableColumn col_priceE;
+
     private ObservableList<VacationData> ForSelldata;
     private ObservableList<VacationData> ForExchangedata;
 
@@ -67,6 +75,7 @@ public class HomePageLoggedinView implements IView{
                 new PropertyValueFactory<VacationData,Integer>("Price")
         );
 
+
         this.tv_ForSellVacations.setItems(ForSelldata);
 
         tv_ForSellVacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
@@ -79,26 +88,27 @@ public class HomePageLoggedinView implements IView{
             return row ;
         });
 
-        col_fromS.setCellValueFactory(
+        col_fromE.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("From")
         );
-        col_toS.setCellValueFactory(
+        col_toE.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("To")
         );
-        col_daysS.setCellValueFactory(
+        col_daysE.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("Days")
         );
-        col_departS.setCellValueFactory(
+        col_departE.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("Depart")
         );
-        col_travelersS.setCellValueFactory(
+        col_travelersE.setCellValueFactory(
                 new PropertyValueFactory<VacationData,String>("Travelers")
         );
-        col_priceS.setCellValueFactory(
+        col_priceE.setCellValueFactory(
                 new PropertyValueFactory<VacationData,Integer>("Price")
         );
 
-        this.tv_ForSellVacations.setItems(ForSelldata);
+        this.tv_ForExchangeVacations.setItems(ForExchangedata);
+
     }
 
     private void initializeView() {
@@ -122,7 +132,7 @@ public class HomePageLoggedinView implements IView{
         ForSelldata.addAll(vc);
     }
     public void addToExchangeTable(List<VacationData> vc){
-        For.addAll(vc);
+        ForExchangedata.addAll(vc);
     }
 
     public VacationData getSelectedVacation() {

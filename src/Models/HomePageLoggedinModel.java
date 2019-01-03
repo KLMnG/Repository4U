@@ -38,8 +38,8 @@ public class HomePageLoggedinModel {
     public List<VacationData> getVacations() {
         return vacationModel.getVacationData();
     }
-    public List<VacationData> getVacationsByType(String User,VacationData.State state) {
-        return vacationModel.getAllVacationByType(User,state);
+    public List<VacationData> getVacationsByType(VacationData.State state) {
+        return vacationModel.getAllVacationByType(UserModel.getUsername(),state);
     }
 
     public void setSelectedVacationCode(int selectedVacation) {
