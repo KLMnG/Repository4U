@@ -29,6 +29,7 @@ public class HomePageLoggedInController extends AController{
         this.view.setUserGesture("♥ Hello " + this.model.getUserName() + " ♥");
 
     }
+
     public void getVacations() {
         ArrayList<VacationData> tmp = new ArrayList<>();
         Map<Integer, VacationData> vacations = model.getVacations();
