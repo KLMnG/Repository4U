@@ -20,6 +20,8 @@ import java.util.List;
 
 public class MassegesRequestsView implements IView{
 
+
+
     private MassagesRequestsController controller;
     @FXML
     public TableView tv_commitPurchase;
@@ -35,6 +37,22 @@ public class MassegesRequestsView implements IView{
 
 
 
+    //exchange
+    public TableView tv_VacationTradeOffers;
+    public TableColumn col_VacationIDvo;
+    public TableColumn col_SellerIDvo;
+
+    public TableView tv_OfferedVacation;
+    public TableColumn col_from;
+    public TableColumn col_to;
+    public TableColumn col_depart;
+    public TableColumn col_days;
+    public TableColumn col_travelers;
+
+    public Button btn_ConfirmTrade;
+    public Button btn_RejectTrade;
+
+    private ObservableList<PurchaseMessage> TradeMessages;
 
     private ObservableList<PurchaseMessage> dataCommit;
     private ObservableList<PurchaseMessage> dataConfirm;
@@ -42,11 +60,22 @@ public class MassegesRequestsView implements IView{
     @Override
     public void setController(AController controller) {
         this.controller = (MassagesRequestsController) controller;
-        this.controller.getCommitList();
+        this.initializeView();
 
     }
+
+
+    private void refreshTable(){
+        this.controller.getCommitList();
+        this.controller.getOfferedVacationsTrades();
+    }
+
+    private void initializeView(){
+        refreshTable();
+    }
+
     public void initialize(){
-        //
+
         this.dataCommit = FXCollections.observableArrayList();
 
         col_ticketCommit.setEditable(false);
@@ -69,7 +98,7 @@ public class MassegesRequestsView implements IView{
 
         this.tv_commitPurchase.setItems(dataCommit);
 
-            //////// for table tv_confirmationPurchase
+        //////// for table tv_confirmationPurchase
         this.dataConfirm = FXCollections.observableArrayList();
 
         tv_confirmationPurchase.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
@@ -91,8 +120,51 @@ public class MassegesRequestsView implements IView{
 
         this.tv_confirmationPurchase.setItems(dataConfirm);
 
-        if(controller!=null)
-            this.controller.getCommitList();
+
+
+
+        col_ticketCommit.setCellValueFactory(
+                new PropertyValueFactory<PurchaseMessage,String>("VacationCode")
+        );
+        col_sellerCommit.setCellValueFactory(
+                new PropertyValueFactory<PurchaseMessage,String>("Seller_User")
+        );
+
+
+
+        tv_OfferedVacation.setRowFactory(param -> {TableRow<PurchaseMessage> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
+                    PurchaseMessage rowData = row.getItem();
+                    this.controller.getOfferedVacationData(rowData.getSeller_User(),rowData.getVacationCode());
+                }
+            });
+            return row ;
+        });
+
+        col_from.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("From")
+        );
+        col_to.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("To")
+        );
+        col_days.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("Days")
+        );
+        col_depart.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("Depart")
+        );
+        col_travelers.setCellValueFactory(
+                new PropertyValueFactory<VacationData,String>("Travelers")
+        );
+
+
+
+        this.btn_ConfirmTrade.visibleProperty().bind(tv_OfferedVacation.selectionModelProperty());
+        this.btn_RejectTrade.visibleProperty().bind(tv_OfferedVacation.selectionModelProperty());
+
+        this.TradeMessages = FXCollections.observableArrayList();
+        this.tv_VacationTradeOffers.setItems(TradeMessages);
     }
 
 
@@ -113,27 +185,33 @@ public class MassegesRequestsView implements IView{
     }
 
     public void addToTableCommit(List<PurchaseMessage> tmp) {
+        dataCommit.clear();
         dataCommit.addAll(tmp);
     }
     public void addToTableConfirm(List<PurchaseMessage> tmp) {
-        dataConfirm.addAll( tmp);
+        dataConfirm.clear();
+        dataConfirm.addAll(tmp);
     }
 
     public void OrderNow(ActionEvent actionEvent) {
         this.controller.OrderNow(getSelectedOrderMessage());
-        initialize();
+        refreshTable();
     }
 
     public void Confirm(ActionEvent actionEvent) {
         this.controller.Confirm(getSelectedConfirmMessage());
         this.controller.confirmation();
-        initialize();
-
+        refreshTable();
     }
-
 
 
     public void cancelConfirm(ActionEvent actionEvent) {
         this.controller.cancelConfirm(getSelectedConfirmMessage());
+    }
+
+    public void setOffredVacationData(VacationData offredVacationData) {
+        ObservableList<VacationData> tmp = FXCollections.observableArrayList();
+        tmp.add(offredVacationData);
+        this.tv_OfferedVacation.setItems(tmp);
     }
 }

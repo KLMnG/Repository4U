@@ -79,10 +79,10 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="760.0" prefWidth="837.0">
                            <children>
-                              <TableView fx:id="tv_commitPurchase1" layoutX="234.0" layoutY="67.0" prefHeight="99.0" prefWidth="268.0">
+                              <TableView fx:id="tv_confirmedTrades" layoutX="234.0" layoutY="67.0" prefHeight="99.0" prefWidth="268.0">
                                  <columns>
-                                    <TableColumn fx:id="col_ticketCommit1" prefWidth="89.0" text="Vacation Code" />
-                                    <TableColumn fx:id="col_sellerCommit1" prefWidth="178.0" text="Seller user name" />
+                                    <TableColumn fx:id="col_VacationIDct" prefWidth="89.0" text="Vacation Code" />
+                                    <TableColumn fx:id="col_SellerIDct" prefWidth="178.0" text="Username" />
                                  </columns>
                               </TableView>
                               <Label layoutX="60.0" layoutY="108.0" prefHeight="25.0" prefWidth="135.0" text="confirmed trades">
@@ -90,10 +90,10 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TableView fx:id="tv_commitPurchase11" layoutX="234.0" layoutY="244.0" prefHeight="93.0" prefWidth="266.0">
+                              <TableView fx:id="tv_VacationTradeOffers" layoutX="234.0" layoutY="244.0" prefHeight="93.0" prefWidth="266.0">
                                  <columns>
-                                    <TableColumn fx:id="col_ticketCommit11" prefWidth="88.0" text="Vacation Code" />
-                                    <TableColumn fx:id="col_sellerCommit11" prefWidth="177.0" text="Seller user name" />
+                                    <TableColumn fx:id="col_VacationIDvo" prefWidth="88.0" text="Vacation Code" />
+                                    <TableColumn fx:id="col_SellerIDvo" prefWidth="177.0" text="Username" />
                                  </columns>
                               </TableView>
                               <Label layoutX="80.0" layoutY="282.0" prefHeight="25.0" prefWidth="91.0" text="trade offers">
@@ -107,15 +107,15 @@
                                  </font>
                               </Label>
                               <Button layoutX="340.0" layoutY="179.0" mnemonicParsing="false" text="confirm" />
-                              <Button layoutX="234.0" layoutY="503.0" mnemonicParsing="false" text="confirm request" />
-                              <Button layoutX="412.0" layoutY="503.0" mnemonicParsing="false" text="cancel request" />
-                              <TableView fx:id="tv_ForExchangeVacations" layoutX="123.0" layoutY="404.0" prefHeight="82.0" prefWidth="548.0">
+                              <Button fx:id="btn_ConfirmTrade" layoutX="234.0" layoutY="503.0" mnemonicParsing="false" text="confirm request" />
+                              <Button fx:id="btn_RejectTrade" layoutX="412.0" layoutY="503.0" mnemonicParsing="false" text="cancel request" />
+                              <TableView fx:id="tv_OfferedVacation" layoutX="123.0" layoutY="404.0" prefHeight="82.0" prefWidth="548.0">
                                  <columns>
-                                    <TableColumn fx:id="col_fromE" prefWidth="135.0" text="From" />
-                                    <TableColumn fx:id="col_toE" prefWidth="117.0" text="To" />
-                                    <TableColumn fx:id="col_departE" prefWidth="123.0" text="Depart" />
-                                    <TableColumn fx:id="col_daysE" prefWidth="86.0" text="Days" />
-                                    <TableColumn fx:id="col_travelersE" prefWidth="86.0" text="Travelers" />
+                                    <TableColumn fx:id="col_from" prefWidth="135.0" text="From" />
+                                    <TableColumn fx:id="col_to" prefWidth="117.0" text="To" />
+                                    <TableColumn fx:id="col_depart" prefWidth="123.0" text="Depart" />
+                                    <TableColumn fx:id="col_days" prefWidth="86.0" text="Days" />
+                                    <TableColumn fx:id="col_travelers" prefWidth="86.0" text="Travelers" />
                                  </columns>
                               </TableView>
                               <Separator layoutX="198.0" layoutY="218.0" prefHeight="13.0" prefWidth="342.0" />

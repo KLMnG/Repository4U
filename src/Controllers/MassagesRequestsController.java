@@ -3,6 +3,7 @@ package Controllers;
 import General.PapaController;
 import General.PurchaseMessage;
 import General.VacationData;
+import Models.ExchangeModel;
 import Models.PurchaseVacationModel;
 import Models.UserModel;
 import Views.IView;
@@ -15,11 +16,13 @@ import java.util.Map;
 public class MassagesRequestsController extends AController {
 
     private PurchaseVacationModel model;
+    private ExchangeModel exchangeModel;
     private MassegesRequestsView view;
 
-    public MassagesRequestsController(PapaController papaController, PurchaseVacationModel model) {
+    public MassagesRequestsController(PapaController papaController, PurchaseVacationModel model,ExchangeModel exchangeModel) {
         super(papaController);
         this.model = model;
+        this.exchangeModel = exchangeModel;
     }
 
     @Override
@@ -67,5 +70,15 @@ public class MassagesRequestsController extends AController {
 
     public void cancelConfirm(PurchaseMessage selectedConfirmMessage) {
         model.removeRequest(UserModel.getUsername(),selectedConfirmMessage.getPurchase_User(), selectedConfirmMessage.getVacationCode());
+    }
+
+    public void getOfferedVacationData(String offer_user, int myVacationCode) {
+        this.view.setOffredVacationData(this.exchangeModel.getOfferedVacationData(offer_user,myVacationCode));
+    }
+
+    public void getOfferedVacationsTrades() {
+
+//        List <PurchaseMessage> OffredTrades = model.(UserModel.getUsername());
+  //      this.view.addToTableCommit(OffredTrades);
     }
 }
