@@ -1,5 +1,7 @@
 package Models;
 
+import General.PurchaseMessage;
+import General.User;
 import General.VacationData;
 
 import java.sql.Connection;
@@ -24,16 +26,22 @@ public class ExchangeModel {
         return vacationModel.getSelectedVacationData();
     }
 
-    public List<VacationData> getUserExchangeVacations(){
+    public List<VacationData> getUserExchangeVacations() {
         return this.userModel.getMyVacation(UserModel.getUsername(), VacationData.State.FOR_EXCHANGE);
     }
 
 
     public boolean AskToExchange(VacationData vacation) {
-        return this.purchaseVacationModel.addPurchaseVacation(vacationModel.getSelectedVacationData().getCode(),vacationModel.getSelectedVacationData().getSeller().getUsername(), LocalDate.now().toString());
+        return this.purchaseVacationModel.addPurchaseVacation(vacationModel.getSelectedVacationData().getCode(), vacationModel.getSelectedVacationData().getSeller().getUsername(), LocalDate.now().toString());
     }
 
 
+    public VacationData getOfferedVacationData(String offer_user, int myVacationCode) {
+        int code = vacationModel.getVCodeFromExchange(offer_user, myVacationCode, UserModel.getUsername());
+        return this.vacationModel.readByID(code);
+    }
 
-
+    public List<PurchaseMessage> getofferings() {
+        return this.vacationModel.getRequestingOffers(UserModel.getUsername());
+    }
 }
