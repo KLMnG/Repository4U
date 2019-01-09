@@ -57,13 +57,15 @@ public class CreateVacationsController extends AController {
 
         try {
             Integer.parseInt(view.getTf_price().getText());
+            Integer.parseInt(view.getTf_timeToStay().getText());
         } catch (NumberFormatException e) {
-            message += ("Price,must be numbers only\n");
+            message += ("Price and Time to stay,must be numbers only\n");
         }
 
         if(view.getTf_timeToStay().getText().trim().isEmpty()){
             message +="must include time of stay";
         }
+
 
         if (this.view.cb_luggage.isSelected() && (this.view.tf_width.getText().trim().isEmpty() || this.view.tf_weight.getText().trim().isEmpty() || this.view.tf_height.getText().trim().isEmpty())) {
             message += "If Luggage is checked Height,Weight,Width must be filled\n";
@@ -72,17 +74,12 @@ public class CreateVacationsController extends AController {
                 Integer.parseInt(view.getTf_weight().getText());
                 Integer.parseInt(view.getTf_height().getText());
                 Integer.parseInt(view.getTf_width().getText());
+
             } catch (NumberFormatException e) {
                 message += ("Width,Height,Weight must be numbers only\n");
             }
         }
 
-        for (TicketData td : this.view.getTickets()) {
-            if (td.getCode().equals(this.view.getTf_ticketNum().getText())) {
-                message += "Ticket Number must be unique\n";
-                break;
-            }
-        }
         try {
             if ( this.view.getDp_flightDate() == null || new SimpleDateFormat("dd/MM/yyyy").parse(this.view.getDp_flightDate().getEditor().getText()).before(new Date())) {
                 message += "Ticket can't have an expiered date\n";
