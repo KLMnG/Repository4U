@@ -158,7 +158,7 @@ public class MassegesRequestsView implements IView{
                 new PropertyValueFactory<PurchaseMessage,String>("VacationCode")
         );
         col_SellerIDvo.setCellValueFactory(
-                new PropertyValueFactory<PurchaseMessage,String>("Seller_User")
+                new PropertyValueFactory<PurchaseMessage,String>("Purchase_User")
         );
 
 
@@ -266,7 +266,7 @@ public class MassegesRequestsView implements IView{
     }
 
     public void ExConfirmRequest(){
-        this.controller.confirmation(getSelectedPaymentMessageEx());
+        this.controller.confirmEx(getSelectedPaymentMessageEx());
         refreshTable();
 
     }

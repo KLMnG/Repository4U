@@ -216,7 +216,7 @@ public class VacationInfoLoggedinExchangeView implements IView {
     }
 
     public void ExchangeVacation(ActionEvent actionEvent) {
-        if (this.tbl_myVacations == null || this.tbl_myVacations.hasProperties()) {
+        if (this.tbl_myVacations == null || !this.tbl_myVacations.hasProperties()) {
             ShowErrorAlert("Please upload Vacation or set one for Exchange");
         } else
             this.controller.ExchangeVacation((VacationData) this.tbl_myVacations.getSelectionModel().getSelectedItem());
