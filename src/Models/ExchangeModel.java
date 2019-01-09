@@ -1,5 +1,6 @@
 package Models;
 
+import General.DBConnection;
 import General.PurchaseMessage;
 import General.User;
 import General.VacationData;
@@ -32,10 +33,29 @@ public class ExchangeModel {
 
 
     public boolean AskToExchange(VacationData vacation) {
-        return this.purchaseVacationModel.addPurchaseVacation(vacationModel.getSelectedVacationData().getCode(), vacationModel.getSelectedVacationData().getSeller().getUsername(), LocalDate.now().toString());
+        return addExchangeVacation(vacationModel.getSelectedVacationData().getCode(),vacation.getCode(), vacationModel.getSelectedVacationData().getSeller().getUsername(),vacation.getSeller().getUsername());
     }
 
+    public boolean addExchangeVacation(int receiveCodeVacation,int offerCodeVacation, String receiver, String offer ){
 
+         DBConnection con=new DBConnection();
+            String sql = "INSERT INTO Exchange(offering,receiving,offer_code,receiver_code) Values(?,?,?,?)";
+
+            try (Connection conn = con.getSQLLiteDBConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                pstmt.setString(1, offer);
+                pstmt.setString(2, receiver);
+                pstmt.setInt(3, offerCodeVacation);
+                pstmt.setInt(4, receiveCodeVacation);
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                return false;
+            }
+
+        return true;
+    }
     public VacationData getOfferedVacationData(String offer_user, int myVacationCode) {
         int code = vacationModel.getVCodeFromExchange(offer_user, myVacationCode, UserModel.getUsername());
         return this.vacationModel.readByID(code);
