@@ -219,6 +219,10 @@ public class MassegesRequestsView implements IView{
         return (PurchaseMessage)this.tv_PaymentConfirmation.getSelectionModel().getSelectedItem();
     }
 
+    public PurchaseMessage getSelectedPaymentMessageEx(){
+        return (PurchaseMessage)this.tv_VacationTradeOffers.getSelectionModel().getSelectedItem();
+    }
+
     public void back(ActionEvent actionEvent){
         controller.back();
     }
@@ -264,6 +268,12 @@ public class MassegesRequestsView implements IView{
 
     public void addToTablePayment(List<PurchaseMessage> paymentList) {
         dataPayment.addAll(paymentList);
+
+    }
+
+    public void ExConfirmRequest(){
+        this.controller.confirmation(getSelectedPaymentMessageEx());
+        refreshTable();
 
     }
 }

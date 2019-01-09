@@ -32,6 +32,7 @@ public class PurchaseVacationController extends AController {
     public void gotMoney(){
 
         model.removeRequest(model.getSeller(), model.getBuyer(), model.getVacationCode());
+        model.setInvisible(model.getVacationCode());
         view.showWarning("The purchase completed");
         SwapScene(PapaController.Views.MassegesRequests);
     }
