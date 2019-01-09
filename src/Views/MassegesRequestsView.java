@@ -24,20 +24,29 @@ public class MassegesRequestsView implements IView{
     @FXML
     public TableView tv_commitPurchase;
     public TableView tv_confirmationPurchase;
+    public TableView tv_PaymentConfirmation;
     public TableColumn col_ticketCommit;
     public TableColumn col_sellerCommit;
     public TableColumn col_ticketConfirm;
     public TableColumn col_buyer;
-    public Button bn_confirm;
+    public TableColumn col_buyer1;
+    public TableColumn col_ticketConfirm1;
+
+
+    public Button bn_confirmPurches;
     public Button bn_orderNow;
     public Button bn_cancelConfirm;
-    public Button bn_cancelCommit;
+    public Button bn_confirmPayment;
+    public Button bn_cancelConfirm1;
 
 
 
 
     private ObservableList<PurchaseMessage> dataCommit;
     private ObservableList<PurchaseMessage> dataConfirm;
+    private ObservableList<PurchaseMessage> dataPayment;
+
+
 
     @Override
     public void setController(AController controller) {
@@ -46,7 +55,7 @@ public class MassegesRequestsView implements IView{
 
     }
     public void initialize(){
-        //
+        // for table tv_commitPurchase
         this.dataCommit = FXCollections.observableArrayList();
 
         col_ticketCommit.setEditable(false);
@@ -75,7 +84,7 @@ public class MassegesRequestsView implements IView{
         tv_confirmationPurchase.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
-                    bn_confirm.setVisible(true);
+                    bn_confirmPurches.setVisible(true);
                     bn_cancelConfirm.setVisible(true);
                 }
             });
@@ -91,8 +100,36 @@ public class MassegesRequestsView implements IView{
 
         this.tv_confirmationPurchase.setItems(dataConfirm);
 
+
+
+
+
+        ///for table tv_PaymentConfirmation
+
+        this.dataPayment = FXCollections.observableArrayList();
+
+        tv_PaymentConfirmation.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
+                    bn_confirmPayment.setVisible(true);
+                    bn_cancelConfirm1.setVisible(true);
+                }
+            });
+            return row ;
+        });
+
+        col_ticketConfirm1.setCellValueFactory(
+                new PropertyValueFactory<PurchaseMessage,String>("VacationCode")
+        );
+        col_buyer1.setCellValueFactory(
+                new PropertyValueFactory<PurchaseMessage,String>("Purchase_User")
+        );
+
+        this.tv_PaymentConfirmation.setItems(dataPayment);
+
         if(controller!=null)
             this.controller.getCommitList();
+
     }
 
 
@@ -104,9 +141,10 @@ public class MassegesRequestsView implements IView{
         return (PurchaseMessage)this.tv_confirmationPurchase.getSelectionModel().getSelectedItem();
     }
 
-    public void ConfirmPurches(){
-        
+    public PurchaseMessage getSelectedPaymentMessage(){
+        return (PurchaseMessage)this.tv_PaymentConfirmation.getSelectionModel().getSelectedItem();
     }
+
 
     public void back(ActionEvent actionEvent){
         controller.back();
@@ -124,9 +162,13 @@ public class MassegesRequestsView implements IView{
         initialize();
     }
 
-    public void Confirm(ActionEvent actionEvent) {
+    public void ConfirmPurches(ActionEvent actionEvent) {
         this.controller.Confirm(getSelectedConfirmMessage());
-        this.controller.confirmation();
+        initialize();
+
+    }
+    public void confirmPayment(){
+        this.controller.confirmation(getSelectedPaymentMessage());
         initialize();
 
     }
@@ -135,5 +177,11 @@ public class MassegesRequestsView implements IView{
 
     public void cancelConfirm(ActionEvent actionEvent) {
         this.controller.cancelConfirm(getSelectedConfirmMessage());
+    }
+
+    public void addToTablePayment(List<PurchaseMessage> paymentList) {
+
+        dataPayment.addAll(paymentList);
+
     }
 }

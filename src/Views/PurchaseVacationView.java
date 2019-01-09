@@ -36,4 +36,6 @@ public class PurchaseVacationView implements IView {
         alert.showAndWait();
     }
 
+
+
 }
