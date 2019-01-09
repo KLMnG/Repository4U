@@ -216,7 +216,7 @@ public class PurchaseVacationModel {
         }
     }
     public void setInvisible(int code_vacation){
-        String sql = "UPDATE Vacations SET state = INVISIBLE \n" +
+        String sql = "UPDATE Vacations SET state = 'INVISIBLE' \n" +
                 "                               WHERE  code=?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -301,7 +301,7 @@ public class PurchaseVacationModel {
     }
 
     public void removeRequest(String  seller, String buyer, int code_vacation){
-        String sql = "DELETE FROM RequestPurchases WHERE code_vacation = ? ";
+        String sql = "DELETE FROM RequestPurchases WHERE seller = ? AND buyer = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

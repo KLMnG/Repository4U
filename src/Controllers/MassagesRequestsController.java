@@ -40,8 +40,6 @@ public class MassagesRequestsController extends AController {
         List <PurchaseMessage> ConfirmList = model.listOfBuyersWithOneConfirm(UserModel.getUsername());
         List <PurchaseMessage> PaymentList = model.listOfBuyersWithTwoConfirm(UserModel.getUsername());
 
-
-
         this.view.addToTableCommit(CommitList);
         this.view.addToTableConfirm(ConfirmList);
         this.view.addToTablePayment(PaymentList);
@@ -50,7 +48,7 @@ public class MassagesRequestsController extends AController {
 
     public void confirmation(PurchaseMessage getSelectedConfirmMessage){
         this.model.updateOwner(getSelectedConfirmMessage.getPurchase_User(), getSelectedConfirmMessage.getVacationCode());
-
+        this.model.removeRequest(getSelectedConfirmMessage.getVacationCode());
         this.model.setInvisible(getSelectedConfirmMessage.getVacationCode());
 
     }
@@ -88,7 +86,18 @@ public class MassagesRequestsController extends AController {
 
 
     public void cancelConfirm(PurchaseMessage selectedConfirmMessage) {
-        model.removeRequest(UserModel.getUsername(),selectedConfirmMessage.getPurchase_User(), selectedConfirmMessage.getVacationCode());
+        VacationData vd = this.exchangeModel.getOfferedVacationData(selectedConfirmMessage.getPurchase_User(),selectedConfirmMessage.getVacationCode());
+        this.exchangeModel.removeRequest(selectedConfirmMessage.getVacationCode(),selectedConfirmMessage.getSeller_User(),selectedConfirmMessage.getPurchase_User());
+        this.exchangeModel.removeRequest(vd.getCode());
+    }
+
+    public void cancelConfirmP(PurchaseMessage selectedConfirmMessage) {
+        this.model.removeRequest(selectedConfirmMessage.getSeller_User(),selectedConfirmMessage.getPurchase_User(),selectedConfirmMessage.getVacationCode());
+    }
+
+
+    public void cancelConfirmPay(PurchaseMessage selectedConfirmMessage) {
+        this.model.removeRequest(selectedConfirmMessage.getSeller_User(),selectedConfirmMessage.getPurchase_User(),selectedConfirmMessage.getVacationCode());
     }
 
     public void getOfferedVacationData(String offer_user, int myVacationCode) {

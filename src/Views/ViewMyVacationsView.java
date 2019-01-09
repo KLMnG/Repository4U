@@ -100,7 +100,7 @@ public class ViewMyVacationsView implements IView {
     }
 
     public void addToTable(ArrayList<VacationData> tmp) {
-
+        data.clear();
         data.addAll(tmp);
     }
 
@@ -110,6 +110,9 @@ public class ViewMyVacationsView implements IView {
             this.controller.ChangeState(VacationData.State.valueOf("FOR_SELL"));
         if (rb_forExchange.isSelected())
             this.controller.ChangeState(VacationData.State.valueOf("FOR_EXCHANGE"));
+
+        this.controller.getMyVacations();
+
     }
 
     public void setRadioButtons(String radioButtons) {

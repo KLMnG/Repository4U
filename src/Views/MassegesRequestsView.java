@@ -75,6 +75,7 @@ public class MassegesRequestsView implements IView{
     private void refreshTable(){
         this.controller.getCommitList();
         this.controller.getOfferedVacationsTrades();
+        this.tv_OfferedVacation.getItems().clear();
     }
 
     private void initializeView(){
@@ -212,7 +213,7 @@ public class MassegesRequestsView implements IView{
     }
 
     public PurchaseMessage getSelectedConfirmMessage(){
-        return (PurchaseMessage)this.tv_confirmationPurchase.getSelectionModel().getSelectedItem();
+        return (PurchaseMessage)this.tv_VacationTradeOffers.getSelectionModel().getSelectedItem();
     }
 
     public PurchaseMessage getSelectedPaymentMessage(){
@@ -242,7 +243,7 @@ public class MassegesRequestsView implements IView{
     }
 
     public void ConfirmPurches(ActionEvent actionEvent) {
-        this.controller.Confirm(getSelectedConfirmMessage());
+        this.controller.Confirm((PurchaseMessage) tv_confirmationPurchase.getSelectionModel().getSelectedItem());
         refreshTable();
     }
     public void confirmPayment(){
@@ -254,6 +255,16 @@ public class MassegesRequestsView implements IView{
         this.controller.cancelConfirm(getSelectedConfirmMessage());
         refreshTable();
     }
+    public void cancelConfirmP(ActionEvent actionEvent) {
+        this.controller.cancelConfirmP((PurchaseMessage) tv_confirmationPurchase.getSelectionModel().getSelectedItem());
+        refreshTable();
+    }
+
+    public void cancelConfirmPay(ActionEvent actionEvent) {
+        this.controller.cancelConfirmPay((PurchaseMessage) tv_PaymentConfirmation.getSelectionModel().getSelectedItem());
+        refreshTable();
+    }
+
 
     public void setOffredVacationData(VacationData offredVacationData) {
         ObservableList<VacationData> tmp = FXCollections.observableArrayList();
@@ -267,6 +278,7 @@ public class MassegesRequestsView implements IView{
     }
 
     public void addToTablePayment(List<PurchaseMessage> paymentList) {
+        this.dataPayment.clear();
         dataPayment.addAll(paymentList);
 
     }

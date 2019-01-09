@@ -49,9 +49,29 @@ public class ExchangeModel {
         }
     }
 
+    public void removeRequest( int code_vacation,String reciver,String offer){
+        DBConnection con=new DBConnection();
+        String sql = "DELETE FROM Exchange WHERE (receiver_code = ? or offer_code=?) AND offering = ? AND receiving = ?";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+
+            pstmt.setInt(1, code_vacation);
+            pstmt.setInt(2, code_vacation);
+            pstmt.setString(3, offer);
+            pstmt.setString(4, reciver);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+    }
+
     public void setInvisible(int code_vacation){
         DBConnection con=new DBConnection();
-        String sql = "UPDATE Vacations SET state = INVISIBLE \n" +
+        String sql = "UPDATE Vacations SET state = 'INVISIBLE' \n" +
                 "                               WHERE  code=?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
