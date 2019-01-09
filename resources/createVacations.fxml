@@ -115,7 +115,7 @@
             </Label>
             <TextField fx:id="tf_width" layoutX="410.0" layoutY="496.0" prefHeight="25.0" prefWidth="83.0" visible="false" />
             <Button fx:id="b_addPassenger" layoutX="731.0" layoutY="561.0" mnemonicParsing="false" onAction="#addPassenger" text="Add passenger" />
-            <Button fx:id="b_done" disable="true" layoutX="832.0" layoutY="561.0" mnemonicParsing="false" onAction="#saveTicket" text="Done" />
+            <Button fx:id="b_done" layoutX="832.0" layoutY="561.0" mnemonicParsing="false" onAction="#saveTicket" text="Done" />
             <TableView fx:id="tbl_tickets" layoutX="55.0" layoutY="212.0" prefHeight="102.0" prefWidth="888.0">
               <columns>
                   <TableColumn fx:id="col_ticketNum" prefWidth="110.0" text="Ticket Number" />

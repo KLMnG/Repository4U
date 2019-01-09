@@ -170,17 +170,28 @@ public class CreateVacationsView implements IView {
                     this.tf_vacationType.getText(), (this.cb_includeFlightBacl.isSelected() ? 1 : 0),
                     -1);
 
+            for (TicketData td : this.getTickets()) {
+                if (td.getCode().equals(this.getTf_ticketNum().getText())) {
+                    ShowErrorAlert("Ticket Number must be unique\n");
+                    return;
+                }
+            }
+
             this.data.add(ticketData);
         }
     }
 
     public void saveTicket(ActionEvent actionEvent) {
-        if (this.controller.ValidateInput()) {
-            int price = Integer.parseInt(tf_price.getText());
-            int timeToStay = Integer.parseInt(tf_timeToStay.getText());
-            VacationData vacationData = new VacationData(this.data, price, tf_vacationType.getText(), 0, timeToStay, null, cb_hotel.getSelectionModel().getSelectedItem().toString());
-            controller.saveTickets(vacationData);
-            controller.swapScene();
+        if (this.controller.ValidateInput()){
+            if(this.getTickets().size()>0) {
+                int price = Integer.parseInt(tf_price.getText());
+                int timeToStay = Integer.parseInt(tf_timeToStay.getText());
+                VacationData vacationData = new VacationData(this.data, price, tf_vacationType.getText(), 0, timeToStay, null, cb_hotel.getSelectionModel().getSelectedItem().toString());
+                controller.saveTickets(vacationData);
+                controller.swapScene();
+            }else {
+                ShowErrorAlert("You must add at least 1 ticket to the vacation\n");
+            }
         }
     }
 
