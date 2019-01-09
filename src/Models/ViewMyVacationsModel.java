@@ -19,9 +19,11 @@ public class ViewMyVacationsModel {
     public List<VacationData> getVacations() {
         List<VacationData> forSale = userModel.getMyVacation(UserModel.getUsername(),VacationData.State.FOR_SELL);
         List <VacationData> forExchange = userModel.getMyVacation(UserModel.getUsername(),VacationData.State.FOR_EXCHANGE);
+        List <VacationData> invisibles = userModel.getMyVacation(UserModel.getUsername(),VacationData.State.INVISIBLE);
         List<VacationData> allVaca = new ArrayList<>();
         allVaca.addAll(forExchange);
         allVaca.addAll(forSale);
+        allVaca.addAll(invisibles);
         return allVaca;
     }
 
