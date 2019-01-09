@@ -34,6 +34,7 @@ public class ExchangeModel {
     }
 
 
-
-
+    public VacationData getOfferedVacationData(String offer_user, int myVacationCode) {
+        return null;
+    }
 }
