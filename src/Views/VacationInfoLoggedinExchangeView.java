@@ -136,13 +136,7 @@ public class VacationInfoLoggedinExchangeView implements IView {
 
 
         this.tbl_myVacations.setItems(myVacationsData);
-
-//        this.btnExchange.disableProperty().bind(new ObjectBinding<Boolean>() {
-//            @Override
-//            protected Boolean computeValue() {
-//                return tbl_myVacations.getSelectionModel().getSelectedItem() == null;
-//            }
-//        });
+        this.btnExchange.disableProperty().bind(this.tbl_myVacations.getSelectionModel().selectedItemProperty().isNull());
     }
 
     @Override

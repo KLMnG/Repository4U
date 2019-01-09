@@ -175,11 +175,13 @@ public class CreateVacationsView implements IView {
     }
 
     public void saveTicket(ActionEvent actionEvent) {
-        int price=Integer.parseInt(tf_price.getText());
-        int timeToStay=Integer.parseInt(tf_timeToStay.getText());
-        VacationData vacationData=new VacationData(this.data,price,tf_vacationType.getText(),0,timeToStay,null,cb_hotel.getSelectionModel().getSelectedItem().toString());
-        controller.saveTickets(vacationData);
-        controller.swapScene();
+        if (this.controller.ValidateInput()) {
+            int price = Integer.parseInt(tf_price.getText());
+            int timeToStay = Integer.parseInt(tf_timeToStay.getText());
+            VacationData vacationData = new VacationData(this.data, price, tf_vacationType.getText(), 0, timeToStay, null, cb_hotel.getSelectionModel().getSelectedItem().toString());
+            controller.saveTickets(vacationData);
+            controller.swapScene();
+        }
     }
 
     public void showLuggageAtribuets(ActionEvent actionEvent) {

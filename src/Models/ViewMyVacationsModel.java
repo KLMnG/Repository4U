@@ -41,4 +41,5 @@ public class ViewMyVacationsModel {
     public VacationData getSelectedVacationCode() {
 
         return this.vacationModel.getSelectedVacationForChangeCode();    }
+
 }
