@@ -34,17 +34,22 @@ public class MassagesRequestsController extends AController {
 
     public void getCommitList() {
         List <PurchaseMessage> CommitList = model.listOfSellers(UserModel.getUsername());
-        List <PurchaseMessage> ConfirmList = model.listOfBuyers(UserModel.getUsername());
+        List <PurchaseMessage> ConfirmList = model.listOfBuyersWithOneConfirm(UserModel.getUsername());
+        List <PurchaseMessage> PaymentList = model.listOfBuyersWithTwoConfirm(UserModel.getUsername());
+
+
 
         this.view.addToTableCommit(CommitList);
         this.view.addToTableConfirm(ConfirmList);
+        this.view.addToTablePayment(PaymentList);
 
     }
 
-    public void confirmation(){SwapScene(PapaController.Views.PurchesVacation);}
+    public void confirmation(PurchaseMessage getSelectedConfirmMessage){
+        this.model.updateOwner(getSelectedConfirmMessage.getPurchase_User(), getSelectedConfirmMessage.getVacationCode());
+        this.model.removeRequest(getSelectedConfirmMessage.getVacationCode());
 
-
-
+    }
 
 
     public void Confirm(PurchaseMessage getSelectedConfirmMessage) {

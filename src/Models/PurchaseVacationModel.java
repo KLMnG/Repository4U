@@ -104,9 +104,9 @@ public class PurchaseVacationModel {
         return false;
     }
 
-    public List<PurchaseMessage> listOfBuyers(String seller){
-        String sql = "SELECT buyer,code_vacation "
-                + "FROM RequestPurchases WHERE seller = ? ";
+    public List<PurchaseMessage> listOfBuyersWithOneConfirm(String seller){
+        String sql = "SELECT buyer,code_vacation \n" +
+                "                FROM RequestPurchases WHERE confirm_seller = 1 and confirm_buyer = 0 and seller = ?";
 
         List<PurchaseMessage> lstmessage = null;
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -126,6 +126,52 @@ public class PurchaseVacationModel {
         }
         // now we have map with all the codeVacation and his buyers
         return lstmessage;
+    }
+
+
+    public List<PurchaseMessage> listOfBuyersWithTwoConfirm(String seller){
+
+        String sql = "SELECT buyer,code_vacation \n" +
+                "                FROM RequestPurchases WHERE confirm_seller = 1 and confirm_buyer = 1 and seller = ?";
+
+        List<PurchaseMessage> lstmessage = null;
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){
+
+            pstmt.setString(1,seller);
+            ResultSet rs  = pstmt.executeQuery();
+
+            lstmessage = new ArrayList<PurchaseMessage>();
+            while (rs.next()) {
+                String buyer = (rs.getString("buyer"));
+                int code = (rs.getInt("code_vacation"));
+                PurchaseMessage msg = new PurchaseMessage(seller,buyer,code,"");
+                lstmessage.add(msg);
+            }
+        } catch (SQLException e) {
+        }
+        // now we have map with all the codeVacation and his buyers
+        return lstmessage;
+    }
+
+    public void updateOwner(String ownerNew, int codeVacation ) {
+        String sql = "UPDATE Vacations SET owner = ? \n" +
+                "                               WHERE  code=?";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+
+            pstmt.setString(1, ownerNew);
+            pstmt.setInt(2, codeVacation);
+
+            // update
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+        }
     }
 
     public List<PurchaseMessage> listOfSellers(String buyer){
@@ -218,7 +264,7 @@ public class PurchaseVacationModel {
     }
 
     public void removeRequest(String  seller, String buyer, int code_vacation){
-        String sql = "DELETE FROM RequestPurchases WHERE seller = ? AND buyer = ? AND code_vacation = ?";
+        String sql = "DELETE FROM RequestPurchases WHERE code_vacation = ? ";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -227,6 +273,22 @@ public class PurchaseVacationModel {
             pstmt.setString(1, seller);
             pstmt.setString(2, buyer);
             pstmt.setInt(3, code_vacation);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+    }
+
+    public void removeRequest( int code_vacation){
+        String sql = "DELETE FROM RequestPurchases WHERE code_vacation = ? ";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+
+            pstmt.setInt(1, code_vacation);
             // execute the delete statement
             pstmt.executeUpdate();
 
