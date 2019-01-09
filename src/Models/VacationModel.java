@@ -276,7 +276,7 @@ public class VacationModel {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                ans.add(new PurchaseMessage(user, rs.getString("offering"), rs.getInt("offer_code"), ""));
+                ans.add(new PurchaseMessage(user, rs.getString("offering"), rs.getInt("receiver_code"), ""));
             }
         } catch (SQLException e1) {
             e1.printStackTrace();

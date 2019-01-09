@@ -61,7 +61,7 @@ public class VacationInfoLoggedinExchangeView implements IView {
 
     public Button btnExchange;
 
-    public void initialize(){
+    public void initialize() {
 
         this.data = FXCollections.observableArrayList();
         this.myVacationsData = FXCollections.observableArrayList();
@@ -73,65 +73,66 @@ public class VacationInfoLoggedinExchangeView implements IView {
         this.ap_hotel.visibleProperty().bind(hotelBinding);
         this.ap_moreinfo.visibleProperty().bind(moreinfoBinding);
 
-        this.tbl_myVacations.setRowFactory(param -> {TableRow<VacationData> row = new TableRow<>();
+        this.tbl_myVacations.setRowFactory(param -> {
+            TableRow<VacationData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     VacationData rowData = row.getItem();
 
                 }
             });
-            return row ;
+            return row;
         });
 
         col_flightCompany.setCellValueFactory(
-                new PropertyValueFactory<TicketData,String>("Airline")
+                new PropertyValueFactory<TicketData, String>("Airline")
         );
         col_departure.setCellValueFactory(
-                new PropertyValueFactory<TicketData,String>("From")
+                new PropertyValueFactory<TicketData, String>("From")
         );
         col_destination.setCellValueFactory(
-                new PropertyValueFactory<TicketData,String>("To")
+                new PropertyValueFactory<TicketData, String>("To")
         );
         col_flghtDate.setCellValueFactory(
-                new PropertyValueFactory<TicketData,String>("Depart")
+                new PropertyValueFactory<TicketData, String>("Depart")
         );
         col_flghtBack.setCellValueFactory(
                 new PropertyValueFactory<TicketData, Boolean>("includes_flight_back")
         );
 
-        this.tbl_tickets.setRowFactory(param -> {TableRow<TicketData> row = new TableRow<>();
+        this.tbl_tickets.setRowFactory(param -> {
+            TableRow<TicketData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 1 && (!row.isEmpty())) {
                     TicketData rowData = row.getItem();
                     this.luggageBinding.setValue(true);
                     this.SetLuggageData(rowData);
-                }
-                else if(row.isEmpty())
+                } else if (row.isEmpty())
                     this.luggageBinding.setValue(false);
             });
-            return row ;
+            return row;
         });
 
 
         this.tbl_tickets.setItems(data);
 
         col_from.setCellValueFactory(
-                new PropertyValueFactory<VacationData,String>("From")
+                new PropertyValueFactory<VacationData, String>("From")
         );
         col_to.setCellValueFactory(
-                new PropertyValueFactory<VacationData,String>("To")
+                new PropertyValueFactory<VacationData, String>("To")
         );
         col_days.setCellValueFactory(
-                new PropertyValueFactory<VacationData,String>("Days")
+                new PropertyValueFactory<VacationData, String>("Days")
         );
         col_depart.setCellValueFactory(
-                new PropertyValueFactory<VacationData,String>("Depart")
+                new PropertyValueFactory<VacationData, String>("Depart")
         );
         col_travelers.setCellValueFactory(
-                new PropertyValueFactory<VacationData,String>("Travelers")
+                new PropertyValueFactory<VacationData, String>("Travelers")
         );
         col_price.setCellValueFactory(
-                new PropertyValueFactory<VacationData,Integer>("Price")
+                new PropertyValueFactory<VacationData, Integer>("Price")
         );
 
 
@@ -150,7 +151,6 @@ public class VacationInfoLoggedinExchangeView implements IView {
         this.controller = (ExchangeController) controller;
         this.controller.initializeView();
     }
-
 
 
     public void setLb_vacationPrice(int price) {
@@ -190,11 +190,12 @@ public class VacationInfoLoggedinExchangeView implements IView {
     }
 
     public void ShowInfoAlert(String alertMessage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION,alertMessage, ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, alertMessage, ButtonType.OK);
         alert.show();
     }
+
     public void ShowErrorAlert(String alertMessage) {
-        Alert alert = new Alert(Alert.AlertType.ERROR,alertMessage, ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.ERROR, alertMessage, ButtonType.OK);
         alert.show();
     }
 
@@ -215,6 +216,9 @@ public class VacationInfoLoggedinExchangeView implements IView {
     }
 
     public void ExchangeVacation(ActionEvent actionEvent) {
-        this.controller.ExchangeVacation((VacationData)this.tbl_myVacations.getSelectionModel().getSelectedItem());
+        if (this.tbl_myVacations == null || this.tbl_myVacations.hasProperties()) {
+            ShowErrorAlert("Please upload Vacation or set one for Exchange");
+        } else
+            this.controller.ExchangeVacation((VacationData) this.tbl_myVacations.getSelectionModel().getSelectedItem());
     }
 }

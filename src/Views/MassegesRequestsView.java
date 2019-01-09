@@ -59,7 +59,6 @@ public class MassegesRequestsView implements IView{
     public Button btn_RejectTrade;
 
     private ObservableList<PurchaseMessage> TradeMessages;
-
     private ObservableList<PurchaseMessage> dataCommit;
     private ObservableList<PurchaseMessage> dataConfirm;
     private ObservableList<PurchaseMessage> dataPayment;
@@ -155,20 +154,20 @@ public class MassegesRequestsView implements IView{
 
 
 
-        col_ticketCommit.setCellValueFactory(
+        col_VacationIDvo.setCellValueFactory(
                 new PropertyValueFactory<PurchaseMessage,String>("VacationCode")
         );
-        col_sellerCommit.setCellValueFactory(
+        col_SellerIDvo.setCellValueFactory(
                 new PropertyValueFactory<PurchaseMessage,String>("Seller_User")
         );
 
 
 
-        tv_OfferedVacation.setRowFactory(param -> {TableRow<PurchaseMessage> row = new TableRow<>();
+        tv_VacationTradeOffers.setRowFactory(param -> {TableRow<PurchaseMessage> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     PurchaseMessage rowData = row.getItem();
-                    this.controller.getOfferedVacationData(rowData.getSeller_User(),rowData.getVacationCode());
+                    this.controller.getOfferedVacationData(rowData.getPurchase_User(),rowData.getVacationCode());
                 }
             });
             return row ;
@@ -247,6 +246,7 @@ public class MassegesRequestsView implements IView{
 
     public void cancelConfirm(ActionEvent actionEvent) {
         this.controller.cancelConfirm(getSelectedConfirmMessage());
+        refreshTable();
     }
 
     public void setOffredVacationData(VacationData offredVacationData) {
@@ -261,7 +261,6 @@ public class MassegesRequestsView implements IView{
     }
 
     public void addToTablePayment(List<PurchaseMessage> paymentList) {
-
         dataPayment.addAll(paymentList);
 
     }
