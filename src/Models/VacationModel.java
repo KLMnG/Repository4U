@@ -269,7 +269,7 @@ public class VacationModel {
 
     public List<PurchaseMessage> getRequestingOffers(String user) {
         List<PurchaseMessage> ans = new ArrayList<>();
-        String sql = "SELECT offering,receive_code From Exchange Where receiving=? AND confirm_offer=1 AND confirm_receiver=0";
+        String sql = "SELECT offering,receiver_code From Exchange Where receiving=? AND confirm_offer=1 AND confirm_receiver=0";
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, user);

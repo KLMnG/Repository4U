@@ -31,7 +31,7 @@ public class PapaController {
         VacationModel vacationModel = new VacationModel(userModel,modelTicketDB);
         ViewMyVacationsModel viewMyVacationModel = new ViewMyVacationsModel(userModel, vacationModel);
         PurchaseVacationModel purchaseVacationModel = new PurchaseVacationModel();
-
+        ExchangeModel exchangeModel = new ExchangeModel(vacationModel,userModel,purchaseVacationModel);
 
         this.views.put(Views.HomePage,"/HomePage.fxml");
         this.views.put(Views.LoginWindow,"/Login.fxml");
@@ -55,8 +55,8 @@ public class PapaController {
         this.controllers.put(Views.CreateVationWindow,new CreateVacationsController(this,vacationModel));
         this.controllers.put(Views.VacationInfo,new VacationInfoController(this,vacationModel));
         this.controllers.put(Views.VacationInfoLoggedIn,new VacationInfoLoggedinController(this,new VacationInfoLoggedinModel(userModel,vacationModel,purchaseVacationModel)));
-        this.controllers.put(Views.VacationInfoExchangeLoggedIn,new ExchangeController(this,new ExchangeModel(vacationModel,userModel,purchaseVacationModel)));
-        this.controllers.put(Views.MassegesRequests,new MassagesRequestsController(this,purchaseVacationModel));
+        this.controllers.put(Views.VacationInfoExchangeLoggedIn,new ExchangeController(this,exchangeModel));
+        this.controllers.put(Views.MassegesRequests,new MassagesRequestsController(this,purchaseVacationModel,exchangeModel));
         this.controllers.put(Views.PurchesVacation, new PurchaseVacationController(this,purchaseVacationModel));
         this.controllers.put(Views.ViewMyVacations, new ViewMyVacationsController(this,viewMyVacationModel));
 

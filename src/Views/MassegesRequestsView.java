@@ -129,10 +129,6 @@ public class MassegesRequestsView implements IView{
 
         this.tv_confirmationPurchase.setItems(dataConfirm);
 
-
-
-
-
         ///for table tv_PaymentConfirmation
 
         this.dataPayment = FXCollections.observableArrayList();
@@ -196,11 +192,11 @@ public class MassegesRequestsView implements IView{
 
 
 
-        this.btn_ConfirmTrade.visibleProperty().bind(tv_OfferedVacation.selectionModelProperty());
-        this.btn_RejectTrade.visibleProperty().bind(tv_OfferedVacation.selectionModelProperty());
-
         this.TradeMessages = FXCollections.observableArrayList();
         this.tv_VacationTradeOffers.setItems(TradeMessages);
+
+        this.btn_ConfirmTrade.visibleProperty().bind(tv_OfferedVacation.selectionModelProperty().isNotNull());
+        this.btn_RejectTrade.visibleProperty().bind(tv_OfferedVacation.selectionModelProperty().isNotNull());
     }
 
 
@@ -236,15 +232,11 @@ public class MassegesRequestsView implements IView{
 
     public void ConfirmPurches(ActionEvent actionEvent) {
         this.controller.Confirm(getSelectedConfirmMessage());
-        this.controller.confirmation();
         refreshTable();
-        initialize();
-
     }
     public void confirmPayment(){
         this.controller.confirmation(getSelectedPaymentMessage());
-        initialize();
-
+        refreshTable();
     }
 
 
@@ -257,6 +249,11 @@ public class MassegesRequestsView implements IView{
         ObservableList<VacationData> tmp = FXCollections.observableArrayList();
         tmp.add(offredVacationData);
         this.tv_OfferedVacation.setItems(tmp);
+    }
+
+    public void setOfferedTrades(List<PurchaseMessage> offeredTrades) {
+        this.TradeMessages.clear();
+        this.TradeMessages.addAll(offeredTrades);
     }
 
     public void addToTablePayment(List<PurchaseMessage> paymentList) {

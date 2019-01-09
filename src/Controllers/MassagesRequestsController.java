@@ -84,7 +84,7 @@ public class MassagesRequestsController extends AController {
 
     public void getOfferedVacationsTrades() {
 
-//        List <PurchaseMessage> OffredTrades = model.(UserModel.getUsername());
-  //      this.view.addToTableCommit(OffredTrades);
+        List <PurchaseMessage> OffredTrades = exchangeModel.getofferings();
+        this.view.setOfferedTrades(OffredTrades);
     }
 }

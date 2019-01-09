@@ -72,7 +72,7 @@ public class PurchaseVacationModel {
                 pstmt.setInt(3, codeVacation);
                 pstmt.setString(4, DateT);
                 pstmt.setInt(5, 0);
-                pstmt.setInt(6, 1);
+                pstmt.setInt(6, 0);
                 pstmt.executeUpdate();
 
             } catch (SQLException e) {
