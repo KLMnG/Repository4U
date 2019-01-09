@@ -51,7 +51,7 @@ public class ExchangeModel {
 
     public void setInvisible(int code_vacation){
         DBConnection con=new DBConnection();
-        String sql = "UPDATE Vacations SET state = ? \n" +
+        String sql = "UPDATE Vacations SET state = INVISIBLE \n" +
                 "                               WHERE  code=?";
 
         try (Connection conn = con.getSQLLiteDBConnection();

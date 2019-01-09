@@ -216,7 +216,7 @@ public class PurchaseVacationModel {
         }
     }
     public void setInvisible(int code_vacation){
-        String sql = "UPDATE Vacations SET state = ? \n" +
+        String sql = "UPDATE Vacations SET state = INVISIBLE \n" +
                 "                               WHERE  code=?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
