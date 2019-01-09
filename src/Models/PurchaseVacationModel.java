@@ -106,7 +106,7 @@ public class PurchaseVacationModel {
 
     public List<PurchaseMessage> listOfBuyersWithOneConfirm(String seller){
         String sql = "SELECT buyer,code_vacation \n" +
-                "                FROM RequestPurchases WHERE confirm_seller = 1 and confirm_buyer = 0 and seller = ?";
+                "                FROM RequestPurchases WHERE confirm_seller = 0 and confirm_buyer = 0 and seller = ?";
 
         List<PurchaseMessage> lstmessage = null;
         try (Connection conn = con.getSQLLiteDBConnection();
@@ -176,7 +176,7 @@ public class PurchaseVacationModel {
 
     public List<PurchaseMessage> listOfSellers(String buyer){
         String sql = "SELECT seller,code_vacation "
-                + "FROM RequestPurchases WHERE buyer = ? ";
+                + "FROM RequestPurchases WHERE buyer = ? AND confirm_seller=1 ";
 
         List<PurchaseMessage> lstmessage = null;
         try (Connection conn = con.getSQLLiteDBConnection();
