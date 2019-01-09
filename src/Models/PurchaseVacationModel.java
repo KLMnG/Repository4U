@@ -83,7 +83,7 @@ public class PurchaseVacationModel {
     }
 
     public boolean isExist(String seller, int codeVacation){
-        String sql = "SELECT buyer FROM RequestPurchase WHERE seller = ? AND code_vacation = ?";
+        String sql = "SELECT buyer FROM RequestPurchases WHERE seller = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -201,6 +201,24 @@ public class PurchaseVacationModel {
     public void confirmVacationInDB(String seller, String buyer, int code_vacation){
         String sql = "UPDATE RequestPurchases SET confirm_seller = ? "+
                     "WHERE seller = ? AND buyer = ? AND code_vacation = ?";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, 1);
+            pstmt.setString(2, seller);
+            pstmt.setString(3, buyer);
+            pstmt.setInt(4, code_vacation);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+    }
+
+    public void updateBuyerConfirm(String seller, String buyer, int code_vacation){
+        String sql = "UPDATE RequestPurchases SET confirm_buyer = ? "+
+                "WHERE seller = ? AND buyer = ? AND code_vacation = ?";
 
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

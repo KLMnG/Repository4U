@@ -65,6 +65,7 @@ public class MassagesRequestsController extends AController {
         this.model.setSeller(getSelectedOrderMessage.getSeller_User());
         this.model.setVacationCode(getSelectedOrderMessage.getVacationCode());
         this.model.setBuyer(getSelectedOrderMessage.getPurchase_User());
+        this.model.updateBuyerConfirm(UserModel.getUsername(),getSelectedOrderMessage.getPurchase_User(),getSelectedOrderMessage.getVacationCode());
         if(ifConfirmed)
             SwapScene(PapaController.Views.PurchesVacation);
     }
