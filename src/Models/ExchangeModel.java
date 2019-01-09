@@ -31,6 +31,45 @@ public class ExchangeModel {
         return this.userModel.getMyVacation(UserModel.getUsername(), VacationData.State.FOR_EXCHANGE);
     }
 
+    public void removeRequest( int code_vacation){
+        DBConnection con=new DBConnection();
+        String sql = "DELETE FROM Exchange WHERE receiver_code = ? or  offer_code=?";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+
+            pstmt.setInt(1, code_vacation);
+            pstmt.setInt(2, code_vacation);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+    }
+
+    public void setInvisible(int code_vacation){
+        DBConnection con=new DBConnection();
+        String sql = "UPDATE Vacations SET state = ? \n" +
+                "                               WHERE  code=?";
+
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+
+
+            pstmt.setInt(1, code_vacation);
+
+            // update
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+
+    }
 
     public boolean AskToExchange(VacationData vacation) {
         return addExchangeVacation(vacationModel.getSelectedVacationData().getCode(),vacation.getCode(), vacationModel.getSelectedVacationData().getSeller().getUsername(),vacation.getSeller().getUsername());

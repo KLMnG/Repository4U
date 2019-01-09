@@ -50,8 +50,21 @@ public class MassagesRequestsController extends AController {
 
     public void confirmation(PurchaseMessage getSelectedConfirmMessage){
         this.model.updateOwner(getSelectedConfirmMessage.getPurchase_User(), getSelectedConfirmMessage.getVacationCode());
-        this.model.removeRequest(getSelectedConfirmMessage.getVacationCode());
 
+        this.model.setInvisible(getSelectedConfirmMessage.getVacationCode());
+
+    }
+
+
+    public void confirmEx(PurchaseMessage getSelectedConfirmMessage){
+
+        VacationData vd = this.exchangeModel.getOfferedVacationData(getSelectedConfirmMessage.getPurchase_User(),getSelectedConfirmMessage.getVacationCode());
+        this.model.updateOwner(getSelectedConfirmMessage.getSeller_User(), vd.getCode());
+        this.model.updateOwner(getSelectedConfirmMessage.getPurchase_User(), getSelectedConfirmMessage.getVacationCode());
+        this.exchangeModel.removeRequest(getSelectedConfirmMessage.getVacationCode());
+        this.exchangeModel.removeRequest(vd.getCode());
+        this.exchangeModel.setInvisible(vd.getCode());
+        this.exchangeModel.setInvisible(getSelectedConfirmMessage.getVacationCode());
     }
 
 
