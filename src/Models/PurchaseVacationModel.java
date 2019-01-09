@@ -176,7 +176,7 @@ public class PurchaseVacationModel {
 
     public List<PurchaseMessage> listOfSellers(String buyer){
         String sql = "SELECT seller,code_vacation "
-                + "FROM RequestPurchases WHERE buyer = ? AND confirm_seller=1 ";
+                + "FROM RequestPurchases WHERE buyer = ? AND confirm_seller=1 AND confirm_buyer=0";
 
         List<PurchaseMessage> lstmessage = null;
         try (Connection conn = con.getSQLLiteDBConnection();
