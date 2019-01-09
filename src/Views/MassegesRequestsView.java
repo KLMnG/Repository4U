@@ -104,6 +104,10 @@ public class MassegesRequestsView implements IView{
         return (PurchaseMessage)this.tv_confirmationPurchase.getSelectionModel().getSelectedItem();
     }
 
+    public void ConfirmPurches(){
+        
+    }
+
     public void back(ActionEvent actionEvent){
         controller.back();
     }
