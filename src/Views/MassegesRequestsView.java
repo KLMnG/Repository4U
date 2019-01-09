@@ -4,6 +4,7 @@ import Controllers.AController;
 import Controllers.MassagesRequestsController;
 import General.PurchaseMessage;
 import General.VacationData;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.naming.Binding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,8 +43,6 @@ public class MassegesRequestsView implements IView{
     public Button bn_confirmPayment;
     public Button bn_cancelConfirm1;
 
-
-
     //exchange
     public TableView tv_VacationTradeOffers;
     public TableColumn col_VacationIDvo;
@@ -69,7 +69,6 @@ public class MassegesRequestsView implements IView{
     public void setController(AController controller) {
         this.controller = (MassagesRequestsController) controller;
         this.initializeView();
-
     }
 
 
@@ -194,8 +193,17 @@ public class MassegesRequestsView implements IView{
         this.TradeMessages = FXCollections.observableArrayList();
         this.tv_VacationTradeOffers.setItems(TradeMessages);
 
-        this.btn_ConfirmTrade.visibleProperty().bind(tv_OfferedVacation.selectionModelProperty().isNotNull());
-        this.btn_RejectTrade.visibleProperty().bind(tv_OfferedVacation.selectionModelProperty().isNotNull());
+        this.btn_ConfirmTrade.disableProperty().bind(this.tv_VacationTradeOffers.getSelectionModel().selectedItemProperty().isNull());
+        this.btn_RejectTrade.disableProperty().bind(this.tv_VacationTradeOffers.getSelectionModel().selectedItemProperty().isNull());
+
+        this.bn_confirmPurches.disableProperty().bind(this.tv_confirmationPurchase.getSelectionModel().selectedItemProperty().isNull());
+        this.bn_cancelConfirm.disableProperty().bind(this.tv_confirmationPurchase.getSelectionModel().selectedItemProperty().isNull());
+
+        this.bn_confirmPayment.disableProperty().bind(this.tv_PaymentConfirmation.getSelectionModel().selectedItemProperty().isNull());
+        this.bn_cancelConfirm1.disableProperty().bind(this.tv_PaymentConfirmation.getSelectionModel().selectedItemProperty().isNull());
+
+        this.bn_orderNow.disableProperty().bind(this.tv_commitPurchase.getSelectionModel().selectedItemProperty().isNull());
+
     }
 
 
@@ -241,8 +249,6 @@ public class MassegesRequestsView implements IView{
         this.controller.confirmation(getSelectedPaymentMessage());
         refreshTable();
     }
-
-
 
     public void cancelConfirm(ActionEvent actionEvent) {
         this.controller.cancelConfirm(getSelectedConfirmMessage());

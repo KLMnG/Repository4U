@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ViewMyVacationsView implements IView {
 
@@ -86,6 +87,8 @@ public class ViewMyVacationsView implements IView {
         );
 
         this.tv_MyVacations.setItems(data);
+
+        this.bn_change.disableProperty().bind(group.selectedToggleProperty().isNull());
     }
 
     private void initializeView() {
@@ -102,11 +105,11 @@ public class ViewMyVacationsView implements IView {
     }
 
     public void ChangeState(){
-        if(rb_forSale.isSelected())
-            this.controller.ChangeState(VacationData.State.valueOf("FOR_SELL"));
-        if(rb_forExchange.isSelected())
-            this.controller.ChangeState(VacationData.State.valueOf("FOR_EXCHANGE"));
 
+        if (rb_forSale.isSelected())
+            this.controller.ChangeState(VacationData.State.valueOf("FOR_SELL"));
+        if (rb_forExchange.isSelected())
+            this.controller.ChangeState(VacationData.State.valueOf("FOR_EXCHANGE"));
     }
 
     public void setRadioButtons(String radioButtons) {
