@@ -171,15 +171,20 @@ public class CreateVacationsView implements IView {
                     -1);
 
             this.data.add(ticketData);
+            b_done.setDisable(false);
         }
     }
 
     public void saveTicket(ActionEvent actionEvent) {
         int price=Integer.parseInt(tf_price.getText());
-        int timeToStay=Integer.parseInt(tf_timeToStay.getText());
-        VacationData vacationData=new VacationData(this.data,price,tf_vacationType.getText(),0,timeToStay,null,cb_hotel.getSelectionModel().getSelectedItem().toString());
-        controller.saveTickets(vacationData);
-        controller.swapScene();
+        try {
+            int timeToStay = Integer.parseInt(tf_timeToStay.getText());
+            VacationData vacationData = new VacationData(this.data, price, tf_vacationType.getText(), 0, timeToStay, null, cb_hotel.getSelectionModel().getSelectedItem().toString());
+            controller.saveTickets(vacationData);
+            controller.swapScene();
+        }catch (NumberFormatException e){
+            ShowErrorAlert("Time to stay,must be numbers only\n");
+        }
     }
 
     public void showLuggageAtribuets(ActionEvent actionEvent) {
