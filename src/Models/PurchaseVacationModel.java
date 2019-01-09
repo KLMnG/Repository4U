@@ -215,7 +215,26 @@ public class PurchaseVacationModel {
         } catch (SQLException e) {
         }
     }
+    public void setInvisible(int code_vacation){
+        String sql = "UPDATE Vacations SET state = ? \n" +
+                "                               WHERE  code=?";
 
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+
+
+            pstmt.setInt(1, code_vacation);
+
+            // update
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+
+    }
     public void updateBuyerConfirm(String seller, String buyer, int code_vacation){
         String sql = "UPDATE RequestPurchases SET confirm_buyer = ? "+
                 "WHERE seller = ? AND buyer = ? AND code_vacation = ?";
