@@ -269,14 +269,14 @@ public class VacationModel {
 
     public List<PurchaseMessage> getRequestingOffers(String user) {
         List<PurchaseMessage> ans = new ArrayList<>();
-        String sql = "SELECT offerring,offer_code From Exchange Where receiving=? AND confirm_";
+        String sql = "SELECT offering,receive_code From Exchange Where receiving=? AND confirm_offer=1 AND confirm_receiver=0";
         try (Connection conn = con.getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, user);
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                ans.add(new PurchaseMessage(user, rs.getString("offerring"), rs.getInt("offer_code"), ""));
+                ans.add(new PurchaseMessage(user, rs.getString("offering"), rs.getInt("offer_code"), ""));
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
@@ -286,5 +286,25 @@ public class VacationModel {
     }
 
 
+    public int getVCodeFromExchange(String offer_user, int myVacationCode, String user) {
+        int ans=-1;
+        String sql = "SELECT offer_code From Exchange Where receiver_code=? AND offering=? AND receiving=?";
+        try (Connection conn = con.getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, myVacationCode);
+            pstmt.setString(2, offer_user);
+            pstmt.setString(3, user);
+
+
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            ans = rs.getInt("offer_code");
+
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+        return ans;
+    }
 }
 
